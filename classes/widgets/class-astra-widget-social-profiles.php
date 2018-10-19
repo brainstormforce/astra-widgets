@@ -179,32 +179,34 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				$bg_hover_color   = isset( $instance['bg-hover-color'] ) ? $instance['bg-hover-color'] : '';
 				$icon_width       = isset( $instance['width'] ) ? $instance['width'] : '';
 				$color_type       = isset( $instance['color-type'] ) ? $instance['color-type'] : '';
-				$list             = $instance['list'];
-				$icons_color      = Astra_Ext_Widgets_Helper::get_icons();
+				$list             = isset( $instance['list'] ) ? $instance['list'] : '';
+				$icons_color      = Astra_Widgets_Helper::get_icons();
 
 				if ( 'official-color' === $color_type ) {
 
 					$new_color_output = '';
-					foreach ( $list as $key => $value ) {
-						$str                 = $value['icon'];
-						$color_array         = $icons_color[ $str ];
-						$icon_color_official = $color_array['color'];
+					if ( ! empty( $list ) ) {
+						foreach ( $list as $key => $value ) {
+							$str                 = $value['icon'];
+							$color_array         = $icons_color[ $str ];
+							$icon_color_official = $color_array['color'];
 
-						$trimmed = str_replace( 'astra-icon-', '', $str );
+							$trimmed = str_replace( 'astra-icon-', '', $str );
 
-						$color_output = array(
-							'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $trimmed . '.icon' => array(
-								'color'            => esc_attr( $icon_color_official ),
-								'background-color' => 'transparent',
-							),
-							'.astra-widget-social-profiles-inner.icon-official-color li .' . $trimmed . '.icon' => array(
-								'color'            => '#fff',
-								'background-color' => esc_attr( $icon_color_official ),
-							),
-						);
-						$color_output = astra_parse_css( $color_output );
+							$color_output = array(
+								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $trimmed . '.icon' => array(
+									'color'            => esc_attr( $icon_color_official ),
+									'background-color' => 'transparent',
+								),
+								'.astra-widget-social-profiles-inner.icon-official-color li .' . $trimmed . '.icon' => array(
+									'color'            => '#fff',
+									'background-color' => esc_attr( $icon_color_official ),
+								),
+							);
+							$color_output = astra_parse_css( $color_output );
 
-						$new_color_output .= $color_output;
+							$new_color_output .= $color_output;
+						}
 					}
 
 					$dynamic_css .= $dynamic_css . $new_color_output;
@@ -328,7 +330,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			 * Checkbox field support!
 			 *
 			 * @todo The checkbox field we need to set the boolean value `true/false`
-			 *       For now we have not able to detect the `checkbox` field in `generate` of class `Astra_Ext_Widgets_Helper`.
+			 *       For now we have not able to detect the `checkbox` field in `generate` of class `Astra_Widgets_Helper`.
 			 */
 			$instance['display-title'] = isset( $new_instance['display-title'] ) ? (bool) $new_instance['display-title'] : false;
 

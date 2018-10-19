@@ -158,7 +158,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			 * Checkbox field support!
 			 *
 			 * @todo The checkbox field we need to set the boolean value `true/false`
-			 *       For now we have not able to detect the `checkbox` field in `generate` of class `Astra_Ext_Widgets_Helper`.
+			 *       For now we have not able to detect the `checkbox` field in `generate` of class `Astra_Widgets_Helper`.
 			 */
 			$instance['display-icons'] = isset( $new_instance['display-icons'] ) ? (bool) $new_instance['display-icons'] : false;
 
