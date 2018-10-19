@@ -1,0 +1,37 @@
+#secondary .astra-widget-list-icons ul li {
+	-js-display: flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 1em;
+	line-height: normal;
+}
+
+.astra-widget-list-icons ul li img {
+	min-width: 25px;
+}
+
+.astra-widget-list-icons ul li .image {
+	max-width: 25px;
+	margin-left: 5px;
+}
+
+.astra-widget-list-icons ul li span {
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.astra-widget-list-icons li {
+	-js-display: flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 1.3em;
+}
+.astra-widget-list-icons .icon {
+    display:  inline-block;
+}
