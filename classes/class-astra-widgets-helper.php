@@ -49,7 +49,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			add_action( 'astra_dynamic_css', array( $this, 'frontend_load_astra_fonts' ) );
 			add_action( 'astra_get_css_files', array( $this, 'backend_load_astra_fonts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'backend_load_astra_fonts' ) );
-			add_action( 'admin_init', array( $this, 'backend_load_font_awesome_icons' ) );
+			// add_action( 'admin_init', array( $this, 'backend_load_font_awesome_icons' ) );
 		}
 
 		
@@ -221,7 +221,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 											<div class="astra-widget-icon-selector-actions">
 												<div class="astra-select-icon button">
-													<div class="astra-selected-icon"><i class="<?php echo esc_attr( $value['default'] ); ?>"></i></div>
+													<div class="astra-selected-icon"></div>
 													<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 												</div>
 											</div>
@@ -240,7 +240,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													foreach ( $font_awesome_icons as $index => $field ) {
 														?>
 
-															<li class="astra-widget-icon" data-font="<?php echo $index; ?>"> 
+															<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>"> 
 																<?php if ( isset( $field['svg']['brands']['raw'] ) ) {
 																	echo $field['svg']['brands']['raw']; 
 																} else if ( isset( $field['svg']['solid']['raw'] ) ) {

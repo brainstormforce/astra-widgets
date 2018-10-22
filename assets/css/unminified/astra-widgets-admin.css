@@ -249,3 +249,11 @@
     width: 20px;
     height: 20px;
 }
+
+
+.astra-selected-icon svg {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-top: -1px;
+}

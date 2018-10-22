@@ -82,11 +82,15 @@
 		_set_icon: function(event) {
 			var parent               = $(this).parents('.astra-widget-icon-selector');
 			var selected_icon_font   = $(this).attr('data-font') || '';
-			var current_icon_preview = parent.find('.astra-selected-icon i');
-			var current_icon_input = parent.find('.selected-icon');
+			var icon_selector  		 = parent.find( '.astra-widget-icon.' + selected_icon_font  );
+			var current_icon_preview = parent.find('.astra-selected-icon');
+			var current_icon_input   = parent.find('.selected-icon');
+			var icon_selector_svg	 = icon_selector.html();
 
-			current_icon_preview.removeClass();
-			current_icon_preview.addClass( selected_icon_font );
+			console.log( icon_selector_svg );
+			console.log( current_icon_preview );
+			// current_icon_preview.removeClass();
+			current_icon_preview.html( icon_selector_svg );
 			
 			if( $(this).closest('.astra-repeater-field').find('.selected-icon').data('icon-visible') === 'yes' ) {
 				$(this).closest('.astra-repeater-field').find('.title').attr('class','title');
