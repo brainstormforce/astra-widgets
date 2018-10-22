@@ -257,3 +257,11 @@
     vertical-align: middle;
     margin-top: -1px;
 }
+
+.astra-widget-icon.selected {
+    background: #5897fb;
+}
+
+.astra-widget-icon.selected svg {
+    fill: #fff;    
+}

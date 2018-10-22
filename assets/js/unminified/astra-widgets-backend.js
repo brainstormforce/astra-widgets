@@ -90,8 +90,12 @@
 			console.log( icon_selector_svg );
 			console.log( current_icon_preview );
 			// current_icon_preview.removeClass();
+
 			current_icon_preview.html( icon_selector_svg );
 			
+			parent.find('.astra-widget-icons-list .astra-widget-icon').removeClass( 'selected' );
+			icon_selector.addClass( 'selected' );
+
 			if( $(this).closest('.astra-repeater-field').find('.selected-icon').data('icon-visible') === 'yes' ) {
 				$(this).closest('.astra-repeater-field').find('.title').attr('class','title');
 				$(this).closest('.astra-repeater-field').find('.title').addClass( selected_icon_font );
