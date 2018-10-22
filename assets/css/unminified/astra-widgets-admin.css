@@ -193,10 +193,11 @@
     margin-bottom: 1em;
 }
 .astra-widget-icons-list .astra-widget-icon {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     float: left;
     cursor: pointer;
-    height: 1em;
     padding: 1em;
     width: 26px;
     line-height: 1em;

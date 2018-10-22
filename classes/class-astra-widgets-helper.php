@@ -49,6 +49,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			add_action( 'astra_dynamic_css', array( $this, 'frontend_load_astra_fonts' ) );
 			add_action( 'astra_get_css_files', array( $this, 'backend_load_astra_fonts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'backend_load_astra_fonts' ) );
+			add_action( 'admin_init', array( $this, 'backend_load_font_awesome_icons' ) );
 		}
 
 		
@@ -59,8 +60,43 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 */
 		public static function backend_load_font_awesome_icons() {
 
-			$str = file_get_contents( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json');
+			if ( ! file_exists( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json' ) ) {
+				return array();
+			}
+
+			$str = file_get_contents( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json' );
 			$json = json_decode($str, true); // decode the JSON into an associative array
+
+			// $json = self::remove_unwanted_data( $json );
+
+			return $json;
+		}
+
+		/**
+		 * Remoove unwanted values from font awesome json object
+		 *
+		 * @since 1.0.0
+		 */
+		public static function remove_unwanted_data( $json ) {
+
+			// Remove unwanted code from the json file
+
+			foreach ($json as $index => $value) {
+				
+				/* Remove all unwanted data from the fontawesome json file */
+				
+				// Remove Changes, Ligature, Unicode from the array
+				unset( $value['changes'], $value['ligatures'], $value['unicode'] );
+
+				// Remove last modifiled from the svg array
+				if ( isset( $value['svg']['brands'] ) ) {
+					unset( $value['svg']['brands']['last_modified'], $value['svg']['brands']['viewBox'], $value['svg']['brands']['width'], $value['svg']['brands']['height'], $value['svg']['brands']['path'] );
+				} else if ( isset( $value['svg']['solid'] ) ) {
+					unset( $value['svg']['solid']['last_modified'], $value['svg']['solid']['viewBox'], $value['svg']['solid']['width'], $value['svg']['solid']['height'], $value['svg']['solid']['path'] );
+				}
+				$json[$index] = $value;	
+			}
+
 			return $json;
 		}
 
@@ -196,7 +232,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 												<ul class="astra-widget-icons-list">
 													<?php
 														// Get icons array.
-														$icons = self::get_icons();
+														// $icons = self::get_icons();
 														
 														$font_awesome_icons = self::backend_load_font_awesome_icons();
 
@@ -442,86 +478,6 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 					}
 				}
 			}
-		}
-
-		/**
-		 * Generate repeatable fields.
-		 *
-		 * @return array $icons Get all icons details.
-		 */
-		public static function get_icons() {
-			$icons = array(
-				'astra-icon-google-plus'          => array(
-					'color' => '#db4437',
-				),
-				'astra-icon-google'               => array(
-					'color' => '#',
-				),
-				'astra-icon-twitter'              => array(
-					'color' => '#1da1f2',
-				),
-				'astra-icon-facebook'             => array(
-					'color' => '#3b5998',
-				),
-				'astra-icon-facebook-f'           => array(
-					'color' => '#3b5998',
-				),
-				'astra-icon-check-circle'         => array(
-					'color' => '#',
-				),
-				'astra-icon-shopping-cart'        => array(
-					'color' => '#',
-				),
-				'astra-icon-shopping-bag'         => array(
-					'color' => '#',
-				),
-				'astra-icon-shopping-basket'      => array(
-					'color' => '#',
-				),
-				'astra-icon-circle-o'             => array(
-					'color' => '#',
-				),
-				'astra-icon-certificate'          => array(
-					'color' => '#',
-				),
-				'astra-icon-envelope'             => array(
-					'color' => '#',
-				),
-				'astra-icon-file'                 => array(
-					'color' => '#',
-				),
-				'astra-icon-phone'                => array(
-					'color' => '#',
-				),
-				'astra-icon-globe'                => array(
-					'color' => '#',
-				),
-				'astra-icon-down_arrow'           => array(
-					'color' => '#',
-				),
-				'astra-icon-close'                => array(
-					'color' => '#',
-				),
-				'astra-icon-drag_handle'          => array(
-					'color' => '#',
-				),
-				'astra-icon-format_align_justify' => array(
-					'color' => '#',
-				),
-				'astra-icon-menu'                 => array(
-					'color' => '#',
-				),
-				'astra-icon-reorder'              => array(
-					'color' => '#',
-				),
-				'astra-icon-search'               => array(
-					'color' => '#',
-				),
-				'astra-icon-zoom_in'              => array(
-					'color' => '#',
-				),
-			);
-			return $icons;
 		}
 
 		/**
