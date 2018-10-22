@@ -51,6 +51,19 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			add_action( 'admin_enqueue_scripts', array( $this, 'backend_load_astra_fonts' ) );
 		}
 
+		
+		/**
+		 * Load Font Awesome Icons
+		 *
+		 * @since 1.0.0
+		 */
+		public static function backend_load_font_awesome_icons() {
+
+			$str = file_get_contents( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json');
+			$json = json_decode($str, true); // decode the JSON into an associative array
+			return $json;
+		}
+
 		/**
 		 * Load
 		 *
@@ -184,9 +197,21 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													<?php
 														// Get icons array.
 														$icons = self::get_icons();
-													foreach ( $icons as $index => $field ) {
+														
+														$font_awesome_icons = self::backend_load_font_awesome_icons();
+
+
+													foreach ( $font_awesome_icons as $index => $field ) {
 														?>
-															<li class="astra-widget-icon" data-font="<?php echo $index; ?>"><i class="<?php echo $index; ?>"></i></li>
+
+															<li class="astra-widget-icon" data-font="<?php echo $index; ?>"> 
+																<?php if ( isset( $field['svg']['brands']['raw'] ) ) {
+																	echo $field['svg']['brands']['raw']; 
+																} else if ( isset( $field['svg']['solid']['raw'] ) ) {
+																	echo $field['svg']['solid']['raw']; 
+																} 
+																?>
+															</li>
 														<?php
 													}
 													?>

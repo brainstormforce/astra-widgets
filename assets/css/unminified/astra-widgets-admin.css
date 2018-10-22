@@ -198,7 +198,7 @@
     cursor: pointer;
     height: 1em;
     padding: 1em;
-    width: 27px;
+    width: 26px;
     line-height: 1em;
     font-size: 1em;
     border: 1px solid #f1f1f1;
@@ -209,6 +209,8 @@
     display: inline-block;
     margin: 1em 0 0 0;
     padding: 0;
+    max-height: 250px;
+    overflow: auto;
 }
 .astra-widget-icon-selector {
     margin: 1em 0;
@@ -239,4 +241,10 @@
  */
 .astra-widget-field-color .wp-color-result {
     margin-bottom: 0 !important;
+}
+
+/* Fonts SVG */
+.astra-widget-icon svg {
+    width: 20px;
+    height: 20px;
 }
