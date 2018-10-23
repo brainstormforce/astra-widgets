@@ -54,14 +54,12 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 */
 		public static function backend_load_font_awesome_icons() {
 
-			if ( ! file_exists( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json' ) ) {
+			if ( ! file_exists( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' ) ) {
 				return array();
 			}
 
-			$str = file_get_contents( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json' );
-			$json = json_decode($str, true); // decode the JSON into an associative array
-
-			// $json = self::remove_unwanted_data( $json );
+			$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
+			$json = json_decode( $str, true ); // decode the JSON into an associative array.
 
 			return $json;
 		}
@@ -70,25 +68,26 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * Remoove unwanted values from font awesome json object
 		 *
 		 * @since 1.0.0
+		 * @param  array $json Font awesome icons array.
+		 * @return array $json Modifield font awesome icons array.
 		 */
 		public static function remove_unwanted_data( $json ) {
 
-			// Remove unwanted code from the json file
+			// Remove unwanted code from the json file.
+			foreach ( $json as $index => $value ) {
 
-			foreach ($json as $index => $value) {
-				
 				/* Remove all unwanted data from the fontawesome json file */
-				
-				// Remove Changes, Ligature, Unicode from the array
+
+				// Remove Changes, Ligature, Unicode from the array.
 				unset( $value['changes'], $value['ligatures'], $value['unicode'] );
 
-				// Remove last modifiled from the svg array
+				// Remove last modifiled from the svg array.
 				if ( isset( $value['svg']['brands'] ) ) {
 					unset( $value['svg']['brands']['last_modified'], $value['svg']['brands']['viewBox'], $value['svg']['brands']['width'], $value['svg']['brands']['height'], $value['svg']['brands']['path'] );
-				} else if ( isset( $value['svg']['solid'] ) ) {
+				} elseif ( isset( $value['svg']['solid'] ) ) {
 					unset( $value['svg']['solid']['last_modified'], $value['svg']['solid']['viewBox'], $value['svg']['solid']['width'], $value['svg']['solid']['height'], $value['svg']['solid']['path'] );
 				}
-				$json[$index] = $value;	
+				$json[ $index ] = $value;
 			}
 
 			return $json;
@@ -164,20 +163,19 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 												<ul class="astra-widget-icons-list">
 													<?php
 														// Get icons array.
-														// $icons = self::get_icons();
-														
+														// $icons = self::get_icons(); .
 														$font_awesome_icons = self::backend_load_font_awesome_icons();
-
 
 													foreach ( $font_awesome_icons as $index => $field ) {
 														?>
 
 															<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>"> 
-																<?php if ( isset( $field['svg']['brands']['raw'] ) ) {
-																	echo $field['svg']['brands']['raw']; 
-																} else if ( isset( $field['svg']['solid']['raw'] ) ) {
-																	echo $field['svg']['solid']['raw']; 
-																} 
+																<?php
+																if ( isset( $field['svg']['brands']['raw'] ) ) {
+																	echo $field['svg']['brands']['raw'];
+																} elseif ( isset( $field['svg']['solid']['raw'] ) ) {
+																	echo $field['svg']['solid']['raw'];
+																}
 																?>
 															</li>
 														<?php
