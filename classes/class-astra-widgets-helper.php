@@ -48,6 +48,54 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		}
 
 		/**
+		 * Load Font Awesome Icons
+		 *
+		 * @since 1.0.0
+		 */
+		public static function backend_load_font_awesome_icons() {
+
+			if ( ! file_exists( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json' ) ) {
+				return array();
+			}
+
+			$str = file_get_contents( ASTRA_WIDGETS_DIR .'assets/fonts/icons.json' );
+			$json = json_decode($str, true); // decode the JSON into an associative array
+
+			// $json = self::remove_unwanted_data( $json );
+
+			return $json;
+		}
+
+		/**
+		 * Remoove unwanted values from font awesome json object
+		 *
+		 * @since 1.0.0
+		 */
+		public static function remove_unwanted_data( $json ) {
+
+			// Remove unwanted code from the json file
+
+			foreach ($json as $index => $value) {
+				
+				/* Remove all unwanted data from the fontawesome json file */
+				
+				// Remove Changes, Ligature, Unicode from the array
+				unset( $value['changes'], $value['ligatures'], $value['unicode'] );
+
+				// Remove last modifiled from the svg array
+				if ( isset( $value['svg']['brands'] ) ) {
+					unset( $value['svg']['brands']['last_modified'], $value['svg']['brands']['viewBox'], $value['svg']['brands']['width'], $value['svg']['brands']['height'], $value['svg']['brands']['path'] );
+				} else if ( isset( $value['svg']['solid'] ) ) {
+					unset( $value['svg']['solid']['last_modified'], $value['svg']['solid']['viewBox'], $value['svg']['solid']['width'], $value['svg']['solid']['height'], $value['svg']['solid']['path'] );
+				}
+				$json[$index] = $value;	
+			}
+
+			return $json;
+		}
+
+
+		/**
 		 * Check exiting fields have any repeater field?
 		 *
 		 * If found then return `true`. Default `false`.
@@ -91,8 +139,8 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 					switch ( $value['type'] ) {
 						case 'icon':
-										$field_id   = '';
-										$field_name = '';
+							$field_id   = '';
+							$field_name = '';
 							if ( empty( $repeater_id ) || $this->have_repeator_field( $fields ) ) {
 								$field_id   = $self->get_field_id( $value['id'] );
 								$field_name = $self->get_field_name( $value['id'] );
@@ -105,7 +153,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 											<div class="astra-widget-icon-selector-actions">
 												<div class="astra-select-icon button">
-													<div class="astra-selected-icon"></div>
+													<div class="astra-selected-icon"> <?php var_dump( $value ); ?> </div>
 													<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 												</div>
 											</div>
