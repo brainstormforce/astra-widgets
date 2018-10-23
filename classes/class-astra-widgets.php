@@ -5,6 +5,7 @@
  * @package Astra Widgets
  * @since 1.0.0
  */
+
 if ( ! class_exists( 'Astra_Widgets' ) ) :
 	/**
 	 * Astra Widgets

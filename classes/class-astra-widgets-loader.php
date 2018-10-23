@@ -95,7 +95,6 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 		 * @return void
 		 */
 		function enqueue_scripts_backend_and_frontend() {
-			// wp_register_style( 'astra-widgets-font-style', ASTRA_WIDGETS_URI . 'assets/css/unminified/font-style.css', null, ASTRA_WIDGETS_VER, 'all' );
 		}
 	}
 }

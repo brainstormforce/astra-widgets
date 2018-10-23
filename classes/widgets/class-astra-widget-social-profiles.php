@@ -95,7 +95,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
 			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-social-profiles' . $file_prefix . '.js', array(), ASTRA_WIDGETS_VER );
-			wp_register_style( 'astra-widget-social-profiles-admin', $css_uri . 'astra-widget-social-profiles-admin'. $file_prefix . '.css' );
+			wp_register_style( 'astra-widget-social-profiles-admin', $css_uri . 'astra-widget-social-profiles-admin' . $file_prefix . '.css' );
 		}
 
 		/**
