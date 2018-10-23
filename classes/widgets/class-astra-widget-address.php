@@ -56,7 +56,8 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 */
 		function __construct() {
 			parent::__construct(
-				$this->id_base, __( 'Astra: Address', 'astra' ),
+				$this->id_base,
+				__( 'Astra: Address', 'astra' ),
 				array(
 					'classname'   => $this->id_base,
 					'description' => __( 'Display Address.', 'astra' ),

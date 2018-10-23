@@ -66,7 +66,8 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 */
 		function __construct() {
 			parent::__construct(
-				$this->id_base, __( 'Astra: Social Profiles', 'astra-addon' ),
+				$this->id_base,
+				__( 'Astra: Social Profiles', 'astra-addon' ),
 				array(
 					'classname'   => $this->id_base,
 					'description' => __( 'Display social profiles.', 'astra-addon' ),
