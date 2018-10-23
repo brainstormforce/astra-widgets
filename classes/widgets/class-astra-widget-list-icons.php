@@ -77,7 +77,6 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			);
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
-			add_filter( 'astra_dynamic_css', array( $this, 'get_dynamic_css' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 		}
 
@@ -142,6 +141,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			// Enqueue dynamic Scripts.
 			wp_add_inline_style( 'astra-widgets-' . $this->id_base, $this->get_dynamic_css() );
+			
 		}
 
 		/**

@@ -46,9 +46,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 */
 		public function __construct() {
 
-			add_action( 'astra_dynamic_css', array( $this, 'frontend_load_astra_fonts' ) );
-			add_action( 'astra_get_css_files', array( $this, 'backend_load_astra_fonts' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'backend_load_astra_fonts' ) );
+			// add_action( 'astra_dynamic_css', array( $this, 'frontend_load_astra_fonts' ) );
+			// add_action( 'astra_get_css_files', array( $this, 'backend_load_astra_fonts' ) );
+			// add_action( 'admin_enqueue_scripts', array( $this, 'backend_load_astra_fonts' ) );
 		}
 
 		/**
