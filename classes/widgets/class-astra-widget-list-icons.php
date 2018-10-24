@@ -176,6 +176,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					<ul>
 						<?php
 						foreach ( $list as $index => $list ) {
+							$list_data = json_decode( $list['icon'] );
 							$target = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
 							$rel    = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
 							?>
@@ -184,7 +185,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<a href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
-											<span class="<?php echo esc_html( $list['icon'] ); ?>"></span>
+											<span class="<?php echo esc_html( $list_data->name ); ?>">
+												<?php echo $list_data->svg; ?>
+											</span>
 										</div>
 									<?php } ?>
 									<?php if ( 'image' === $list['imageoricon'] ) { ?>		
@@ -344,8 +347,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						'.astra-widget-list-icons .image img' => array(
 							'min-width' => esc_attr( $width ) . 'px',
 						),
-						'.astra-widget-list-icons .icon span' => array(
-							'font-size' => esc_attr( $width ) . 'px',
+						'.astra-widget-list-icons .icon svg' => array(
+							'width' => esc_attr( $width ) . 'px',
 						),
 					);
 

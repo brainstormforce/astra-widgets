@@ -101,7 +101,15 @@
 				$(this).closest('.astra-repeater-field').find('.title').addClass( selected_icon_font );
 			}
 
-			current_icon_input.val( selected_icon_font );
+			myObj = {
+			    'name':selected_icon_font,
+			    'svg':icon_selector_svg,
+			 };
+			var data_str = JSON.stringify(myObj);
+			console.log( data_str );
+
+			current_icon_input.val( data_str );
+
 
 			// Trigger the change event.
 	 		parent.find('.selected-icon').trigger( 'change' );

@@ -93,6 +93,16 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			return $json;
 		}
 
+		public static function get_svg( $data ) {
+
+			if( isset( $icon['svg']['brands']['raw'] ) ) {
+				$data['svg']  = $icon['svg']['brands']['raw'];
+			} else if( isset( $icon['svg']['solid']['raw'] ) ) {
+				$data['svg']  = $icon['svg']['solid']['raw'];
+			}
+			return $data;
+		}
+
 
 		/**
 		 * Check exiting fields have any repeater field?
@@ -131,8 +141,8 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 			if ( ! empty( $fields ) && is_array( $fields ) ) {
 				foreach ( $fields as $key => $value ) {
-
 					$value = wp_parse_args( $value, $defaults );
+					$font_awesome_icons = self::backend_load_font_awesome_icons();
 
 					$class = isset( $value['class'] ) ? $value['class'] : '';
 
@@ -140,60 +150,62 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						case 'icon':
 							$field_id   = '';
 							$field_name = '';
+
+							$icon_value = htmlspecialchars(json_encode( $value['default'] ));
+							
 							if ( empty( $repeater_id ) || $this->have_repeator_field( $fields ) ) {
 								$field_id   = $self->get_field_id( $value['id'] );
 								$field_name = $self->get_field_name( $value['id'] );
 							}
 							?>
-										<div class="astra-widget-icon-selector">
-											<label for="<?php echo esc_attr( $field_id ); ?>">
-												<?php echo esc_html( $value['name'] ); ?>
-											</label>
+									<div class="astra-widget-icon-selector">
+										<label for="<?php echo esc_attr( $field_id ); ?>">
+											<?php echo esc_html( $value['name'] ); ?>
+										</label>
 
-											<div class="astra-widget-icon-selector-actions">
-												<div class="astra-select-icon button">
-													<div class="astra-selected-icon"> <?php var_dump( $value ); ?> </div>
-													<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
-												</div>
+										<div class="astra-widget-icon-selector-actions">
+											<div class="astra-select-icon button">
+												<div class="astra-selected-icon"> <?php // echo isset( $data['svg'] ) ? var_dump( $data['svg'] ) : ''; ?> </div>
+												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>
-
-
-											<div class="astra-icons-list-wrap">
-												<!-- <input type="search" placeholder="Search icon.." class="search-icon"> -->
-												<ul class="astra-widget-icons-list">
-													<?php
-														// Get icons array.
-														// $icons = self::get_icons(); .
-														$font_awesome_icons = self::backend_load_font_awesome_icons();
-
-													foreach ( $font_awesome_icons as $index => $field ) {
-														?>
-
-															<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>"> 
-																<?php
-																if ( isset( $field['svg']['brands']['raw'] ) ) {
-																	echo $field['svg']['brands']['raw'];
-																} elseif ( isset( $field['svg']['solid']['raw'] ) ) {
-																	echo $field['svg']['solid']['raw'];
-																}
-																?>
-															</li>
-														<?php
-													}
-													?>
-												</ul>
-											</div>
-
-											<input class="widefat selected-icon" type="hidden"
-												id="<?php echo esc_attr( $field_id ); ?>"
-												name="<?php echo esc_attr( $field_name ); ?>"
-												value="<?php echo esc_attr( $value['default'] ); ?>"
-												data-field-id="<?php echo esc_attr( $value['id'] ); ?>"
-												data-icon-visible="<?php echo esc_attr( ( isset( $value['show_icon'] ) ) ? $value['show_icon'] : 'no' ); ?>"
-											/>
-											<span><?php echo $value['desc']; ?></span>
 										</div>
-									<?php
+
+
+										<div class="astra-icons-list-wrap">
+											<!-- <input type="search" placeholder="Search icon.." class="search-icon"> -->
+											<ul class="astra-widget-icons-list">
+												<?php
+													// Get icons array.
+													// $icons = self::get_icons(); .
+
+												foreach ( $font_awesome_icons as $index => $field ) {
+													?>
+
+														<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>"> 
+															<?php
+															if ( isset( $field['svg']['brands']['raw'] ) ) {
+																echo $field['svg']['brands']['raw'];
+															} elseif ( isset( $field['svg']['solid']['raw'] ) ) {
+																echo $field['svg']['solid']['raw'];
+															}
+															?>
+														</li>
+													<?php
+												}
+												?>
+											</ul>
+										</div>
+
+										<input class="widefat selected-icon" type="hidden"
+											id="<?php echo esc_attr( $field_id ); ?>"
+											name="<?php echo esc_attr( $field_name ); ?>"
+											value="<?php echo '{'.$icon_value.'}'; ?>"
+											data-field-id="<?php echo esc_attr( $value['id'] ); ?>"
+											data-icon-visible="<?php echo esc_attr( ( isset( $value['show_icon'] ) ) ? $value['show_icon'] : 'no' ); ?>"
+										/>
+										<span><?php echo $value['desc']; ?></span>
+									</div>
+								<?php
 							break;
 
 						/**
@@ -216,27 +228,26 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							break;
 						case 'repeater':
 							?>
+								<div class="astra-repeater">
+									<div class="astra-repeater-container">
+										<div class="astra-repeater-sortable">
+											<?php
+											$this->generate_repeater_fields( $self, $fields, $value );
+											?>
+										</div>
+									</div>
+									<div class="add-new">
+										<a class="add-new-btn button"><?php _e( 'Add more', 'astra-addon' ); ?></a>
+									</div>
 
-						<div class="astra-repeater">
-							<div class="astra-repeater-container">
-								<div class="astra-repeater-sortable">
 									<?php
-									$this->generate_repeater_fields( $self, $fields, $value );
+									$repeater_id = 'widget-' . $self->id_base . '[' . $self->number . '][' . $value['id'] . ']';
 									?>
+
+									<div class="astra-repeater-fields" title="<?php echo $value['title']; ?>" data-id="<?php echo esc_attr( $repeater_id ); ?>" style="display: none;">
+										<?php $this->generate( $self, $value['options'], $value['id'] ); ?>
+									</div>
 								</div>
-							</div>
-							<div class="add-new">
-								<a class="add-new-btn button"><?php _e( 'Add more', 'astra-addon' ); ?></a>
-							</div>
-
-							<?php
-							$repeater_id = 'widget-' . $self->id_base . '[' . $self->number . '][' . $value['id'] . ']';
-							?>
-
-							<div class="astra-repeater-fields" title="<?php echo $value['title']; ?>" data-id="<?php echo esc_attr( $repeater_id ); ?>" style="display: none;">
-								<?php $this->generate( $self, $value['options'], $value['id'] ); ?>
-							</div>
-						</div>
 							<?php
 							break;
 
