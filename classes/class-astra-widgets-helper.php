@@ -143,7 +143,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 												foreach ( $font_awesome_icons as $index => $field ) {
 
 													$viewbox_array = '';
-													$viewbox_array = ( isset( $field['svg']['brands']['viewBox']['0'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
+													$viewbox_array = ( isset( $field['svg']['brands']['viewBox'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
 													$viewbox       = implode( ' ', $viewbox_array );
 													array_push( $field['search']['terms'], $index );
 													array_push( $field['search']['terms'], $field['styles']['0'] );

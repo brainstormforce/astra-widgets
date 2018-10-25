@@ -66,6 +66,32 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					'id_base' => $this->id_base,
 				)
 			);
+			add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+		}
+
+		/**
+		 * Register scripts
+		 *
+		 * @return void
+		 */
+		function register_scripts() {
+			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-address.css' );
+		}
+
+		/**
+		 * Frontend setup
+		 *
+		 * @param  array $args Widget arguments.
+		 * @param  array $instance Widget instance.
+		 * @return void
+		 */
+		function _front_setup( $args, $instance ) {
+
+			// Set stored data.
+			$this->stored_data = $instance;
+
+			// Enqueue Scripts.
+			wp_enqueue_style( 'astra-widgets-' . $this->id_base );
 		}
 
 		/**
@@ -77,8 +103,9 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 */
 		function widget( $args, $instance ) {
 
-			wp_enqueue_style( 'astra-widgets-font-style' );
+			$this->_front_setup( $args, $instance );
 
+			$font_awesome_icons = Astra_Widgets_Helper::backend_load_font_awesome_icons();				
 			$title        = apply_filters( 'widget_title', $instance['title'] );
 			$style        = isset( $instance['style'] ) ? $instance['style'] : 'stack';
 			$social_icons = isset( $instance['display-icons'] ) ? $instance['display-icons'] : false;
@@ -92,6 +119,14 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			if ( $title ) {
 				echo $args['before_title'] . $title . $args['after_title'];
 			} ?>
+			<?php 
+			$widget_content_font_size      = '15';
+			if( function_exists( 'astra_get_option' ) ) {
+				$widget_content_font_size      = astra_get_option( 'font-size-widget-content' )['desktop'];
+				if( '' === $widget_content_font_size ) {
+					$widget_content_font_size = '15';
+				}
+			} ?>
 
 			<div class="address clearfix">
 				<address class="widget-address widget-address-<?php echo esc_attr( $style ); ?> widget-address-icons-<?php echo esc_attr( $social_icons ); ?>">
@@ -99,7 +134,10 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					<?php if ( ! empty( $address ) ) { ?>
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
-								<span class="astra-icon-globe address-icons"></span>
+								<span class="address-icons">
+									<svg xmlns="http://www.w3.org/2000/svg" width="<?php echo $widget_content_font_size.'px'; ?>" height="<?php echo $widget_content_font_size.'px'; ?>" viewBox="<?php echo ( isset( $font_awesome_icons['globe']['svg']['solid']['viewBox'] ) ) ? implode( ' ', $font_awesome_icons['globe']['svg']['solid']['viewBox'] ) : ''; ?>"><path d="<?php echo ( isset( $font_awesome_icons['globe']['svg']['solid']['path'] ) ) ? $font_awesome_icons['globe']['svg']['solid']['path'] : ''; ?>"></path>
+									</svg>
+								</span>
 							<?php } ?>
 							<span class="address-meta"><?php echo nl2br( $address ); ?></span>
 						</div>
@@ -107,7 +145,10 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					<?php if ( ! empty( $phone ) ) { ?>
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
-								<span class="astra-icon-phone address-icons"></span>
+								<span class="address-icons">
+									<svg xmlns="http://www.w3.org/2000/svg" width="<?php echo $widget_content_font_size.'px'; ?>" height="<?php echo $widget_content_font_size.'px'; ?>" viewBox="<?php echo ( isset( $font_awesome_icons['phone']['svg']['solid']['viewBox'] ) ) ? implode( ' ', $font_awesome_icons['phone']['svg']['solid']['viewBox'] ) : ''; ?>"><path d="<?php echo ( isset( $font_awesome_icons['phone']['svg']['solid']['path'] ) ) ? $font_awesome_icons['phone']['svg']['solid']['path'] : ''; ?>"></path>
+									</svg>
+								</span>
 							<?php } ?>
 							<span class="address-meta">
 								<a href="tel:+<?php echo preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
@@ -117,7 +158,10 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					<?php if ( ! empty( $fax ) ) { ?>
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
-								<span class="astra-icon-file address-icons"></span>
+								<span class="address-icons">
+									<svg xmlns="http://www.w3.org/2000/svg" width="<?php echo $widget_content_font_size.'px'; ?>" height="<?php echo $widget_content_font_size.'px'; ?>" viewBox="<?php echo ( isset( $font_awesome_icons['file']['svg']['solid']['viewBox'] ) ) ? implode( ' ', $font_awesome_icons['file']['svg']['solid']['viewBox'] ) : ''; ?>"><path d="<?php echo ( isset( $font_awesome_icons['file']['svg']['solid']['path'] ) ) ? $font_awesome_icons['file']['svg']['solid']['path'] : ''; ?>"></path>
+									</svg>
+								</span>
 							<?php } ?>
 							<span class="address-meta"><?php echo esc_attr( $fax ); ?></span>
 						</div>
@@ -128,7 +172,10 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 						?>
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
-								<span class="astra-icon-envelope address-icons"></span>
+								<span class="address-icons">
+									<svg xmlns="http://www.w3.org/2000/svg" width="<?php echo $widget_content_font_size.'px'; ?>" height="<?php echo $widget_content_font_size.'px'; ?>" viewBox="<?php echo ( isset( $font_awesome_icons['envelope']['svg']['solid']['viewBox'] ) ) ? implode( ' ', $font_awesome_icons['envelope']['svg']['solid']['viewBox'] ) : ''; ?>"><path d="<?php echo ( isset( $font_awesome_icons['envelope']['svg']['solid']['path'] ) ) ? $font_awesome_icons['envelope']['svg']['solid']['path'] : ''; ?>"></path>
+									</svg>
+								</span>
 							<?php } ?>
 							<span class="address-meta">
 								<a href="mailto:<?php echo antispambot( $email ); ?>" ><?php echo antispambot( $email ); ?></a>
