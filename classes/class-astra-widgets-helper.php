@@ -82,6 +82,22 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		}
 
 		/**
+		 * Default icons color & bg color
+		 *
+		 *
+		 * @return array $icons default icon color & bg color list
+		 */
+		public static function get_default_icons_colors() {
+			$icons = array(
+				'facebook-f'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
+			);
+			return $icons;
+		}
+
+		/**
 		 * Generate fields.
 		 *
 		 * @param  object $self        Widget object.

@@ -18,9 +18,6 @@
    -webkit-transition: all 0.2s linear;
    transition: all 0.2s linear;
 }
-.astra-widget-social-profiles-inner.inline li .ast-widget-icon {
-   margin-right: .2em;
-}
 .astra-widget-social-profiles-inner.circle .ast-widget-icon {
    margin-right: .5em;
 }
@@ -46,6 +43,7 @@
 .astra-widget-social-profiles-inner.square-outline .ast-widget-icon{
     border-width: 1px;
     border-style: solid;
+    border-color: #00000033;
 }
 .astra-widget-social-profiles-inner.circle-outline .ast-widget-icon,
 .astra-widget-social-profiles-inner.circle .ast-widget-icon {
@@ -62,7 +60,6 @@
 .astra-widget-social-profiles-inner.circle .ast-widget-icon {
     height: 2em;
     width: 2em;
-    font-size: 1em;
     text-align: center;
     vertical-align: middle;
 }
