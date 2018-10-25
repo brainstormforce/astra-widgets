@@ -342,14 +342,14 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(
 						'.astra-widget-list-icons .image img' => array(
-							'min-width' => esc_attr( $width ) . 'px',
+							'min-width' => astra_widget_get_css_value( $width, 'px' ),
 						),
 						'.astra-widget-list-icons .icon span' => array(
-							'font-size' => esc_attr( $width ) . 'px',
+							'font-size' => astra_widget_get_css_value( $width, 'px' ),
 						),
 					);
 
-					$css_output = astra_parse_css( $css_output );
+					$css_output = astra_widgets_parse_css( $css_output );
 				}
 
 				return $dynamic_css . $css_output;

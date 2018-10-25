@@ -510,3 +510,128 @@ if ( ! function_exists( 'astra_generate_widget_fields' ) ) :
 		Astra_Widgets_Helper::get_instance()->generate( $self, $fields, $repeater_id );
 	}
 endif;
+
+
+/**
+ * Parse CSS
+ */
+if ( ! function_exists( 'astra_widgets_parse_css' ) ) {
+
+	/**
+	 * Parse CSS
+	 *
+	 * @param  array  $css_output Array of CSS.
+	 * @param  string $min_media  Min Media breakpoint.
+	 * @param  string $max_media  Max Media breakpoint.
+	 * @return string             Generated CSS.
+	 */
+	function astra_widgets_parse_css( $css_output = array(), $min_media = '', $max_media = '' ) {
+
+		$parse_css = '';
+		if ( is_array( $css_output ) && count( $css_output ) > 0 ) {
+
+			foreach ( $css_output as $selector => $properties ) {
+
+				if ( ! count( $properties ) ) {
+					continue; }
+
+				$temp_parse_css   = $selector . '{';
+				$properties_added = 0;
+
+				foreach ( $properties as $property => $value ) {
+
+					if ( '' === $value ) {
+						continue; }
+
+					$properties_added++;
+					$temp_parse_css .= $property . ':' . $value . ';';
+				}
+
+				$temp_parse_css .= '}';
+
+				if ( $properties_added > 0 ) {
+					$parse_css .= $temp_parse_css;
+				}
+			}
+
+			if ( '' != $parse_css && ( '' !== $min_media || '' !== $max_media ) ) {
+
+				$media_css       = '@media ';
+				$min_media_css   = '';
+				$max_media_css   = '';
+				$media_separator = '';
+
+				if ( '' !== $min_media ) {
+					$min_media_css = '(min-width:' . $min_media . 'px)';
+				}
+				if ( '' !== $max_media ) {
+					$max_media_css = '(max-width:' . $max_media . 'px)';
+				}
+				if ( '' !== $min_media && '' !== $max_media ) {
+					$media_separator = ' and ';
+				}
+
+				$media_css .= $min_media_css . $media_separator . $max_media_css . '{' . $parse_css . '}';
+
+				return $media_css;
+			}
+		}
+
+		return $parse_css;
+	}
+}
+
+
+/**
+ * Get CSS value
+ */
+if ( ! function_exists( 'astra_widget_get_css_value' ) ) {
+
+	/**
+	 * Get CSS value
+	 *
+	 * Syntax:
+	 *
+	 *  astra_widget_get_css_value( VALUE, UNIT );
+	 *
+	 * E.g.
+	 *
+	 *  astra_widget_get_css_value( VALUE, 'url' );
+	 *  astra_widget_get_css_value( VALUE, 'px' );
+	 *  astra_widget_get_css_value( VALUE, 'em' );
+	 *
+	 * @param  string $value        CSS value.
+	 * @param  string $unit         CSS unit.
+	 * @param  string $default      CSS default font.
+	 * @return mixed               CSS value depends on $unit
+	 */
+	function astra_widget_get_css_value( $value = '', $unit = 'px', $default = '' ) {
+
+		if ( '' == $value && '' == $default ) {
+			return $value;
+		}
+
+		$css_val = '';
+
+		switch ( $unit ) {
+
+			case 'px':
+			case '%':
+						$value   = ( '' != $value ) ? $value : $default;
+						$css_val = esc_attr( $value ) . $unit;
+				break;
+
+			case 'url':
+						$css_val = $unit . '(' . esc_url( $value ) . ')';
+				break;
+
+			default:
+				$value = ( '' != $value ) ? $value : $default;
+				if ( '' != $value ) {
+					$css_val = esc_attr( $value ) . $unit;
+				}
+		}
+
+		return $css_val;
+	}
+}
