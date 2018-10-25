@@ -151,9 +151,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							$field_id   = '';
 							$field_name = '';
 
-							$decoded_value = json_decode( $value['default'] );
+							$decoded_icon_data = json_decode( $value['default'] );
+							$encode_icon_data = $value['default'];
 
-							$encode_values = $value['default'];
 							if ( empty( $repeater_id ) || $this->have_repeator_field( $fields ) ) {
 								$field_id   = $self->get_field_id( $value['id'] );
 								$field_name = $self->get_field_name( $value['id'] );
@@ -167,7 +167,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										<div class="astra-widget-icon-selector-actions">
 											<div class="astra-select-icon button">
 												<div class="astra-selected-icon"> 
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_value->viewbox ) ) ? $decoded_value->viewbox : ''; ?>"><path d="<?php echo ( isset( $decoded_value->path ) ) ? $decoded_value->path : ''; ?>"></path></svg>
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? $decoded_icon_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? $decoded_icon_data->path : ''; ?>"></path></svg>
 												</div>
 												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>
@@ -175,7 +175,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 
 										<div class="astra-icons-list-wrap">
-											<!-- <input type="search" placeholder="Search icon.." class="search-icon"> -->
+											<input type="search" placeholder="Search icon..." class="search-icon">
 											<ul class="astra-widget-icons-list">
 												<?php
 													// Get icons array.
@@ -206,7 +206,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										<input class="widefat selected-icon" type="hidden"
 											id="<?php echo esc_attr( $field_id ); ?>"
 											name="<?php echo esc_attr( $field_name ); ?>"
-											value="<?php echo esc_attr( $encode_values ); ?>"
+											value="<?php echo esc_attr( $encode_icon_data ); ?>"
 											data-field-id="<?php echo esc_attr( $value['id'] ); ?>"
 											data-icon-visible="<?php echo esc_attr( ( isset( $value['show_icon'] ) ) ? $value['show_icon'] : 'no' ); ?>"
 										/>

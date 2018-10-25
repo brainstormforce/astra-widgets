@@ -67,6 +67,7 @@
 			$( document ).on('click', '.astra-repeater-field .astra-select-image', AstraWidgets._repeater_add_image_field );
 			$( document ).on('click', '.astra-repeater-field .astra-remove-image', AstraWidgets._repeater_remove_image_field );
 			$( document ).on('input', '.astra-repeater-field [data-field-id="title"]', AstraWidgets._repeater_set_title );
+			$( document ).on('keyup', '.astra-repeater-field .search-icon', AstraWidgets._searchFuntionality );
 		},
 
 		_reinit_controls: function() {
@@ -101,18 +102,36 @@
 				$(this).closest('.astra-repeater-field').find('.title').addClass( selected_icon_font );
 			}
 
-			myObj = {
+			iconObj = {
 			    'name':selected_icon_font,
 			    'path':icon_selector_path,
 			    'viewbox':icon_selector_viewbox
 			 };
-			var data_str = JSON.stringify(myObj);
+			var icon_data = JSON.stringify(iconObj);
 
-			current_icon_input.val( data_str );
-
+			current_icon_input.val( icon_data );
 
 			// Trigger the change event.
 	 		parent.find('.selected-icon').trigger( 'change' );
+		},
+
+		_searchFuntionality: function() {
+
+		    // Declare variables
+		    var input, filter, ul, li, a, i;
+		    input = this;
+		    filter = input.value.toUpperCase();
+		    ul = $(this).parent('.astra-icons-list-wrap').find(".astra-widget-icons-list")[0];
+		    li = ul.getElementsByTagName('li');
+		    // Loop through all list items, and hide those who don't match the search query
+		    for (i = 0; i < li.length; i++) {
+		        a = $(li[i]).data('font');
+		        if (a.toUpperCase().indexOf(filter) > -1) {
+		            li[i].style.display = "";
+		        } else {
+		            li[i].style.display = "none";
+		        }
+		    }
 		},
 
 		/**
