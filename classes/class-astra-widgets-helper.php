@@ -151,8 +151,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							$field_id   = '';
 							$field_name = '';
 
-							$icon_value = htmlspecialchars(json_encode( $value['default'] ));
-							
+							$decoded_value = json_decode( $value['default'] );
+
+							$encode_values = $value['default'];
 							if ( empty( $repeater_id ) || $this->have_repeator_field( $fields ) ) {
 								$field_id   = $self->get_field_id( $value['id'] );
 								$field_name = $self->get_field_name( $value['id'] );
@@ -165,7 +166,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 										<div class="astra-widget-icon-selector-actions">
 											<div class="astra-select-icon button">
-												<div class="astra-selected-icon"> <?php // echo isset( $data['svg'] ) ? var_dump( $data['svg'] ) : ''; ?> </div>
+												<div class="astra-selected-icon"> 
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_value->viewbox ) ) ? $decoded_value->viewbox : ''; ?>"><path d="<?php echo ( isset( $decoded_value->path ) ) ? $decoded_value->path : ''; ?>"></path></svg>
+												</div>
 												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>
 										</div>
@@ -179,9 +182,13 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													// $icons = self::get_icons(); .
 
 												foreach ( $font_awesome_icons as $index => $field ) {
+													
+													$viewbox_array = '';
+													$viewbox_array = ( isset( $field['svg']['brands']['viewBox']['0'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
+													$viewbox = implode(' ', $viewbox_array);
 													?>
 
-														<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>"> 
+														<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
 															<?php
 															if ( isset( $field['svg']['brands']['raw'] ) ) {
 																echo $field['svg']['brands']['raw'];
@@ -199,7 +206,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										<input class="widefat selected-icon" type="hidden"
 											id="<?php echo esc_attr( $field_id ); ?>"
 											name="<?php echo esc_attr( $field_name ); ?>"
-											value="<?php echo '{'.$icon_value.'}'; ?>"
+											value="<?php echo esc_attr( $encode_values ); ?>"
 											data-field-id="<?php echo esc_attr( $value['id'] ); ?>"
 											data-icon-visible="<?php echo esc_attr( ( isset( $value['show_icon'] ) ) ? $value['show_icon'] : 'no' ); ?>"
 										/>

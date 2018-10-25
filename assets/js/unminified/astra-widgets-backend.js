@@ -80,15 +80,15 @@
 		},
 
 		_set_icon: function(event) {
-			var parent               = $(this).parents('.astra-widget-icon-selector');
-			var selected_icon_font   = $(this).attr('data-font') || '';
-			var icon_selector  		 = parent.find( '.astra-widget-icon.' + selected_icon_font  );
-			var current_icon_preview = parent.find('.astra-selected-icon');
-			var current_icon_input   = parent.find('.selected-icon');
+			var parent               	= $(this).parents('.astra-widget-icon-selector');
+			var selected_icon_font   	= $(this).attr('data-font') || '';
+			var icon_selector  		 	= parent.find( '.astra-widget-icon.' + selected_icon_font  );
+			var current_icon_preview 	= parent.find('.astra-selected-icon');
+			var current_icon_input   	= parent.find('.selected-icon');
+			var icon_selector_path	 	= $(this).attr('data-path');
+			var icon_selector_viewbox	= $(this).attr('data-viewbox');
 			var icon_selector_svg	 = icon_selector.html();
 
-			console.log( icon_selector_svg );
-			console.log( current_icon_preview );
 			// current_icon_preview.removeClass();
 
 			current_icon_preview.html( icon_selector_svg );
@@ -103,10 +103,10 @@
 
 			myObj = {
 			    'name':selected_icon_font,
-			    'svg':icon_selector_svg,
+			    'path':icon_selector_path,
+			    'viewbox':icon_selector_viewbox
 			 };
 			var data_str = JSON.stringify(myObj);
-			console.log( data_str );
 
 			current_icon_input.val( data_str );
 
