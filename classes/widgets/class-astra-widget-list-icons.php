@@ -156,7 +156,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			$this->_front_setup( $args, $instance );
 
-			$width = $instance['width'] ? $instance['width'] : '';
+			$width      = $instance['width'] ? $instance['width'] : '';
 			$icon_color = $instance['icon_color'] ? $instance['icon_color'] : '';
 
 			if ( ! empty( $width ) ) {
@@ -334,8 +334,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'name'    => __( 'Divider', 'astra-addon' ),
 					'default' => ( isset( $instance['divider'] ) && ! empty( $instance['divider'] ) ) ? $instance['divider'] : 'yes',
 					'options' => array(
-						'yes'   => __( 'Yes', 'astra-addon' ),
-						'no' 	=> __( 'No', 'astra-addon' ),
+						'yes' => __( 'Yes', 'astra-addon' ),
+						'no'  => __( 'No', 'astra-addon' ),
 					),
 				),
 				array(
@@ -344,11 +344,11 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'name'    => __( 'Style', 'astra-addon' ),
 					'default' => ( isset( $instance['style'] ) && ! empty( $instance['style'] ) ) ? $instance['style'] : 'inherit',
 					'options' => array(
-						'inherit'   => __( 'inherit', 'astra-addon' ),
-						'solid'   	=> __( 'Solid', 'astra-addon' ),
-						'dotted'  	=> __( 'Dotted', 'astra-addon' ),
-						'double'  	=> __( 'Double', 'astra-addon' ),
-						'dashed'  	=> __( 'Dashed', 'astra-addon' ),
+						'inherit' => __( 'inherit', 'astra-addon' ),
+						'solid'   => __( 'Solid', 'astra-addon' ),
+						'dotted'  => __( 'Dotted', 'astra-addon' ),
+						'double'  => __( 'Double', 'astra-addon' ),
+						'dashed'  => __( 'Dashed', 'astra-addon' ),
 					),
 				),
 				array(
@@ -362,13 +362,13 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'id'      => 'divider_width',
 					'name'    => __( 'Divider Width:', 'astra-addon' ),
 					'default' => ( isset( $instance['divider_width'] ) && ! empty( $instance['divider_width'] ) ) ? $instance['divider_width'] : '',
-				),				
+				),
 				array(
 					'type'    => 'color',
 					'id'      => 'bg_hover_color',
 					'name'    => __( 'Hover Background Color', 'astra-addon' ),
 					'default' => ( isset( $instance['bg_hover_color'] ) && ! empty( $instance['bg_hover_color'] ) ) ? $instance['bg_hover_color'] : '',
-				),				
+				),
 				array(
 					'type' => 'heading',
 					'name' => __( 'Icon / Image Style', 'astra-addon' ),
@@ -378,13 +378,13 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'id'      => 'icon_color',
 					'name'    => __( 'Icon Color', 'astra-addon' ),
 					'default' => ( isset( $instance['icon_color'] ) && ! empty( $instance['icon_color'] ) ) ? $instance['icon_color'] : '',
-				),				
+				),
 				array(
 					'type'    => 'color',
 					'id'      => 'background_color',
 					'name'    => __( 'Background Color', 'astra-addon' ),
 					'default' => ( isset( $instance['background_color'] ) && ! empty( $instance['background_color'] ) ) ? $instance['background_color'] : '',
-				),	
+				),
 				array(
 					'type'    => 'number',
 					'id'      => 'width',
@@ -418,10 +418,10 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			if ( array_key_exists( $this->number, $instances ) ) {
 				$instance = $instances[ $this->number ];
 
-				$width = isset( $instance['width'] ) ? $instance['width'] : '';
-				$space_btn_list = isset( $instance['space_btn_list'] ) ? $instance['space_btn_list'] : '';
+				$width               = isset( $instance['width'] ) ? $instance['width'] : '';
+				$space_btn_list      = isset( $instance['space_btn_list'] ) ? $instance['space_btn_list'] : '';
 				$space_btn_icon_text = isset( $instance['space_btn_icon_text'] ) ? $instance['space_btn_icon_text'] : '';
-				$background_color = isset( $instance['background_color'] ) ? $instance['background_color'] : '';
+				$background_color    = isset( $instance['background_color'] ) ? $instance['background_color'] : '';
 
 				$css_output = '';
 
@@ -447,8 +447,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					),
 					'.list-item-link .icon' => array(
 						'background-color' => esc_attr( $background_color ),
-						'width' => esc_attr( $width ) . 'px',
-						'height' => esc_attr( $width ) . 'px',
+						'width'            => esc_attr( $width ) . 'px',
+						'height'           => esc_attr( $width ) . 'px',
 					),
 
 				);
