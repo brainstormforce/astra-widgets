@@ -159,7 +159,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$width = $instance['width'] ? $instance['width'] : '';
 
 			if ( ! empty( $width ) ) {
-				$width = 'style= max-width:' . esc_attr( $width ) . 'px';
+				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
 			}
 
 			$list  = $this->get_fields( 'list', array() );
@@ -184,7 +184,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 							?>
 							<li>
 								<div class="link">
-									<a href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
+									<a href="<?php echo esc_url( $list['link'] ); ?>" class="list-item-link" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
@@ -193,7 +193,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 										</div>
 									<?php } ?>
 									<?php if ( 'image' === $list['imageoricon'] ) { ?>		
-										<div class="image" <?php echo esc_attr( $width ); ?>>
+										<div class="image" <?php echo esc_attr( $image_width ); ?>>
 											<?php echo wp_get_attachment_image( $list['image'] ); ?>
 										</div>
 									<?php } ?>

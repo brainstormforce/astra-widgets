@@ -35,3 +35,7 @@
 .astra-widget-list-icons .icon {
     display:  inline-block;
 }
+.astra-widget-list-icons .list-item-link {
+	display: flex;
+	align-items: center;
+}
