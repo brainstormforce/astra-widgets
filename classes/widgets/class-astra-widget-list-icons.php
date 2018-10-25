@@ -171,9 +171,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				echo $args['before_title'] . $title . $args['after_title'];
 			} ?>
 
-			<div class="astra-widget-list-icons clearfix">
+			<div id="astra-widget-list-icons-wrapper" class="astra-widget-list-icons clearfix">
 				<?php if ( ! empty( $list ) ) { ?>
-					<ul>
+					<ul class="list-items-wrapper">
 						<?php
 						foreach ( $list as $index => $list ) {
 
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<svg xmlns="http://www.w3.org/2000/svg" width="<?php echo esc_attr( $width ) . 'px'; ?>" height="<?php echo esc_attr( $width ) . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 											</span>
 										</div>
 									<?php } ?>
@@ -251,7 +251,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						array(
 							'type'    => 'text',
 							'id'      => 'title',
-							'name'    => __( 'Title:', 'astra-addon' ),
+							'name'    => __( 'List Item:', 'astra-addon' ),
 							'default' => '',
 						),
 						array(
@@ -308,9 +308,86 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'type' => 'separator',
 				),
 				array(
+					'type' => 'heading',
+					'name' => __( 'Spacing', 'astra-addon' ),
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'space_btn_list',
+					'name'    => __( '	Space Between List Element:', 'astra-addon' ),
+					'default' => ( isset( $instance['space_btn_list'] ) && ! empty( $instance['space_btn_list'] ) ) ? $instance['space_btn_list'] : '',
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'space_btn_icon_text',
+					'name'    => __( 'Space Between Icon & Text:', 'astra-addon' ),
+					'default' => ( isset( $instance['space_btn_icon_text'] ) && ! empty( $instance['space_btn_icon_text'] ) ) ? $instance['space_btn_icon_text'] : '',
+				),
+				array(
+					'type' => 'heading',
+					'name' => __( 'Divider', 'astra-addon' ),
+				),
+				array(
+					'type'    => 'select',
+					'id'      => 'divider',
+					'name'    => __( 'Divider', 'astra-addon' ),
+					'default' => ( isset( $instance['divider'] ) && ! empty( $instance['divider'] ) ) ? $instance['divider'] : 'yes',
+					'options' => array(
+						'yes'   => __( 'Yes', 'astra-addon' ),
+						'no' 	=> __( 'No', 'astra-addon' ),
+					),
+				),
+				array(
+					'type'    => 'select',
+					'id'      => 'style',
+					'name'    => __( 'Style', 'astra-addon' ),
+					'default' => ( isset( $instance['style'] ) && ! empty( $instance['style'] ) ) ? $instance['style'] : 'inherit',
+					'options' => array(
+						'inherit'   => __( 'inherit', 'astra-addon' ),
+						'solid'   	=> __( 'Solid', 'astra-addon' ),
+						'dotted'  	=> __( 'Dotted', 'astra-addon' ),
+						'double'  	=> __( 'Double', 'astra-addon' ),
+						'dashed'  	=> __( 'Dashed', 'astra-addon' ),
+					),
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'divider_weight',
+					'name'    => __( 'Weight:', 'astra-addon' ),
+					'default' => ( isset( $instance['divider_weight'] ) && ! empty( $instance['divider_weight'] ) ) ? $instance['divider_weight'] : '',
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'divider_width',
+					'name'    => __( 'Divider Width:', 'astra-addon' ),
+					'default' => ( isset( $instance['divider_width'] ) && ! empty( $instance['divider_width'] ) ) ? $instance['divider_width'] : '',
+				),				
+				array(
+					'type'    => 'color',
+					'id'      => 'bg_hover_color',
+					'name'    => __( 'Hover Background Color', 'astra-addon' ),
+					'default' => ( isset( $instance['bg_hover_color'] ) && ! empty( $instance['bg_hover_color'] ) ) ? $instance['bg_hover_color'] : '',
+				),				
+				array(
+					'type' => 'heading',
+					'name' => __( 'Icon / Image Style', 'astra-addon' ),
+				),
+				array(
+					'type'    => 'color',
+					'id'      => 'icon_color',
+					'name'    => __( 'Icon Color', 'astra-addon' ),
+					'default' => ( isset( $instance['icon_color'] ) && ! empty( $instance['icon_color'] ) ) ? $instance['icon_color'] : '',
+				),				
+				array(
+					'type'    => 'color',
+					'id'      => 'background_color',
+					'name'    => __( 'Background Color', 'astra-addon' ),
+					'default' => ( isset( $instance['background_color'] ) && ! empty( $instance['background_color'] ) ) ? $instance['background_color'] : '',
+				),	
+				array(
 					'type'    => 'number',
 					'id'      => 'width',
-					'name'    => __( 'Image / Icon Width:', 'astra-addon' ),
+					'name'    => __( 'Image / Icon Size:', 'astra-addon' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
 				),
 			);
@@ -341,6 +418,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				$instance = $instances[ $this->number ];
 
 				$width = isset( $instance['width'] ) ? $instance['width'] : '';
+				$space_btn_list = isset( $instance['space_btn_list'] ) ? $instance['space_btn_list'] : '';
+				$space_btn_icon_text = isset( $instance['space_btn_icon_text'] ) ? $instance['space_btn_icon_text'] : '';
 
 				$css_output = '';
 
@@ -357,7 +436,17 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					$css_output = astra_widgets_parse_css( $css_output );
 				}
 
-				return $dynamic_css . $css_output;
+				$css_output_1 = array(
+					'#astra-widget-list-icons-wrapper .list-items-wrapper li' => array(
+						'margin-bottom' => esc_attr( $space_btn_list ) . 'px',
+					),
+					'#astra-widget-list-icons-wrapper .list-items-wrapper .icon span' => array(
+						'margin-right' => esc_attr( $space_btn_icon_text ) . 'px',
+					),
+				);
+				$css_output_1 = astra_parse_css( $css_output_1 );
+
+				return $dynamic_css . $css_output . $css_output_1;
 			}
 
 			return $dynamic_css;

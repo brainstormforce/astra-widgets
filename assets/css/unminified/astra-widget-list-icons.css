@@ -1,4 +1,4 @@
-#secondary .astra-widget-list-icons ul li {
+.astra-widget-list-icons ul li {
 	-js-display: flex;
 	display: -webkit-box;
 	display: -webkit-flex;
