@@ -101,7 +101,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 			if ( ! empty( $fields ) && is_array( $fields ) ) {
 				foreach ( $fields as $key => $value ) {
-					$value = wp_parse_args( $value, $defaults );
+					$value              = wp_parse_args( $value, $defaults );
 					$font_awesome_icons = self::backend_load_font_awesome_icons();
 
 					$class = isset( $value['class'] ) ? $value['class'] : '';
@@ -112,7 +112,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							$field_name = '';
 
 							$decoded_icon_data = json_decode( $value['default'] );
-							$encode_icon_data = $value['default'];
+							$encode_icon_data  = $value['default'];
 
 							if ( empty( $repeater_id ) || $this->have_repeator_field( $fields ) ) {
 								$field_id   = $self->get_field_id( $value['id'] );
@@ -140,12 +140,11 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 												<?php
 													// Get icons array.
 													// $icons = self::get_icons(); .
-
 												foreach ( $font_awesome_icons as $index => $field ) {
-													
+
 													$viewbox_array = '';
 													$viewbox_array = ( isset( $field['svg']['brands']['viewBox']['0'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
-													$viewbox = implode(' ', $viewbox_array);
+													$viewbox       = implode( ' ', $viewbox_array );
 													array_push( $field['search']['terms'], $index );
 													array_push( $field['search']['terms'], $field['styles']['0'] );
 
