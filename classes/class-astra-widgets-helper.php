@@ -65,46 +65,6 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		}
 
 		/**
-		 * Remoove unwanted values from font awesome json object
-		 *
-		 * @since 1.0.0
-		 * @param  array $json Font awesome icons array.
-		 * @return array $json Modifield font awesome icons array.
-		 */
-		public static function remove_unwanted_data( $json ) {
-
-			// Remove unwanted code from the json file.
-			foreach ( $json as $index => $value ) {
-
-				/* Remove all unwanted data from the fontawesome json file */
-
-				// Remove Changes, Ligature, Unicode from the array.
-				unset( $value['changes'], $value['ligatures'], $value['unicode'] );
-
-				// Remove last modifiled from the svg array.
-				if ( isset( $value['svg']['brands'] ) ) {
-					unset( $value['svg']['brands']['last_modified'], $value['svg']['brands']['viewBox'], $value['svg']['brands']['width'], $value['svg']['brands']['height'], $value['svg']['brands']['path'] );
-				} elseif ( isset( $value['svg']['solid'] ) ) {
-					unset( $value['svg']['solid']['last_modified'], $value['svg']['solid']['viewBox'], $value['svg']['solid']['width'], $value['svg']['solid']['height'], $value['svg']['solid']['path'] );
-				}
-				$json[ $index ] = $value;
-			}
-
-			return $json;
-		}
-
-		public static function get_svg( $data ) {
-
-			if( isset( $icon['svg']['brands']['raw'] ) ) {
-				$data['svg']  = $icon['svg']['brands']['raw'];
-			} else if( isset( $icon['svg']['solid']['raw'] ) ) {
-				$data['svg']  = $icon['svg']['solid']['raw'];
-			}
-			return $data;
-		}
-
-
-		/**
 		 * Check exiting fields have any repeater field?
 		 *
 		 * If found then return `true`. Default `false`.
