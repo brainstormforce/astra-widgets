@@ -157,6 +157,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$this->_front_setup( $args, $instance );
 
 			$width = $instance['width'] ? $instance['width'] : '';
+			$icon_color = $instance['icon_color'] ? $instance['icon_color'] : '';
 
 			if ( ! empty( $width ) ) {
 				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
@@ -188,7 +189,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<svg xmlns="http://www.w3.org/2000/svg" width="<?php echo esc_attr( $width ) . 'px'; ?>" height="<?php echo esc_attr( $width ) . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo esc_attr( $width ) . 'px'; ?>" height="<?php echo esc_attr( $width ) . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 											</span>
 										</div>
 									<?php } ?>
@@ -420,6 +421,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				$width = isset( $instance['width'] ) ? $instance['width'] : '';
 				$space_btn_list = isset( $instance['space_btn_list'] ) ? $instance['space_btn_list'] : '';
 				$space_btn_icon_text = isset( $instance['space_btn_icon_text'] ) ? $instance['space_btn_icon_text'] : '';
+				$background_color = isset( $instance['background_color'] ) ? $instance['background_color'] : '';
 
 				$css_output = '';
 
@@ -440,9 +442,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'#astra-widget-list-icons-wrapper .list-items-wrapper li' => array(
 						'margin-bottom' => esc_attr( $space_btn_list ) . 'px',
 					),
-					'#astra-widget-list-icons-wrapper .list-items-wrapper .icon span' => array(
-						'margin-right' => esc_attr( $space_btn_icon_text ) . 'px',
+					'.astra-widget-list-icons ul li .link-text' => array(
+						'margin-left' => esc_attr( $space_btn_icon_text ) . 'px',
 					),
+					'.list-item-link .icon' => array(
+						'background-color' => esc_attr( $background_color ),
+						'width' => esc_attr( $width ) . 'px',
+						'height' => esc_attr( $width ) . 'px',
+					),
+
 				);
 				$css_output_1 = astra_parse_css( $css_output_1 );
 
