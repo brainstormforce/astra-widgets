@@ -364,12 +364,6 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'default' => ( isset( $instance['divider_color'] ) && ! empty( $instance['divider_color'] ) ) ? $instance['divider_color'] : '',
 				),
 				array(
-					'type'    => 'color',
-					'id'      => 'bg_hover_color',
-					'name'    => __( 'Hover Background Color', 'astra-addon' ),
-					'default' => ( isset( $instance['bg_hover_color'] ) && ! empty( $instance['bg_hover_color'] ) ) ? $instance['bg_hover_color'] : '',
-				),
-				array(
 					'type' => 'heading',
 					'name' => __( 'Icon / Image Style', 'astra-addon' ),
 				),
