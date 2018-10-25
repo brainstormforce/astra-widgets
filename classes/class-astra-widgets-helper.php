@@ -167,7 +167,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										<div class="astra-widget-icon-selector-actions">
 											<div class="astra-select-icon button">
 												<div class="astra-selected-icon"> 
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? $decoded_icon_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? $decoded_icon_data->path : ''; ?>"></path></svg>
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
 												</div>
 												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>
@@ -186,9 +186,12 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													$viewbox_array = '';
 													$viewbox_array = ( isset( $field['svg']['brands']['viewBox']['0'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
 													$viewbox = implode(' ', $viewbox_array);
+													array_push( $field['search']['terms'], $index );
+													array_push( $field['search']['terms'], $field['styles']['0'] );
+
 													?>
 
-														<li class="astra-widget-icon <?php echo $index; ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
+														<li class="astra-widget-icon <?php echo $index; ?>" data-search-terms="<?php echo implode( ' ', $field['search']['terms'] ); ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
 															<?php
 															if ( isset( $field['svg']['brands']['raw'] ) ) {
 																echo $field['svg']['brands']['raw'];
