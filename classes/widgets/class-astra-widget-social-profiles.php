@@ -181,7 +181,8 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				$icon_width       = isset( $instance['width'] ) ? $instance['width'] : '';
 				$color_type       = isset( $instance['color-type'] ) ? $instance['color-type'] : '';
 				$list             = isset( $instance['list'] ) ? $instance['list'] : '';
-				$icons_color      = Astra_Widgets_Helper::get_icons();
+				// $icons_color      = Astra_Widgets_Helper::get_icons();
+				$icons_color      = array();
 
 				if ( 'official-color' === $color_type ) {
 
@@ -189,8 +190,8 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					if ( ! empty( $list ) ) {
 						foreach ( $list as $key => $value ) {
 							$str                 = $value['icon'];
-							$color_array         = $icons_color[ $str ];
-							$icon_color_official = $color_array['color'];
+							// $color_array         = $icons_color[ $str ];
+							$icon_color_official = "#333";
 							$trimmed = str_replace( 'astra-icon-', '', $str );
 
 							$color_output = array(
@@ -295,12 +296,17 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							$target = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
 							$rel    = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
 
+							$list_data = json_decode( $list['icon'] );
+
 							$trimmed = str_replace( 'astra-icon-', '', $list['icon'] );
 							?>
 							<li>
 								<a target="_blank" href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
-									<!-- <div class="icon <?php echo esc_html( $trimmed ); ?>"> -->
-										<span class="ast-widget-icon <?php echo esc_html( $list['icon'] ); ?>"></span>
+									<!-- <div class="icon <?php // echo esc_html( $trimmed ); ?>"> -->
+										<!-- <span class="<?php // echo esc_html( $list['icon'] ); ?>"></span> -->
+										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+										</span>
 									<!-- </div> -->
 									<?php if ( $display_title ) { ?>
 										<span class="link"><?php echo esc_html( $list['title'] ); ?></span>
