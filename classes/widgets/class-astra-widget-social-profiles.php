@@ -182,71 +182,72 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				$color_type       = isset( $instance['color-type'] ) ? $instance['color-type'] : '';
 				$list             = isset( $instance['list'] ) ? $instance['list'] : '';
 				$icons_color      = Astra_Widgets_Helper::get_default_icons_colors();
-
+				$dynamic_css      ='';
 				// Official Colors only.
 				if ( 'official-color' === $color_type ) {
 
 					$new_color_output = '';
+					$uniqueue_icon =  array();
 
 					if ( ! empty( $list ) ) {
 						foreach ( $list as $index => $list ) {
 							$list_data = json_decode( $list['icon'] );
+							$uniqueue_icon[] = $list_data->name;
+						}
+					}
+					if ( ! empty( $uniqueue_icon ) ) {
+						foreach ( array_unique( $uniqueue_icon ) as $key => $name ) {
+							$icon_color_official         = isset( $icons_color[ $name ] ) ? $icons_color[ $name ]['color'] : '';
+							$icon_bg_color_official         = isset( $icons_color[ $name ] ) ? $icons_color[ $name ]['bg-color'] : '';
 
-							$icon_color_official         = isset( $icons_color[ $list_data->name ] ) ? $icons_color[ $list_data->name ]['color'] : '';
-							$icon_bg_color_official         = isset( $icons_color[ $list_data->name ] ) ? $icons_color[ $list_data->name ]['bg-color'] : '';
-
-							$trimmed = str_replace( 'astra-icon-', '', $list_data->name );
+							$trimmed = str_replace( 'astra-icon-', '', $name );
 
 							$color_output = array(
-								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $list_data->name . '.ast-widget-icon svg' => array(
+								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $name . '.ast-widget-icon svg' => array(
+									'fill'            => esc_attr( $icon_bg_color_official ),
+								),
+								// '.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $name . '.ast-widget-icon' => array(
+								// 	'background-color' => esc_attr( $icon_bg_color_official ),
+								// ),
+								'.astra-widget-social-profiles-inner.icon-official-color li .' . $name . '.ast-widget-icon svg' => array(
 									'fill'            => esc_attr( $icon_color_official ),
 								),
-								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $list_data->name . '.ast-widget-icon' => array(
+								'.astra-widget-social-profiles-inner.icon-official-color.circle li .' . $name . '.ast-widget-icon, .astra-widget-social-profiles-inner.icon-official-color.square li .' . $name . '.ast-widget-icon' => array(
 									'background-color' => esc_attr( $icon_bg_color_official ),
 								),
-								'.astra-widget-social-profiles-inner.icon-official-color li .' . $list_data->name . '.ast-widget-icon svg' => array(
-									'fill'            => esc_attr( $icon_color_official ),
+								'.astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $name . '.ast-widget-icon svg, .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $name . '.ast-widget-icon svg' => array(
+									'fill'            => esc_attr( $icon_bg_color_official ),
 								),
-								'.astra-widget-social-profiles-inner.icon-official-color li .' . $list_data->name . '.ast-widget-icon' => array(
-									'background-color' => esc_attr( $icon_bg_color_official ),
-								),
-								'.astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $list_data->name . '.ast-widget-icon svg, .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $list_data->name . '.ast-widget-icon svg' => array(
-									'fill'            => esc_attr( $icon_color_official ),
-								),
-								'.astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $list_data->name . '.ast-widget-icon, .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $list_data->name . '.ast-widget-icon' => array(
-									'background-color' => esc_attr( $icon_bg_color_official ),
+								'.astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $name . '.ast-widget-icon, .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $name . '.ast-widget-icon' => array(
+									'border-color' => esc_attr( $icon_bg_color_official ),
 								),
 							);
-							$color_output = astra_widgets_parse_css( $color_output );
-
-							$new_color_output .= $color_output;
+							$dynamic_css .= astra_widgets_parse_css( $color_output );
 						}
 					}
 
-					$dynamic_css .= $dynamic_css . $new_color_output;
 				} else{
 					// Custom colors only.
 					$css_output  = array(
 						'.astra-widget-social-profiles-inner li .ast-widget-icon svg' => array(
-							'color' => esc_attr( $icon_color ),
+							'fill' => esc_attr( $icon_color ),
 						),
-						'.astra-widget-social-profiles-inner li .ast-widget-icon:hover' => array(
-							'color' => esc_attr( $icon_hover_color ),
+						'.astra-widget-social-profiles-inner li .ast-widget-icon:hover svg' => array(
+							'fill' => esc_attr( $icon_hover_color ),
 						),
 						// square outline.
 						'.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon' => array(
 							'background' => 'transparent',
-							'border'     => esc_attr( $bg_color ),
-							'color'      => esc_attr( $icon_hover_color ),
+							'border-color'     => esc_attr( $bg_color ),
 						),
 						'.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon svg, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon svg' => array(
 							'background' => 'transparent',
 							'fill'      => esc_attr( $icon_color ),
 						),
-						// square.
+						// square & circle.
 						'.astra-widget-social-profiles-inner.square .ast-widget-icon, .astra-widget-social-profiles-inner.circle .ast-widget-icon' => array(
 							'background' => esc_attr( $bg_color ),
-							'border'     => esc_attr( $bg_color ),
+							'border-color'     => esc_attr( $bg_color ),
 						),
 						'.astra-widget-social-profiles-inner.square .ast-widget-icon svg, .astra-widget-social-profiles-inner.circle .ast-widget-icon svg' => array(
 							'fill'      => esc_attr( $icon_color ),
@@ -256,22 +257,24 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 						),
 						'.astra-widget-social-profiles-inner.square .ast-widget-icon:hover, .astra-widget-social-profiles-inner.circle .ast-widget-icon:hover' => array(
 								'background' => esc_attr( $bg_hover_color ),
-								'border'     => esc_attr( $bg_hover_color ),
+								'border-color'     => esc_attr( $bg_hover_color ),
 						),
 
+						// square & circle outline.
 						'.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon:hover, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon:hover' => array(
 							'background' => 'transparent',
-							'color'      => esc_attr( $icon_hover_color ),
-							'border'     => esc_attr( $bg_hover_color ),
+							'border-color'     => esc_attr( $bg_hover_color ),
+						),
+						'.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon:hover svg, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon:hover svg' => array(
+							'fill'      => esc_attr( $icon_hover_color ),
 						),
 						// '.astra-widget-social-profiles-inner.square .ast-widget-icon:hover, .astra-widget-social-profiles-inner.circle .ast-widget-icon:hover' => array(
 						// 	'background' => esc_attr( $bg_hover_color ),
-						// 	'border'     => esc_attr( $bg_hover_color ),
+						// 	'border-color'     => esc_attr( $bg_hover_color ),
 						// 	'color'      => esc_attr( $icon_hover_color ),
 						// ),
 					);
-					$css_output  = astra_widgets_parse_css( $css_output );
-					$dynamic_css = $dynamic_css . $css_output;
+					$dynamic_css  .= astra_widgets_parse_css( $css_output );
 				}
 
 				// Common Property apply to all social icons.
@@ -283,8 +286,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							'font-size' => astra_widget_get_css_value( $icon_width, 'px' ),
 						),
 				);
-				$common_css_output  = astra_widgets_parse_css( $common_css_output );
-				$dynamic_css .= $common_css_output;
+				$dynamic_css .= astra_widgets_parse_css( $common_css_output );
 			}
 
 			return $dynamic_css;
