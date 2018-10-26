@@ -13,6 +13,9 @@
     -ms-flex-align: center;
     align-items: center;
 }
+.astra-widget-social-profiles-inner.stack li > a {
+    margin-left: 0;
+}
 .astra-widget-social-profiles-inner .ast-widget-icon {
     display: -webkit-box;
     display: -ms-flexbox;
