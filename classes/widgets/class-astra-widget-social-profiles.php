@@ -181,7 +181,8 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				$icon_width       = isset( $instance['width'] ) ? $instance['width'] : '';
 				$color_type       = isset( $instance['color-type'] ) ? $instance['color-type'] : '';
 				$list             = isset( $instance['list'] ) ? $instance['list'] : '';
-				$icons_color      = Astra_Widgets_Helper::get_icons();
+				// $icons_color      = Astra_Widgets_Helper::get_icons();
+				$icons_color      = array();
 
 				if ( 'official-color' === $color_type ) {
 
@@ -189,22 +190,25 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					if ( ! empty( $list ) ) {
 						foreach ( $list as $key => $value ) {
 							$str                 = $value['icon'];
-							$color_array         = $icons_color[ $str ];
-							$icon_color_official = $color_array['color'];
-
+							// $color_array         = $icons_color[ $str ];
+							$icon_color_official = "#333";
 							$trimmed = str_replace( 'astra-icon-', '', $str );
 
 							$color_output = array(
-								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $trimmed . '.icon' => array(
+								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $value['icon'] . '.ast-widget-icon' => array(
 									'color'            => esc_attr( $icon_color_official ),
 									'background-color' => 'transparent',
 								),
-								'.astra-widget-social-profiles-inner.icon-official-color li .' . $trimmed . '.icon' => array(
+								'.astra-widget-social-profiles-inner.icon-official-color li .' . $value['icon'] . '.ast-widget-icon' => array(
 									'color'            => '#fff',
 									'background-color' => esc_attr( $icon_color_official ),
 								),
+								'.astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $value['icon'] . '.ast-widget-icon, .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $value['icon'] . '.ast-widget-icon' => array(
+									'color'            => esc_attr( $icon_color_official ),
+									'background-color' => 'transparent',
+								),
 							);
-							$color_output = astra_parse_css( $color_output );
+							$color_output = astra_widgets_parse_css( $color_output );
 
 							$new_color_output .= $color_output;
 						}
@@ -212,43 +216,42 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 
 					$dynamic_css .= $dynamic_css . $new_color_output;
 				}
-
 				$css_output  = array(
-					'.astra-widget-social-profiles-inner li .icon' => array(
+					'.astra-widget-social-profiles-inner li .ast-widget-icon' => array(
 						'color' => esc_attr( $icon_color ),
 					),
-					'.astra-widget-social-profiles-inner li .icon:hover' => array(
+					'.astra-widget-social-profiles-inner li .ast-widget-icon:hover' => array(
 						'color' => esc_attr( $icon_hover_color ),
 					),
-					'.astra-widget-social-profiles-inner.square-outline li .icon, .astra-widget-social-profiles-inner.circle-outline li .icon' => array(
+					'.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon' => array(
 						'background' => 'transparent',
 						'color'      => esc_attr( $icon_color ),
-						'border'     => '1px solid ' . esc_attr( $bg_color ),
+						'border'     => esc_attr( $bg_color ),
 						'color'      => esc_attr( $icon_hover_color ),
 					),
-					'.astra-widget-social-profiles-inner.square .icon, .astra-widget-social-profiles-inner.circle .icon' => array(
+					'.astra-widget-social-profiles-inner.square .ast-widget-icon, .astra-widget-social-profiles-inner.circle .ast-widget-icon' => array(
 						'background' => esc_attr( $bg_color ),
-						'border'     => '1px solid ' . esc_attr( $bg_color ),
+						'border'     => esc_attr( $bg_color ),
 						'color'      => esc_attr( $icon_color ),
 					),
-					'.astra-widget-social-profiles-inner.square-outline li .icon:hover, .astra-widget-social-profiles-inner.circle-outline li .icon:hover' => array(
+					'.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon:hover, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon:hover' => array(
 						'background' => 'transparent',
 						'color'      => esc_attr( $icon_hover_color ),
-						'border'     => '1px solid ' . esc_attr( $bg_hover_color ),
+						'border'     => esc_attr( $bg_hover_color ),
 					),
-					'.astra-widget-social-profiles-inner.square .icon:hover, .astra-widget-social-profiles-inner.circle .icon:hover' => array(
+					'.astra-widget-social-profiles-inner.square .ast-widget-icon:hover, .astra-widget-social-profiles-inner.circle .ast-widget-icon:hover' => array(
 						'background' => esc_attr( $bg_hover_color ),
-						'border'     => '1px solid ' . esc_attr( $bg_hover_color ),
+						'border'     => esc_attr( $bg_hover_color ),
 						'color'      => esc_attr( $icon_hover_color ),
 					),
-					'.astra-widget-social-profiles-inner .icon span' => array(
-						'font-size' => esc_attr( $icon_width ) . 'px',
+					'.astra-widget-social-profiles-inner .ast-widget-icon' => array(
+						'font-size' => astra_widget_get_css_value( $icon_width, 'px' ),
 					),
-					'.astra-widget-social-profiles-inner.circle li .icon, .astra-widget-social-profiles-inner.circle-outline li .icon' => array(
-						'font-size' => esc_attr( $icon_width ) . 'px',
+					'.astra-widget-social-profiles-inner.circle li .ast-widget-icon, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon' => array(
+						'font-size' => astra_widget_get_css_value( $icon_width, 'px' ),
 					),
 				);
-				$css_output  = astra_parse_css( $css_output );
+				$css_output  = astra_widgets_parse_css( $css_output );
 				$dynamic_css = $dynamic_css . $css_output;
 			}
 
@@ -293,15 +296,20 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							$target = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
 							$rel    = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
 
+							$list_data = json_decode( $list['icon'] );
+
 							$trimmed = str_replace( 'astra-icon-', '', $list['icon'] );
 							?>
 							<li>
 								<a target="_blank" href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
-									<div class="icon <?php echo esc_html( $trimmed ); ?>">
-										<span class="<?php echo esc_html( $list['icon'] ); ?>"></span>
-									</div>
+									<!-- <div class="icon <?php // echo esc_html( $trimmed ); ?>"> -->
+										<!-- <span class="<?php // echo esc_html( $list['icon'] ); ?>"></span> -->
+										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+										</span>
+									<!-- </div> -->
 									<?php if ( $display_title ) { ?>
-										<div class="link"><?php echo esc_html( $list['title'] ); ?></div>
+										<span class="link"><?php echo esc_html( $list['title'] ); ?></span>
 									<?php } ?>
 								</a>
 							</li>
