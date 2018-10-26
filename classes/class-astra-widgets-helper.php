@@ -311,7 +311,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 								$field_name = $self->get_field_name( $value['id'] );
 							}
 							?>
-								<div class="astra-widget-field astra-widget-field-select">
+								<div class="astra-widget-field astra-widget-field-select astra-widget-field-<?php echo $value['id']; ?>">
 									<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 									<label for="<?php echo esc_attr( $field_id ); ?>"><?php echo $value['name']; ?></label>
 										<select class="widefat" id="<?php echo esc_attr( $field_id ); ?>" name="<?php echo esc_attr( $field_name ); ?>"
@@ -334,7 +334,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						case 'color':
 							?>
 
-									<div class="astra-widget-field astra-widget-field-color">
+									<div class="astra-widget-field astra-widget-field-color astra-widget-field-<?php echo $value['id']; ?>">
 										<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
 											<input class="<?php echo $class; ?> widefat" type="text" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
@@ -375,10 +375,10 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 						case 'number':
 							?>
-										<p class="<?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?>">
+										<div class="astra-widget-field astra-widget-field-number astra-widget-field-<?php echo $value['id']; ?> <?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?>"> 
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
 											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/><span class="astra-widgets-unit"> <?php echo ( isset( $value['unit'] ) ) ? $value['unit'] : ''; ?> </span>
-										</p>
+										</div>
 									<?php
 							break;
 

@@ -87,7 +87,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_admin_scripts() {
-			wp_register_script( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/js/unminified/astra-widget-list-icons.js' );
+			wp_register_script( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/js/unminified/astra-widget-list-icons.js', null, ASTRA_WIDGETS_VER, false );
 		}
 
 		/**
@@ -96,7 +96,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_scripts() {
-			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-list-icons.css' );
+			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-list-icons.css', ASTRA_WIDGETS_VER, false  );
 		}
 
 		/**
@@ -341,10 +341,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'select',
 					'id'      => 'divider_style',
-					'name'    => __( 'Style', 'astra-addon' ),
+					'name'    => __( 'Divider Style', 'astra-addon' ),
 					'default' => ( isset( $instance['divider_style'] ) && ! empty( $instance['divider_style'] ) ) ? $instance['divider_style'] : 'inherit',
 					'options' => array(
-						'inherit' => __( 'Inherit', 'astra-addon' ),
 						'solid'   => __( 'Solid', 'astra-addon' ),
 						'dotted'  => __( 'Dotted', 'astra-addon' ),
 						'double'  => __( 'Double', 'astra-addon' ),
@@ -354,13 +353,13 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'number',
 					'id'      => 'divider_weight',
-					'name'    => __( 'Weight:', 'astra-addon' ),
+					'name'    => __( ' Divider Weight:', 'astra-addon' ),
 					'default' => ( isset( $instance['divider_weight'] ) && ! empty( $instance['divider_weight'] ) ) ? $instance['divider_weight'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'divider_color',
-					'name'    => __( 'Divider Width:', 'astra-addon' ),
+					'name'    => __( 'Divider Color:', 'astra-addon' ),
 					'default' => ( isset( $instance['divider_color'] ) && ! empty( $instance['divider_color'] ) ) ? $instance['divider_color'] : '',
 				),
 				array(
@@ -410,6 +409,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			$instances = get_option( 'widget_' . $this->id_base );
 
+			$id_base = '#' . $this->id;
+
 			if ( array_key_exists( $this->number, $instances ) ) {
 				$instance = $instances[ $this->number ];
 
@@ -426,10 +427,10 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(
-						'.astra-widget-list-icons .image img' => array(
+						$id_base . ' .astra-widget-list-icons .image img' => array(
 							'min-width' => astra_widget_get_css_value( $width, 'px' ),
 						),
-						'.astra-widget-list-icons .icon svg' => array(
+						$id_base . ' .astra-widget-list-icons .icon svg' => array(
 							'width' => astra_widget_get_css_value( $width, 'px' ),
 						),
 					);
@@ -439,10 +440,13 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				if ( isset( $divider ) && 'yes' === $divider ) {
 					$css_output_2 = array(
-						'.astra-widget-list-icons .list-items-wrapper li' => array(
+						$id_base . '.astra-widget-list-icons .list-items-wrapper li' => array(
 							'border-bottom-color' => esc_attr( $divider_color ),
 							'border-bottom-width' => esc_attr( $divider_weight ) . 'px',
 							'border-bottom-style' => esc_attr( $divider_style ),
+						),
+						$id_base . '.astra-widget-list-icons .list-items-wrapper li:last-child' => array(
+							'border-bottom-style' => 'none',
 						),
 					);
 
@@ -450,13 +454,23 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				}
 
 				$css_output_1 = array(
-					'#astra-widget-list-icons-wrapper .list-items-wrapper li' => array(
-						'margin-bottom' => esc_attr( $space_btn_list ) . 'px',
+					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li:first-child' => array(
+						'padding-top' => '0',
+						'padding-bottom' => esc_attr( $space_btn_list / 2 ) . 'px',
 					),
-					'.astra-widget-list-icons ul li .link-text' => array(
+					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li' => array(
+						'padding-top' => esc_attr( $space_btn_list / 2 ) . 'px',
+						'padding-bottom' => esc_attr( $space_btn_list / 2 ) . 'px',
+						'margin-bottom' => '0',
+					),
+					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li:last-child' => array(
+						'padding-top' => esc_attr( $space_btn_list / 2 ) . 'px',
+						'padding-bottom' => '0',
+					),
+					$id_base . '.astra-widget-list-icons ul li .link-text' => array(
 						'margin-left' => esc_attr( $space_btn_icon_text ) . 'px',
 					),
-					'.list-item-link .icon' => array(
+					$id_base . ' .list-item-link .icon' => array(
 						'background-color' => esc_attr( $background_color ),
 						'width'            => esc_attr( $width ) . 'px',
 						'height'           => esc_attr( $width ) . 'px',

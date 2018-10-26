@@ -273,6 +273,7 @@
 
 .astra-repeater-field .markukp {
     padding: 10px;
+    border-top: 1px solid #e5e5e5;
 }
 
 .astra-repeater-sortable .astra-repeater-field {
