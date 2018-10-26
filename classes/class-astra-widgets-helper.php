@@ -120,9 +120,11 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							}
 							?>
 									<div class="astra-widget-icon-selector">
+										<?php if( isset( $value['name'] ) && '' !== $value['name'] ) { ?>
 										<label for="<?php echo esc_attr( $field_id ); ?>">
 											<?php echo esc_html( $value['name'] ); ?>
 										</label>
+										<?php } ?>
 
 										<div class="astra-widget-icon-selector-actions">
 											<div class="astra-select-icon button">
@@ -206,7 +208,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										</div>
 									</div>
 									<div class="add-new">
-										<a class="add-new-btn button"><?php _e( 'Add more', 'astra-addon' ); ?></a>
+										<a class="add-new-btn button"><?php _e( 'Add item', 'astra-addon' ); ?></a>
 									</div>
 
 									<?php
@@ -373,9 +375,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 						case 'number':
 							?>
-										<p class="<?php echo $class; ?>">
+										<p class="<?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?>">
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
-											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
+											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/><span class="astra-widgets-unit"> <?php echo ( isset( $value['unit'] ) ) ? $value['unit'] : ''; ?> </span>
 										</p>
 									<?php
 							break;
@@ -429,6 +431,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 								<span class="title"></span>
 								<span class="dashicons dashicons-admin-page clone"></span>
 								<span class="dashicons dashicons-trash remove"></span>
+								<span class="dashicons toggle-arrow"></span>
 							</div>
 							<div class="markukp">
 								<?php $this->generate( $self, $fields, $value['id'] ); ?>

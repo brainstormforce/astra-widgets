@@ -294,13 +294,13 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						array(
 							'type'    => 'image',
 							'id'      => 'image',
-							'name'    => __( 'Image:', 'astra-addon' ),
+							'name'    => __( '', 'astra-addon' ),
 							'default' => '',
 						),
 						array(
 							'type'    => 'icon',
 							'id'      => 'icon',
-							'name'    => __( 'Icon', 'astra-addon' ),
+							'name'    => __( '', 'astra-addon' ),
 							'default' => '',
 						),
 					),
@@ -344,7 +344,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'name'    => __( 'Style', 'astra-addon' ),
 					'default' => ( isset( $instance['divider_style'] ) && ! empty( $instance['divider_style'] ) ) ? $instance['divider_style'] : 'inherit',
 					'options' => array(
-						'inherit' => __( 'inherit', 'astra-addon' ),
+						'inherit' => __( 'Inherit', 'astra-addon' ),
 						'solid'   => __( 'Solid', 'astra-addon' ),
 						'dotted'  => __( 'Dotted', 'astra-addon' ),
 						'double'  => __( 'Double', 'astra-addon' ),
@@ -384,6 +384,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'id'      => 'width',
 					'name'    => __( 'Image / Icon Size:', 'astra-addon' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
+					'unit' 	  => 'px',
 				),
 			);
 			?>
