@@ -54,9 +54,10 @@
 }
 .astra-repeater-field .actions {
     padding: 10px;
-    background: #F6F6F6;
+    background: #fafafa;
     text-align: right;
 }
+
 .astra-repeater-field .markukp {
     display: none;
 }
@@ -277,4 +278,32 @@
 
 .astra-widget-icon.selected svg {
     fill: #fff;    
+}
+
+.astra-widgets-number-unit .widefat {
+    width: 95%;
+}
+
+.astra-repeater-field .markukp {
+    padding: 10px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.astra-repeater-sortable .astra-repeater-field {
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    margin-bottom: 5px;
+}
+
+.astra-repeater-field.field-open .actions .toggle-arrow:before {
+    content: "\f142";
+}
+
+.astra-repeater-field .actions .toggle-arrow:before {
+    content: "\f140";
+}
+
+.astra-repeater-field .actions .toggle-arrow {
+    display: inline-block;
+    margin-top: -4px;
 }

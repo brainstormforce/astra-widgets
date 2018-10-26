@@ -182,17 +182,17 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				$color_type       = isset( $instance['color-type'] ) ? $instance['color-type'] : '';
 				$list             = isset( $instance['list'] ) ? $instance['list'] : '';
 				// $icons_color      = Astra_Widgets_Helper::get_icons();
-				$icons_color      = array();
+				$icons_color = array();
 
 				if ( 'official-color' === $color_type ) {
 
 					$new_color_output = '';
 					if ( ! empty( $list ) ) {
 						foreach ( $list as $key => $value ) {
-							$str                 = $value['icon'];
+							$str = $value['icon'];
 							// $color_array         = $icons_color[ $str ];
-							$icon_color_official = "#333";
-							$trimmed = str_replace( 'astra-icon-', '', $str );
+							$icon_color_official = '#333';
+							$trimmed             = str_replace( 'astra-icon-', '', $str );
 
 							$color_output = array(
 								'.astra-widget-social-profiles-inner.icon-official-color.simple li .' . $value['icon'] . '.ast-widget-icon' => array(
