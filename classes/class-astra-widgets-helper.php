@@ -82,6 +82,82 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		}
 
 		/**
+		 * Default icons color & bg color
+		 *
+		 *
+		 * @return array $icons default icon color & bg color list
+		 */
+		public static function get_default_icons_colors() {
+			$icons = array(
+				'facebook-f'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
+				'facebook-square'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
+				'twitter'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#55acee',
+				),
+				'twitter-square'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#55acee',
+				),
+				'google-plus'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#dd4b39',
+				),
+				'google-plus-square'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#dd4b39',
+				),
+				'youtube'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#ff0000',
+				),
+				'youtube-square'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#ff0000',
+				),
+				'linkedin'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#007bb5',
+				),
+				'linkedin-in'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#007bb5',
+				),
+				'instagram'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#e95950',
+				),
+				'whatsapp'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#4dc247',
+				),
+				'whatsapp-in'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#4dc247',
+				),
+				'pinterest'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'pinterest-p'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'pinterest-square'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+			);
+			return $icons;
+		}
+
+		/**
 		 * Generate fields.
 		 *
 		 * @param  object $self        Widget object.
