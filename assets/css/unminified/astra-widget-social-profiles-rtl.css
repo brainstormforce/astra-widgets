@@ -12,19 +12,19 @@
     -ms-flex-align: center;
     align-items: center;
 }
-.astra-widget-social-profiles-inner .icon {
-    width: 1em;
-   margin-left: 1em;
+.astra-widget-social-profiles-inner .ast-widget-icon {
+   width: 1em;
+   margin-left: .5em;
    -webkit-transition: all 0.2s linear;
    transition: all 0.2s linear;
 }
-.astra-widget-social-profiles-inner.inline li .icon {
+.astra-widget-social-profiles-inner.inline li .ast-widget-icon {
    margin-left: .2em;
 }
-.astra-widget-social-profiles-inner.circle .icon {
+.astra-widget-social-profiles-inner.circle .ast-widget-icon {
    margin-left: .5em;
 }
-.astra-widget-social-profiles-inner .icon {
+.astra-widget-social-profiles-inner .ast-widget-icon {
     vertical-align: middle;
 }
 .astra-widget-social-profiles-inner .link {
@@ -42,30 +42,35 @@
     display: inline-flex;
     text-align: center;
 }
-.astra-widget-social-profiles-inner.circle-outline .icon,
-.astra-widget-social-profiles-inner.circle .icon {
+.astra-widget-social-profiles-inner.circle-outline .ast-widget-icon,
+.astra-widget-social-profiles-inner.square-outline .ast-widget-icon{
+    border-width: 1px;
+    border-style: solid;
+}
+.astra-widget-social-profiles-inner.circle-outline .ast-widget-icon,
+.astra-widget-social-profiles-inner.circle .ast-widget-icon {
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 }
-.astra-widget-social-profiles-inner.square-outline li .icon,
-.astra-widget-social-profiles-inner.circle-outline li .icon {
-    margin-left: .2em;
-}
-.astra-widget-social-profiles-inner.square-outline .icon,
-.astra-widget-social-profiles-inner.circle-outline .icon,
-.astra-widget-social-profiles-inner.square .icon,
-.astra-widget-social-profiles-inner.circle .icon {
+/*.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon,
+.astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon {
+    margin-right: .2em;
+}*/
+.astra-widget-social-profiles-inner.square-outline .ast-widget-icon,
+.astra-widget-social-profiles-inner.circle-outline .ast-widget-icon,
+.astra-widget-social-profiles-inner.square .ast-widget-icon,
+.astra-widget-social-profiles-inner.circle .ast-widget-icon {
     height: 2em;
     width: 2em;
     font-size: 1em;
     text-align: center;
     vertical-align: middle;
 }
-.astra-widget-social-profiles-inner ul li span {
+.astra-widget-social-profiles-inner .ast-widget-icon {
     font-size: 15px;
-    line-height: 2em;
+    line-height: 2;
 }
-.astra-widget-social-profiles-inner.circle .icon span,
-.astra-widget-social-profiles-inner.circle-outline .icon span {
-    line-height: 2em;
+.astra-widget-social-profiles-inner.circle .ast-widget-icon,
+.astra-widget-social-profiles-inner.circle-outline .ast-widget-icon {
+    line-height: 2;
 }
