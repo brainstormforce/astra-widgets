@@ -88,7 +88,7 @@
 			var current_icon_input   	= parent.find('.selected-icon');
 			var icon_selector_path	 	= $(this).attr('data-path');
 			var icon_selector_viewbox	= $(this).attr('data-viewbox');
-			var icon_selector_svg	 = icon_selector.html();
+			var icon_selector_svg	 	= icon_selector.html();
 
 			// current_icon_preview.removeClass();
 
@@ -105,7 +105,7 @@
 			iconObj = {
 			    'name':selected_icon_font,
 			    'path':icon_selector_path,
-			    'viewbox':icon_selector_viewbox
+			    'viewbox': icon_selector_viewbox
 			 };
 			var icon_data = JSON.stringify(iconObj);
 
@@ -328,6 +328,7 @@
 
 	    	// Toggle on click on move icon & title too.
 	    	if( ( e.target === this ) || $( e.target ).hasClass('title') || $( e.target ).hasClass('dashicons-move') ) {
+	    		$( this ).parents('.astra-repeater-field').toggleClass('field-open');
 		    	$( this ).parents('.astra-repeater-field').find('.markukp').slideToggle();
 	    	}
 	    },
