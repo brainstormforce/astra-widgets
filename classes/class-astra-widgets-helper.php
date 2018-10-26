@@ -208,7 +208,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										</div>
 									</div>
 									<div class="add-new">
-										<a class="add-new-btn button"><?php _e( 'Add item', 'astra-addon' ); ?></a>
+										<button class="add-new-btn button"><?php _e( 'Add item', 'astra-addon' ); ?></button>
 									</div>
 
 									<?php
@@ -280,7 +280,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													type="hidden"
 													value="<?php echo $value['default']; ?>"
 													data-field-id="<?php echo esc_attr( $value['id'] ); ?>">
-												<div class="astra-select-image">Choose Media</div>
+												<div class="astra-select-image">Choose Image</div>
 											</div>
 										</div>
 									</p>

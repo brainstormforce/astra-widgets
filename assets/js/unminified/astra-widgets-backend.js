@@ -328,7 +328,6 @@
 
 	    	// Toggle on click on move icon & title too.
 	    	if( ( e.target === this ) || $( e.target ).hasClass('title') || $( e.target ).hasClass('dashicons-move') ) {
-
 	    		$( this ).parents('.astra-repeater-field').toggleClass('field-open');
 		    	$( this ).parents('.astra-repeater-field').find('.markukp').slideToggle();
 	    	}

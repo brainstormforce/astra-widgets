@@ -54,9 +54,10 @@
 }
 .astra-repeater-field .actions {
     padding: 10px;
-    background: #F6F6F6;
+    background: #fafafa;
     text-align: right;
 }
+
 .astra-repeater-field .markukp {
     display: none;
 }
@@ -277,6 +278,7 @@
 .astra-repeater-sortable .astra-repeater-field {
     border: 1px solid #e5e5e5;
     background: #fff;
+    margin-bottom: 5px;
 }
 
 .astra-repeater-field.field-open .actions .toggle-arrow:before {
