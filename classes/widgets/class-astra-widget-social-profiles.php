@@ -494,7 +494,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				array(
 					'type'    => 'select',
 					'id'      => 'color-type',
-					'name'    => __( 'Alignment', 'astra-addon' ),
+					'name'    => __( 'Icon Color', 'astra-addon' ),
 					'default' => isset( $instance['color-type'] ) ? $instance['color-type'] : '',
 					'options' => array(
 						'official-color' => __( 'Official Color', 'astra-addon' ),
