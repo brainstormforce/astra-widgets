@@ -194,7 +194,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 										</div>
 									<?php } ?>
 									<?php if ( 'image' === $list['imageoricon'] ) { ?>		
-										<div class="image" <?php echo esc_attr( $image_width ); ?>>
+										<div class="image" <?php echo ( isset( $image_width ) ) ? esc_attr( $image_width ) : ''; ?>>
 											<?php echo wp_get_attachment_image( $list['image'] ); ?>
 										</div>
 									<?php } ?>
