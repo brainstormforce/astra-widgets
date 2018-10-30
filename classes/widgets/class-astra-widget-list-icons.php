@@ -191,7 +191,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 											</span>
 										</div>
 									<?php } else { ?>		
@@ -430,6 +430,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				$css_output = '';
 
 				$width = ( '' !== $width ) ? $width : '25';
+				$space_btn_list = ( '' !== $space_btn_list ) ? $space_btn_list : '5';
 
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(

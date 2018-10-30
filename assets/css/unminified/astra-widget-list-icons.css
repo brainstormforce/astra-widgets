@@ -15,11 +15,13 @@
 
 .astra-widget-list-icons ul li .image {
 	max-width: 25px;
-	margin-right: 5px;
+}
+
+.astra-widget-list-icons ul li .link-text{
+	margin-left: 5px;
 }
 
 .astra-widget-list-icons ul li span {
-	margin-right: 5px;
 	vertical-align: middle;
 }
 
