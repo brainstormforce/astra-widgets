@@ -315,13 +315,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'number',
 					'id'      => 'space_btn_list',
-					'name'    => __( '	Space Between List Element:', 'astra-addon' ),
+					'name'    => __( '	Space Between List Items:', 'astra-addon' ),
+					'unit' 	  => 'px',
 					'default' => ( isset( $instance['space_btn_list'] ) && ! empty( $instance['space_btn_list'] ) ) ? $instance['space_btn_list'] : '',
 				),
 				array(
 					'type'    => 'number',
 					'id'      => 'space_btn_icon_text',
 					'name'    => __( 'Space Between Icon & Text:', 'astra-addon' ),
+					'unit' 	  => 'px',
 					'default' => ( isset( $instance['space_btn_icon_text'] ) && ! empty( $instance['space_btn_icon_text'] ) ) ? $instance['space_btn_icon_text'] : '',
 				),
 				array(
@@ -354,6 +356,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'type'    => 'number',
 					'id'      => 'divider_weight',
 					'name'    => __( ' Divider Weight:', 'astra-addon' ),
+					'unit' 	  => 'px',
 					'default' => ( isset( $instance['divider_weight'] ) && ! empty( $instance['divider_weight'] ) ) ? $instance['divider_weight'] : '',
 				),
 				array(
