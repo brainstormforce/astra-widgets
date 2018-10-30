@@ -431,6 +431,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				$width = ( '' !== $width ) ? $width : '25';
 				$space_btn_list = ( '' !== $space_btn_list ) ? $space_btn_list : '5';
+				$divider_weight = ( '' !== $divider_weight ) ? $divider_weight : '1';
 
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(
