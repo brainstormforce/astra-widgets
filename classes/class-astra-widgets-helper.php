@@ -67,6 +67,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			return $json;
 		}
 
+
 		/**
 		 * Check exiting fields have any repeater field?
 		 *

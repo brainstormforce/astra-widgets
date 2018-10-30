@@ -1,4 +1,4 @@
-.address-icons svg {
+.address-icons {
 	width: 15px;
 }
 .widget-address-field .address-icons {
@@ -7,10 +7,15 @@
 }
 
 .widget-address-inline .widget-address-field {
-  display: inline-block;
+  display: inline-flex;
   margin-right: 5px;
 }
 
 .astra-widget-address address {
 	margin: 0;
+}
+.widget-address-field {
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }
