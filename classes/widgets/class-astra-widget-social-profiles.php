@@ -339,12 +339,9 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							?>
 							<li>
 								<a target="_blank" href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
-									<!-- <div class="icon <?php // echo esc_html( $trimmed ); ?>"> -->
-										<!-- <span class="<?php // echo esc_html( $list['icon'] ); ?>"></span> -->
 										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>" width=<?php echo esc_attr( $icon_width ); ?> height=<?php echo esc_attr( $icon_width ); ?> ><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 										</span>
-									<!-- </div> -->
 									<?php if ( $display_title ) { ?>
 										<span class="link"><?php echo esc_html( $list['title'] ); ?></span>
 									<?php } ?>
