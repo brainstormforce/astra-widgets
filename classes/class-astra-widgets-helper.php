@@ -58,8 +58,11 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				return array();
 			}
 
-			$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
-			$json = json_decode( $str, true ); // decode the JSON into an associative array.
+			$json = '';
+			if( ! is_customize_preview() ) {
+				$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
+				$json = json_decode( $str, true ); // decode the JSON into an associative array.
+			}
 
 			return $json;
 		}
@@ -225,27 +228,29 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											<ul class="astra-widget-icons-list">
 												<?php
 													// Get icons array.
-													// $icons = self::get_icons(); .
-												foreach ( $font_awesome_icons as $index => $field ) {
+												if( isset( $font_awesome_icons ) && '' !== $font_awesome_icons ) {
 
-													$viewbox_array = '';
-													$viewbox_array = ( isset( $field['svg']['brands']['viewBox'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
-													$viewbox       = implode( ' ', $viewbox_array );
-													array_push( $field['search']['terms'], $index );
-													array_push( $field['search']['terms'], $field['styles']['0'] );
+													foreach ( $font_awesome_icons as $index => $field ) {
 
-													?>
+														$viewbox_array = '';
+														$viewbox_array = ( isset( $field['svg']['brands']['viewBox'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
+														$viewbox       = implode( ' ', $viewbox_array );
+														array_push( $field['search']['terms'], $index );
+														array_push( $field['search']['terms'], $field['styles']['0'] );
 
-														<li class="astra-widget-icon <?php echo $index; ?>" data-search-terms="<?php echo implode( ' ', $field['search']['terms'] ); ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
-															<?php
-															if ( isset( $field['svg']['brands']['raw'] ) ) {
-																echo $field['svg']['brands']['raw'];
-															} elseif ( isset( $field['svg']['solid']['raw'] ) ) {
-																echo $field['svg']['solid']['raw'];
-															}
-															?>
-														</li>
-													<?php
+														?>
+
+															<li class="astra-widget-icon <?php echo $index; ?>" data-search-terms="<?php echo implode( ' ', $field['search']['terms'] ); ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
+																<?php
+																if ( isset( $field['svg']['brands']['raw'] ) ) {
+																	echo $field['svg']['brands']['raw'];
+																} elseif ( isset( $field['svg']['solid']['raw'] ) ) {
+																	echo $field['svg']['solid']['raw'];
+																}
+																?>
+															</li>
+														<?php
+													}
 												}
 												?>
 											</ul>
