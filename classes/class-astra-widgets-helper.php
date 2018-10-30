@@ -89,6 +89,10 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 */
 		public static function get_default_icons_colors() {
 			$icons = array(
+				'facebook'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
 				'facebook-f'             => array(
 					'color' => '#ffffff',
 					'bg-color' => '#3b5998',
@@ -146,6 +150,10 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 					'bg-color' => '#cb2027',
 				),
 				'pinterest-p'             => array(
+					'color' => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'pinterest-square'             => array(
 					'color' => '#ffffff',
 					'bg-color' => '#cb2027',
 				),

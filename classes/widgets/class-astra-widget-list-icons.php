@@ -438,7 +438,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						),
 					);
 
-					$css_output = astra_widgets_parse_css( $css_output );
+					$dynamic_css = astra_widgets_parse_css( $css_output );
 				}
 
 				if ( isset( $divider ) && 'yes' === $divider ) {
@@ -453,7 +453,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						),
 					);
 
-					$css_output .= astra_widgets_parse_css( $css_output_2 );
+					$dynamic_css .= astra_widgets_parse_css( $css_output_2 );
 				}
 
 				$css_output_1 = array(
@@ -481,9 +481,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				);
 
-				$css_output .= astra_parse_css( $css_output_1 );
+				$dynamic_css .= astra_widgets_parse_css( $css_output_1 );
 
-				return $dynamic_css . $css_output;
+				return $dynamic_css;
 			}
 
 			return $dynamic_css;
