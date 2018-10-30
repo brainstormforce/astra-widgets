@@ -161,6 +161,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			if ( ! empty( $width ) ) {
 				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
+			} else{
+				$image_width = 'style= max-width: 15px';
 			}
 
 			$list  = $this->get_fields( 'list', array() );
@@ -189,7 +191,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo esc_attr( $width ) . 'px'; ?>" height="<?php echo esc_attr( $width ) . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 											</span>
 										</div>
 									<?php } ?>
@@ -427,6 +429,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				$divider             = isset( $instance['divider'] ) ? $instance['divider'] : '';
 
 				$css_output = '';
+
+				$width = ( '' !== $width ) ? $width : '15';
 
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(

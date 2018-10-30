@@ -23,6 +23,11 @@
 	vertical-align: middle;
 }
 
+.astra-widget-list-icons .icon svg {
+	display: flex;
+	align-items: center;
+}
+
 .astra-widget-list-icons li {
 	-js-display: flex;
 	display: -webkit-box;
@@ -33,7 +38,8 @@
 	margin-bottom: 1.3em;
 }
 .astra-widget-list-icons .icon {
-    display:  inline-block;
+    display: flex;
+    align-items: center;
 }
 .astra-widget-list-icons .list-item-link {
 	-js-display: flex;
