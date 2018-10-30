@@ -162,7 +162,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			if ( ! empty( $width ) ) {
 				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
 			} else{
-				$image_width = 'style= max-width: 15px';
+				$image_width = 'style= max-width: 25px';
 			}
 
 			$list  = $this->get_fields( 'list', array() );
@@ -191,11 +191,10 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 											</span>
 										</div>
-									<?php } ?>
-									<?php if ( 'image' === $list['imageoricon'] ) { ?>		
+									<?php } else { ?>		
 										<div class="image" <?php echo ( isset( $image_width ) ) ? esc_attr( $image_width ) : ''; ?>>
 											<?php echo wp_get_attachment_image( $list['image'] ); ?>
 										</div>
@@ -430,7 +429,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				$css_output = '';
 
-				$width = ( '' !== $width ) ? $width : '15';
+				$width = ( '' !== $width ) ? $width : '25';
 
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(
