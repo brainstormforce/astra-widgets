@@ -529,6 +529,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					'id'      => 'width',
 					'name'    => __( 'Icon Width:', 'astra-addon' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
+					'unit' 	  => 'Px',
 				),
 			);
 

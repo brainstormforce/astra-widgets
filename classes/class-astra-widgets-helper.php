@@ -467,7 +467,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 						case 'number':
 							?>
-										<div class="astra-widget-field astra-widget-field-number astra-widget-field-<?php echo $value['id']; ?> <?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?>"> 
+										<div class="astra-widget-field astra-widget-field-number astra-widget-field-<?php echo $value['id']; ?> <?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?> <?php echo( isset( $value['unit'] ) ) ? ' astra-widget-unit-field' : ''; ?>"> 
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
 											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/><span class="astra-widgets-unit"> <?php echo ( isset( $value['unit'] ) ) ? $value['unit'] : ''; ?> </span>
 										</div>
