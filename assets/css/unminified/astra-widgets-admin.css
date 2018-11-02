@@ -310,5 +310,8 @@
 
 .astra-repeater-field .actions .toggle-arrow {
     display: inline-block;
-    margin-top: -4px;
+    margin-top: -3px;
+    font-size: 1.6rem;
+    width: 1.6rem;
+    color: #c0c0c0;
 }
