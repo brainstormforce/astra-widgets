@@ -119,12 +119,12 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 				echo $args['before_title'] . $title . $args['after_title'];
 			} ?>
 			<?php
-			$widget_content_font_size = '25';
+			$widget_content_font_size = '15';
 			if ( function_exists( 'astra_get_option' ) ) {
 				$widget_content_font_size = astra_get_option( 'font-size-widget-content' );
 				$widget_content_font_size = $widget_content_font_size['desktop'];
 				if ( '' === $widget_content_font_size ) {
-					$widget_content_font_size = '25';
+					$widget_content_font_size = '15';
 				}
 			}
 			?>

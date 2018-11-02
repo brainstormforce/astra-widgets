@@ -215,9 +215,11 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										<?php } ?>
 
 										<div class="astra-widget-icon-selector-actions">
-											<div class="astra-select-icon button">
-												<div class="astra-selected-icon"> 
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
+											<div class="astra-select-icon button"> 
+												<div class="astra-selected-icon">
+													<?php if( !empty( $decoded_icon_data->viewbox ) && !empty( $decoded_icon_data->path ) ) { ?>
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
+													<?php } ?>
 												</div>
 												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>

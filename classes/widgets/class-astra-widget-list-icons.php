@@ -162,7 +162,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			if ( ! empty( $width ) ) {
 				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
 			} else{
-				$image_width = 'style= max-width: 25px';
+				$image_width = 'style= max-width: 15px';
 			}
 
 			$list  = $this->get_fields( 'list', array() );
@@ -191,7 +191,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '25' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<?php if( !empty( $list_data->viewbox ) && !empty( $list_data->path ) ) { ?>
+													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<?php } ?>
 											</span>
 										</div>
 									<?php } else { ?>		
@@ -429,7 +431,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				$css_output = '';
 
-				$width = ( '' !== $width ) ? $width : '25';
+				$width = ( '' !== $width ) ? $width : '15';
 				$space_btn_list = ( '' !== $space_btn_list ) ? $space_btn_list : '5';
 				$divider_weight = ( '' !== $divider_weight ) ? $divider_weight : '1';
 
