@@ -96,7 +96,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_scripts() {
-			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-list-icons.css', ASTRA_WIDGETS_VER, false  );
+			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-list-icons.css', ASTRA_WIDGETS_VER, false );
 		}
 
 		/**
@@ -161,7 +161,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			if ( ! empty( $width ) ) {
 				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
-			} else{
+			} else {
 				$image_width = 'style= max-width: 15px';
 			}
 
@@ -191,8 +191,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
-												<?php if( !empty( $list_data->viewbox ) && !empty( $list_data->path ) ) { ?>
-													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ?esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
+													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
 												<?php } ?>
 											</span>
 										</div>
@@ -297,13 +297,11 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						array(
 							'type'    => 'image',
 							'id'      => 'image',
-							'name'    => __( '', 'astra-addon' ),
 							'default' => '',
 						),
 						array(
 							'type'    => 'icon',
 							'id'      => 'icon',
-							'name'    => __( '', 'astra-addon' ),
 							'default' => '',
 						),
 					),
@@ -319,14 +317,14 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'type'    => 'number',
 					'id'      => 'space_btn_list',
 					'name'    => __( '	Space Between List Items:', 'astra-addon' ),
-					'unit' 	  => 'Px',
+					'unit'    => 'Px',
 					'default' => ( isset( $instance['space_btn_list'] ) && ! empty( $instance['space_btn_list'] ) ) ? $instance['space_btn_list'] : '',
 				),
 				array(
 					'type'    => 'number',
 					'id'      => 'space_btn_icon_text',
 					'name'    => __( 'Space Between Icon & Text:', 'astra-addon' ),
-					'unit' 	  => 'Px',
+					'unit'    => 'Px',
 					'default' => ( isset( $instance['space_btn_icon_text'] ) && ! empty( $instance['space_btn_icon_text'] ) ) ? $instance['space_btn_icon_text'] : '',
 				),
 				array(
@@ -349,17 +347,17 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'name'    => __( 'Divider Style', 'astra-addon' ),
 					'default' => ( isset( $instance['divider_style'] ) && ! empty( $instance['divider_style'] ) ) ? $instance['divider_style'] : 'inherit',
 					'options' => array(
-						'solid'   => __( 'Solid', 'astra-addon' ),
-						'dotted'  => __( 'Dotted', 'astra-addon' ),
-						'double'  => __( 'Double', 'astra-addon' ),
-						'dashed'  => __( 'Dashed', 'astra-addon' ),
+						'solid'  => __( 'Solid', 'astra-addon' ),
+						'dotted' => __( 'Dotted', 'astra-addon' ),
+						'double' => __( 'Double', 'astra-addon' ),
+						'dashed' => __( 'Dashed', 'astra-addon' ),
 					),
 				),
 				array(
 					'type'    => 'number',
 					'id'      => 'divider_weight',
 					'name'    => __( ' Divider Weight:', 'astra-addon' ),
-					'unit' 	  => 'Px',
+					'unit'    => 'Px',
 					'default' => ( isset( $instance['divider_weight'] ) && ! empty( $instance['divider_weight'] ) ) ? $instance['divider_weight'] : '',
 				),
 				array(
@@ -389,7 +387,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'id'      => 'width',
 					'name'    => __( 'Image / Icon Size:', 'astra-addon' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
-					'unit' 	  => 'Px',
+					'unit'    => 'Px',
 				),
 			);
 			?>
@@ -431,7 +429,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				$css_output = '';
 
-				$width = ( '' !== $width ) ? $width : '15';
+				$width          = ( '' !== $width ) ? $width : '15';
 				$space_btn_list = ( '' !== $space_btn_list ) ? $space_btn_list : '5';
 				$divider_weight = ( '' !== $divider_weight ) ? $divider_weight : '1';
 
@@ -465,16 +463,16 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 				$css_output_1 = array(
 					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li:first-child' => array(
-						'padding-top' => '0',
+						'padding-top'    => '0',
 						'padding-bottom' => esc_attr( $space_btn_list / 2 ) . 'px',
 					),
 					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li' => array(
-						'padding-top' => esc_attr( $space_btn_list / 2 ) . 'px',
+						'padding-top'    => esc_attr( $space_btn_list / 2 ) . 'px',
 						'padding-bottom' => esc_attr( $space_btn_list / 2 ) . 'px',
-						'margin-bottom' => '0',
+						'margin-bottom'  => '0',
 					),
 					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li:last-child' => array(
-						'padding-top' => esc_attr( $space_btn_list / 2 ) . 'px',
+						'padding-top'    => esc_attr( $space_btn_list / 2 ) . 'px',
 						'padding-bottom' => '0',
 					),
 					$id_base . '.astra-widget-list-icons ul li .link-text' => array(

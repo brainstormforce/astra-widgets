@@ -59,7 +59,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			}
 
 			$json = '';
-			if( ! is_customize_preview() ) {
+			if ( ! is_customize_preview() ) {
 				$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
 				$json = json_decode( $str, true ); // decode the JSON into an associative array.
 			}
@@ -88,81 +88,80 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		/**
 		 * Default icons color & bg color
 		 *
-		 *
 		 * @return array $icons default icon color & bg color list
 		 */
 		public static function get_default_icons_colors() {
 			$icons = array(
-				'facebook'             => array(
-					'color' => '#ffffff',
+				'facebook'           => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#3b5998',
 				),
-				'facebook-f'             => array(
-					'color' => '#ffffff',
+				'facebook-f'         => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#3b5998',
 				),
-				'facebook-square'             => array(
-					'color' => '#ffffff',
+				'facebook-square'    => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#3b5998',
 				),
-				'twitter'             => array(
-					'color' => '#ffffff',
+				'twitter'            => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#55acee',
 				),
-				'twitter-square'             => array(
-					'color' => '#ffffff',
+				'twitter-square'     => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#55acee',
 				),
-				'google-plus'             => array(
-					'color' => '#ffffff',
+				'google-plus'        => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#dd4b39',
 				),
-				'google-plus-square'             => array(
-					'color' => '#ffffff',
+				'google-plus-square' => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#dd4b39',
 				),
-				'youtube'             => array(
-					'color' => '#ffffff',
+				'youtube'            => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#ff0000',
 				),
-				'youtube-square'             => array(
-					'color' => '#ffffff',
+				'youtube-square'     => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#ff0000',
 				),
-				'linkedin'             => array(
-					'color' => '#ffffff',
+				'linkedin'           => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#007bb5',
 				),
-				'linkedin-in'             => array(
-					'color' => '#ffffff',
+				'linkedin-in'        => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#007bb5',
 				),
-				'instagram'             => array(
-					'color' => '#ffffff',
+				'instagram'          => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#e95950',
 				),
-				'whatsapp'             => array(
-					'color' => '#ffffff',
+				'whatsapp'           => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#4dc247',
 				),
-				'whatsapp-in'             => array(
-					'color' => '#ffffff',
+				'whatsapp-in'        => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#4dc247',
 				),
-				'pinterest'             => array(
-					'color' => '#ffffff',
+				'pinterest'          => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#cb2027',
 				),
-				'pinterest-p'             => array(
-					'color' => '#ffffff',
+				'pinterest-p'        => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#cb2027',
 				),
-				'pinterest-square'             => array(
-					'color' => '#ffffff',
+				'pinterest-square'   => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#cb2027',
 				),
-				'pinterest-square'             => array(
-					'color' => '#ffffff',
+				'pinterest-square'   => array(
+					'color'    => '#ffffff',
 					'bg-color' => '#cb2027',
 				),
 			);
@@ -208,7 +207,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							}
 							?>
 									<div class="astra-widget-icon-selector">
-										<?php if( isset( $value['name'] ) && '' !== $value['name'] ) { ?>
+										<?php if ( isset( $value['name'] ) && '' !== $value['name'] ) { ?>
 										<label for="<?php echo esc_attr( $field_id ); ?>">
 											<?php echo esc_html( $value['name'] ); ?>
 										</label>
@@ -217,7 +216,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										<div class="astra-widget-icon-selector-actions">
 											<div class="astra-select-icon button"> 
 												<div class="astra-selected-icon">
-													<?php if( !empty( $decoded_icon_data->viewbox ) && !empty( $decoded_icon_data->path ) ) { ?>
+													<?php if ( ! empty( $decoded_icon_data->viewbox ) && ! empty( $decoded_icon_data->path ) ) { ?>
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
 													<?php } ?>
 												</div>
@@ -231,7 +230,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											<ul class="astra-widget-icons-list">
 												<?php
 													// Get icons array.
-												if( isset( $font_awesome_icons ) && '' !== $font_awesome_icons ) {
+												if ( isset( $font_awesome_icons ) && '' !== $font_awesome_icons ) {
 
 													foreach ( $font_awesome_icons as $index => $field ) {
 
