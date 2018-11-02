@@ -283,6 +283,7 @@
 				item += '	<span class="title">'+title+'</span>';
 				item += '		<span class="dashicons dashicons-admin-page clone"></span>';
 				item += '		<span class="dashicons dashicons-trash remove"></span>';
+				item += '		<span class="dashicons toggle-arrow"></span>';
 				item += '	</div>';
 				item += '	<div class="markukp">';
 				item += 		fields
