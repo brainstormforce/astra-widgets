@@ -16,7 +16,7 @@
 		 */
 		_bind: function()
 		{
-			$( document ).on('widget-updated widget-added', AstraWidgets._init_toggle_settings );
+			$( document ).on('widget-updated widget-added', AstraWidgetListIcons._init_toggle_settings );
 			$( document ).on('change', '.astra-widget-list-icons-fields .astra-widget-field-imageoricon', AstraWidgetListIcons._toggle_settings );
 			$( document ).on('click', '.astra-widget-list-icons-fields .astra-repeater-container .actions', AstraWidgetListIcons._init_toggle_settings );
 			$( document ).on('change', '.astra-widget-list-icons-fields .astra-widget-field-divider', AstraWidgetListIcons._toggle_divider_settings );
