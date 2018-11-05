@@ -257,7 +257,8 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 															<li class="astra-widget-icon <?php echo $index; ?>" data-search-terms="<?php echo implode( ' ', $field['search']['terms'] ); ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
 																<?php
-																if ( isset( $field['svg']['brands'] ) ) { ?>
+																if ( isset( $field['svg']['brands'] ) ) {
+																	?>
 																	<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo $viewbox; ?>"><path d="<?php echo $field['svg']['brands']['path']; ?>"></path></svg>
 																<?php } elseif ( isset( $field['svg']['solid'] ) ) { ?>
 																	<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo $viewbox; ?>"><path d="<?php echo $field['svg']['solid']['path']; ?>"></path></svg>
