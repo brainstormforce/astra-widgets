@@ -82,7 +82,7 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
 			wp_enqueue_style( 'astra-widgets-backend', $css_uri . 'astra-widgets-admin' . $file_prefix . '.css' );
-			wp_enqueue_script( 'astra-widgets-backend', $js_uri . 'astra-widgets-backend' . $file_prefix . '.js', array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ), ASTRA_WIDGETS_VER, true  );
+			wp_enqueue_script( 'astra-widgets-backend', $js_uri . 'astra-widgets-backend' . $file_prefix . '.js', array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ), ASTRA_WIDGETS_VER, true );
 
 		}
 
