@@ -315,3 +315,7 @@
     width: 1.6rem;
     color: #c0c0c0;
 }
+
+.astra-repeater-field title {
+    line-height: 1.4em;
+}

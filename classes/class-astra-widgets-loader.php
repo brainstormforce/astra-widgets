@@ -47,7 +47,6 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 
 			add_action( 'widgets_init', array( $this, 'register_list_icons_widgets' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts_backend_and_frontend' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_backend_and_frontend' ) );
 		}
@@ -64,7 +63,7 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 		}
 
 		/**
-		 * Regiter Social Icons widget script
+		 * Regiter  widget script
 		 *
 		 * @param string $hook Page name.
 		 * @return void
@@ -75,17 +74,16 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 				return;
 			}
 
-			wp_enqueue_style( 'astra-widgets-backend', ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widgets-admin.css', null, ASTRA_WIDGETS_VER, 'all' );
-			wp_enqueue_script( 'astra-widgets-backend', ASTRA_WIDGETS_URI . 'assets/js/unminified/astra-widgets-backend.js', array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ), ASTRA_WIDGETS_VER, true );
-		}
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
 
-		/**
-		 * Regiter Social Icons widget script
-		 *
-		 * @return void
-		 */
-		function enqueue_scripts() {
-			wp_enqueue_style( 'astra-widgets-style', ASTRA_WIDGETS_URI . 'assets/css/unminified/style.css', null, ASTRA_WIDGETS_VER, 'all' );
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_enqueue_style( 'astra-widgets-backend', $css_uri . 'astra-widgets-admin' . $file_prefix . '.css' );
+			wp_enqueue_script( 'astra-widgets-backend', $js_uri . 'astra-widgets-backend' . $file_prefix . '.js', array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ), ASTRA_WIDGETS_VER, true  );
+
 		}
 
 		/**

@@ -75,7 +75,16 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 * @return void
 		 */
 		function register_scripts() {
-			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-address.css' );
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css' );
+			
 		}
 
 		/**

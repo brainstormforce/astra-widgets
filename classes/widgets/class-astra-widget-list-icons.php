@@ -87,7 +87,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_admin_scripts() {
-			wp_register_script( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/js/unminified/astra-widget-list-icons.js', null, ASTRA_WIDGETS_VER, false );
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-list-icons' . $file_prefix . '.js', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -96,7 +104,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_scripts() {
-			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-list-icons.css', ASTRA_WIDGETS_VER, false );
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-list-icons' . $file_prefix . '.css' );
 		}
 
 		/**
