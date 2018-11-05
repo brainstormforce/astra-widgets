@@ -58,7 +58,12 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				return array();
 			}
 
-			$json = '';
+			static $json;
+		    
+		    // Function has already run
+		    if ( $json !== null )
+		        return $json;
+			
 			if ( ! is_customize_preview() ) {
 				$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
 				$json = json_decode( $str, true ); // decode the JSON into an associative array.
@@ -66,7 +71,6 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 			return $json;
 		}
-
 
 		/**
 		 * Check exiting fields have any repeater field?
