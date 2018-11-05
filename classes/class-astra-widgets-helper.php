@@ -74,7 +74,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			}
 
 			if ( ! is_customize_preview() ) {
-				// Used https://gist.github.com/Balachandark/048d40f8eb18a9a9c7623dc949ff8d1a to remove unwanted data from the JSON file
+				// Used https://gist.github.com/Balachandark/048d40f8eb18a9a9c7623dc949ff8d1a to remove unwanted data from the JSON file.
 				$str        = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
 				self::$json = json_decode( $str, true ); // decode the JSON into an associative array.
 			}
