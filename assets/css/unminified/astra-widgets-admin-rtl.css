@@ -281,8 +281,12 @@
     fill: #fff;    
 }
 
-.astra-widgets-number-unit .widefat {
-    width: 95%;
+.astra-widget-unit-field .widefat {
+    width: 90%;
+}
+
+.astra-widgets-unit {
+    margin-right: 5px;
 }
 
 .astra-repeater-field .markukp {
@@ -306,5 +310,8 @@
 
 .astra-repeater-field .actions .toggle-arrow {
     display: inline-block;
-    margin-top: -4px;
+    margin-top: -3px;
+    font-size: 1.6rem;
+    width: 1.6rem;
+    color: #c0c0c0;
 }
