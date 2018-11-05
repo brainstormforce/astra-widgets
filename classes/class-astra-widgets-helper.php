@@ -26,6 +26,16 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		private static $instance;
 
 		/**
+		 * FontAwesome Object
+		 *
+		 * @since 1.0.0
+		 *
+		 * @access private
+		 * @var object Class object.
+		 */
+		private static $json;
+
+		/**
 		 * Initiator
 		 *
 		 * @since 1.0.0
@@ -58,18 +68,17 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				return array();
 			}
 
-			static $json;
 		    
 		    // Function has already run
-		    if ( $json !== null )
-		        return $json;
+		    if ( self::$json !== null )
+		        return self::$json;
 			
 			if ( ! is_customize_preview() ) {
 				$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
-				$json = json_decode( $str, true ); // decode the JSON into an associative array.
+				self::$json = json_decode( $str, true ); // decode the JSON into an associative array.
 			}
 
-			return $json;
+			return self::$json;
 		}
 
 		/**
