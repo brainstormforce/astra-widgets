@@ -68,13 +68,13 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				return array();
 			}
 
-		    
-		    // Function has already run
-		    if ( self::$json !== null )
-		        return self::$json;
-			
+			// Function has already run.
+			if ( null !== self::$json ) {
+				return self::$json;
+			}
+
 			if ( ! is_customize_preview() ) {
-				$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
+				$str        = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
 				self::$json = json_decode( $str, true ); // decode the JSON into an associative array.
 			}
 

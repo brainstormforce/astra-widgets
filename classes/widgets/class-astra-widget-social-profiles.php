@@ -269,11 +269,6 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 						$id_base . ' .astra-widget-social-profiles-inner.square-outline li .ast-widget-icon:hover svg, ' . $id_base . ' .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon:hover svg' => array(
 							'fill' => esc_attr( $icon_hover_color ),
 						),
-						// $id_base . ' .astra-widget-social-profiles-inner.square .ast-widget-icon:hover, .astra-widget-social-profiles-inner.circle .ast-widget-icon:hover' => array(
-						// 'background' => esc_attr( $bg_hover_color ),
-						// 'border-color'     => esc_attr( $bg_hover_color ),
-						// 'color'      => esc_attr( $icon_hover_color ),
-						// ),
 					);
 					$dynamic_css .= astra_widgets_parse_css( $css_output );
 				}
