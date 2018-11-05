@@ -74,6 +74,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			}
 
 			if ( ! is_customize_preview() ) {
+				// Used https://gist.github.com/Balachandark/048d40f8eb18a9a9c7623dc949ff8d1a to remove unwanted data from the JSON file
 				$str        = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
 				self::$json = json_decode( $str, true ); // decode the JSON into an associative array.
 			}
@@ -228,11 +229,11 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 										<div class="astra-widget-icon-selector-actions">
 											<div class="astra-select-icon button"> 
-												<div class="astra-selected-icon">
-													<?php if ( ! empty( $decoded_icon_data->viewbox ) && ! empty( $decoded_icon_data->path ) ) { ?>
+												<?php if ( ! empty( $decoded_icon_data->viewbox ) && ! empty( $decoded_icon_data->path ) ) { ?>
+													<div class="astra-selected-icon">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
-													<?php } ?>
-												</div>
+													</div>
+												<?php } ?>
 												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>
 										</div>
@@ -252,15 +253,13 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 														$viewbox       = implode( ' ', $viewbox_array );
 														array_push( $field['search']['terms'], $index );
 														array_push( $field['search']['terms'], $field['styles']['0'] );
-
 														?>
-
 															<li class="astra-widget-icon <?php echo $index; ?>" data-search-terms="<?php echo implode( ' ', $field['search']['terms'] ); ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
 																<?php
-																if ( isset( $field['svg']['brands'] ) ) {
+																if ( isset( $field['svg']['brands']['path'] ) && ! empty( $viewbox ) ) {
 																	?>
 																	<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo $viewbox; ?>"><path d="<?php echo $field['svg']['brands']['path']; ?>"></path></svg>
-																<?php } elseif ( isset( $field['svg']['solid'] ) ) { ?>
+																<?php } elseif ( isset( $field['svg']['solid']['path'] ) && ! empty( $viewbox ) ) { ?>
 																	<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo $viewbox; ?>"><path d="<?php echo $field['svg']['solid']['path']; ?>"></path></svg>
 																<?php } ?>
 															</li>

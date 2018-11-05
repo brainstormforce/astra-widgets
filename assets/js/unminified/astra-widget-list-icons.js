@@ -18,11 +18,13 @@
 		{
 			$( document ).on('widget-updated widget-added', AstraWidgets._init_toggle_settings );
 			$( document ).on('change', '.astra-widget-list-icons-fields .astra-widget-field-imageoricon', AstraWidgetListIcons._toggle_settings );
+			$( document ).on('click', '.astra-widget-list-icons-fields .astra-repeater-container .actions', AstraWidgetListIcons._init_toggle_settings );
 			$( document ).on('change', '.astra-widget-list-icons-fields .astra-widget-field-divider', AstraWidgetListIcons._toggle_divider_settings );
+
 		},
 
 		_init_toggle_settings: function() {
-			$( '.astra-widget-list-icons-fields' ).each(function(index, el) {
+			$( '.astra-widget-list-icons-fields .astra-repeater-sortable .astra-repeater-field' ).each(function(index, el) {
 				var parent = $( el );
 				var image = parent.find( '.astra-widget-field-imageoricon' ).find('option:selected').val() || '';
 				var divider = parent.find( '.astra-widget-field-divider' ).find('option:selected').val() || '';
