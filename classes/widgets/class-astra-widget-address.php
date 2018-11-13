@@ -300,14 +300,16 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		function get_dynamic_css() {
 
 			$dynamic_css = '';
-			$instance = get_option( 'widget_' . $this->id_base );
-			$icon_color = isset( $instance['icon_color'] ) ? $instance['icon_color'] : '';
+			$instances   = get_option( 'widget_' . $this->id_base );
+			$id_base     = '#' . $this->id;
 
-			$id_base = '#' . $this->id;
-			if ( array_key_exists( $this->number, $instance ) ) {
+			if ( array_key_exists( $this->number, $instances ) ) {
+				$instance   = $instances[ $this->number ];
+				$icon_color = isset( $instance['icon_color'] ) ? $instance['icon_color'] : '';
+
 				$css_output = array(
 					$id_base . ' .widget-address-field svg' => array(
-						'fill' => esc_attr( $icon_color ),	
+						'fill' => esc_attr( $icon_color ),
 					),
 
 				);
