@@ -32,8 +32,8 @@
     -moz-box-pack: center;
     justify-content: center;
     width: 1em;
-    -webkit-transition: all 0.2s linear;
-    transition: all 0.2s linear;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
 }
 .astra-widget-social-profiles-inner .ast-widget-icon svg{
     -ms-flex-item-align: center;
@@ -90,4 +90,16 @@
 .astra-widget-social-profiles-inner.circle .ast-widget-icon,
 .astra-widget-social-profiles-inner.circle-outline .ast-widget-icon {
     line-height: 2;
+}
+.astra-widget-social-profiles .astra-widget-social-profiles-inner ul li a{
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon svg, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon svg{
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon:hover svg, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon:hover svg {
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
 }
