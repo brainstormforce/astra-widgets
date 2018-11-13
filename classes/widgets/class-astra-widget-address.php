@@ -67,6 +67,24 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 				)
 			);
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
+		}
+
+		/**
+		 * Register admin scripts
+		 *
+		 * @return void
+		 */
+		function register_admin_scripts() {
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-address' . $file_prefix . '.js', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -289,8 +307,15 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 				),
 			);
 
-			// Generate fields.
-			astra_generate_widget_fields( $this, $fields );
+			?>
+
+			<div class="<?php echo esc_attr( $this->id_base ); ?>-fields">
+				<?php
+					// Generate fields.
+					astra_generate_widget_fields( $this, $fields );
+				?>
+			</div>
+			<?php
 		}
 		/**
 		 * Dynamic CSS
