@@ -101,6 +101,9 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 
 			// Enqueue Scripts.
 			wp_enqueue_style( 'astra-widgets-' . $this->id_base );
+
+			// Enqueue dynamic Scripts.
+			wp_add_inline_style( 'astra-widgets-' . $this->id_base, $this->get_dynamic_css() );
 		}
 
 		/**
@@ -278,10 +281,44 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					'name'    => __( 'Email:', 'astra' ),
 					'default' => ( isset( $instance['email'] ) && ! empty( $instance['email'] ) ) ? $instance['email'] : '',
 				),
+				array(
+					'type'    => 'color',
+					'id'      => 'icon_color',
+					'name'    => __( 'Icon Color', 'astra-addon' ),
+					'default' => ( isset( $instance['icon_color'] ) && ! empty( $instance['icon_color'] ) ) ? $instance['icon_color'] : '#fefefe',
+				),
 			);
 
 			// Generate fields.
 			astra_generate_widget_fields( $this, $fields );
+		}
+		/**
+		 * Dynamic CSS
+		 *
+		 * @return string
+		 */
+		function get_dynamic_css() {
+
+			$dynamic_css = '';
+			$instance = get_option( 'widget_' . $this->id_base );
+			$icon_color = isset( $instance['icon_color'] ) ? $instance['icon_color'] : '';
+
+			$id_base = '#' . $this->id;
+			if ( array_key_exists( $this->number, $instance ) ) {
+				$css_output = array(
+					$id_base . ' .widget-address-field svg' => array(
+						'fill' => esc_attr( $icon_color ),	
+					),
+
+				);
+
+				$dynamic_css = astra_widgets_parse_css( $css_output );
+
+				return $dynamic_css;
+			}
+
+			return $dynamic_css;
+
 		}
 
 	}
