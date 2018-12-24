@@ -201,6 +201,7 @@ module.exports = function( grunt ) {
                     },
                     src: [
                         '**',
+                        '*.zip',
                         '!node_modules/**',
                         '!build/**',
                         '!css/sourcemap/**',
@@ -219,6 +220,12 @@ module.exports = function( grunt ) {
                         '!README.md',
                         '!sass/**',
                         '!codesniffer.ruleset.xml',
+                        '!vendor/**',
+                        '!admin/bsf-core/vendor/**',
+                        '!composer.json',
+                        '!composer.lock',
+                        '!package-lock.json',
+                        '!phpcs.xml.dist',
                     ],
                     dest: 'astra-widgets/'
                 }
