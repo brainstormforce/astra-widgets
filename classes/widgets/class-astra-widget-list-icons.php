@@ -67,10 +67,10 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		function __construct() {
 			parent::__construct(
 				$this->id_base,
-				__( 'Astra: List Icons', 'astra-addon' ),
+				__( 'Astra: List Icons', 'astra-widgets' ),
 				array(
 					'classname'   => $this->id_base,
-					'description' => __( 'Display list icons.', 'astra-addon' ),
+					'description' => __( 'Display list icons.', 'astra-widgets' ),
 				),
 				array(
 					'id_base' => $this->id_base,
@@ -235,24 +235,24 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'text',
 					'id'      => 'title',
-					'name'    => __( 'Title:', 'astra-addon' ),
+					'name'    => __( 'Title:', 'astra-widgets' ),
 					'default' => ( isset( $instance['title'] ) && ! empty( $instance['title'] ) ) ? $instance['title'] : '',
 				),
 				array(
 					'id'      => 'list',
 					'type'    => 'repeater',
-					'title'   => __( 'Add Item:', 'astra-addon' ),
+					'title'   => __( 'Add Item:', 'astra-widgets' ),
 					'options' => array(
 						array(
 							'type'    => 'text',
 							'id'      => 'title',
-							'name'    => __( 'Title:', 'astra-addon' ),
+							'name'    => __( 'Title:', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
 							'type'    => 'text',
 							'id'      => 'link',
-							'name'    => __( 'Link:', 'astra-addon' ),
+							'name'    => __( 'Link:', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
@@ -261,40 +261,40 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 							'id'      => 'link-target',
 							'default' => ( isset( $instance['link-target'] ) && ! empty( $instance['link-target'] ) ) ? $instance['link-target'] : 'same-page',
 							'options' => array(
-								'same-page' => __( 'Same Page', 'astra-addon' ),
-								'new-page'  => __( 'New Page', 'astra-addon' ),
+								'same-page' => __( 'Same Page', 'astra-widgets' ),
+								'new-page'  => __( 'New Page', 'astra-widgets' ),
 							),
 						),
 						array(
 							'type'    => 'select',
 							'id'      => 'nofollow',
-							'name'    => __( 'No Follow', 'astra-addon' ),
+							'name'    => __( 'No Follow', 'astra-widgets' ),
 							'default' => ( isset( $instance['nofollow'] ) && ! empty( $instance['nofollow'] ) ) ? $instance['nofollow'] : 'enable',
 							'options' => array(
-								'enable'  => __( 'Enable', 'astra-addon' ),
-								'disable' => __( 'Disable', 'astra-addon' ),
+								'enable'  => __( 'Enable', 'astra-widgets' ),
+								'disable' => __( 'Disable', 'astra-widgets' ),
 							),
 						),
 						array(
 							'type'    => 'select',
 							'id'      => 'imageoricon',
-							'name'    => __( 'Image / Icon', 'astra-addon' ),
+							'name'    => __( 'Image / Icon', 'astra-widgets' ),
 							'default' => ( isset( $instance['imageoricon'] ) && ! empty( $instance['imageoricon'] ) ) ? $instance['imageoricon'] : 'icon',
 							'options' => array(
-								'image' => __( 'Image', 'astra-addon' ),
-								'icon'  => __( 'Icon', 'astra-addon' ),
+								'image' => __( 'Image', 'astra-widgets' ),
+								'icon'  => __( 'Icon', 'astra-widgets' ),
 							),
 						),
 						array(
 							'type'    => 'image',
 							'id'      => 'image',
-							'name'    => __( 'Image:', 'astra-addon' ),
+							'name'    => __( 'Image:', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
 							'type'    => 'icon',
 							'id'      => 'icon',
-							'name'    => __( 'Icon', 'astra-addon' ),
+							'name'    => __( 'Icon', 'astra-widgets' ),
 							'default' => '',
 						),
 					),
@@ -305,7 +305,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'number',
 					'id'      => 'width',
-					'name'    => __( 'Image / Icon Width:', 'astra-addon' ),
+					'name'    => __( 'Image / Icon Width:', 'astra-widgets' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
 				),
 			);

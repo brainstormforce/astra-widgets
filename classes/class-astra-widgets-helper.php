@@ -106,7 +106,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											<div class="astra-widget-icon-selector-actions">
 												<div class="astra-select-icon button">
 													<div class="astra-selected-icon"><i class="<?php echo esc_attr( $value['default'] ); ?>"></i></div>
-													<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
+													<?php esc_html_e( 'Choose icon..', 'astra-widgets' ); ?>
 												</div>
 											</div>
 
@@ -168,7 +168,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 								</div>
 							</div>
 							<div class="add-new">
-								<a class="add-new-btn button"><?php _e( 'Add more', 'astra-addon' ); ?></a>
+								<a class="add-new-btn button"><?php _e( 'Add more', 'astra-widgets' ); ?></a>
 							</div>
 
 							<?php

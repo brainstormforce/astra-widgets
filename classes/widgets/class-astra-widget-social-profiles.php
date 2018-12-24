@@ -67,10 +67,10 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		function __construct() {
 			parent::__construct(
 				$this->id_base,
-				__( 'Astra: Social Profiles', 'astra-addon' ),
+				__( 'Astra: Social Profiles', 'astra-widgets' ),
 				array(
 					'classname'   => $this->id_base,
-					'description' => __( 'Display social profiles.', 'astra-addon' ),
+					'description' => __( 'Display social profiles.', 'astra-widgets' ),
 				),
 				array(
 					'id_base' => $this->id_base,
@@ -354,7 +354,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				array(
 					'type'    => 'text',
 					'id'      => 'title',
-					'name'    => __( 'Title', 'astra-addon' ),
+					'name'    => __( 'Title', 'astra-widgets' ),
 					'default' => ( isset( $instance['title'] ) && ! empty( $instance['title'] ) ) ? $instance['title'] : '',
 				),
 				array(
@@ -362,23 +362,23 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				),
 				array(
 					'type' => 'heading',
-					'name' => __( 'Social Profiles', 'astra-addon' ),
+					'name' => __( 'Social Profiles', 'astra-widgets' ),
 				),
 				array(
 					'id'      => 'list',
 					'type'    => 'repeater',
-					'title'   => __( 'Add Profile', 'astra-addon' ),
+					'title'   => __( 'Add Profile', 'astra-widgets' ),
 					'options' => array(
 						array(
 							'type'    => 'text',
 							'id'      => 'title',
-							'name'    => __( 'Title', 'astra-addon' ),
+							'name'    => __( 'Title', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
 							'type'    => 'text',
 							'id'      => 'link',
-							'name'    => __( 'Link', 'astra-addon' ),
+							'name'    => __( 'Link', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
@@ -387,24 +387,24 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							'id'      => 'link-target',
 							'default' => ( isset( $instance['link-target'] ) && ! empty( $instance['link-target'] ) ) ? $instance['link-target'] : 'same-page',
 							'options' => array(
-								'same-page' => __( 'Same Page', 'astra-addon' ),
-								'new-page'  => __( 'New Page', 'astra-addon' ),
+								'same-page' => __( 'Same Page', 'astra-widgets' ),
+								'new-page'  => __( 'New Page', 'astra-widgets' ),
 							),
 						),
 						array(
 							'type'    => 'select',
 							'id'      => 'nofollow',
-							'name'    => __( 'No Follow', 'astra-addon' ),
+							'name'    => __( 'No Follow', 'astra-widgets' ),
 							'default' => ( isset( $instance['nofollow'] ) && ! empty( $instance['nofollow'] ) ) ? $instance['nofollow'] : 'enable',
 							'options' => array(
-								'enable'  => __( 'Enable', 'astra-addon' ),
-								'disable' => __( 'Disable', 'astra-addon' ),
+								'enable'  => __( 'Enable', 'astra-widgets' ),
+								'disable' => __( 'Disable', 'astra-widgets' ),
 							),
 						),
 						array(
 							'type'      => 'icon',
 							'id'        => 'icon',
-							'name'      => __( 'Icon', 'astra-addon' ),
+							'name'      => __( 'Icon', 'astra-widgets' ),
 							'default'   => '',
 							'show_icon' => 'yes',
 						),
@@ -415,75 +415,75 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				),
 				array(
 					'type' => 'heading',
-					'name' => __( 'Styling', 'astra-addon' ),
+					'name' => __( 'Styling', 'astra-widgets' ),
 				),
 				array(
 					'type'    => 'checkbox',
 					'id'      => 'display-title',
-					'name'    => __( 'Display profile title?', 'astra-addon' ),
+					'name'    => __( 'Display profile title?', 'astra-widgets' ),
 					'default' => ( isset( $instance['display-title'] ) && ! empty( $instance['display-title'] ) ) ? $instance['display-title'] : false,
 				),
 				array(
 					'type'    => 'select',
 					'id'      => 'align',
-					'name'    => __( 'Alignment', 'astra-addon' ),
+					'name'    => __( 'Alignment', 'astra-widgets' ),
 					'default' => isset( $instance['align'] ) ? $instance['align'] : '',
 					'options' => array(
-						'inline' => __( 'Inline', 'astra-addon' ),
-						'stack'  => __( 'Stack', 'astra-addon' ),
+						'inline' => __( 'Inline', 'astra-widgets' ),
+						'stack'  => __( 'Stack', 'astra-widgets' ),
 					),
 				),
 				array(
 					'type'    => 'select',
 					'id'      => 'icon-style',
-					'name'    => __( 'Icon Style', 'astra-addon' ),
+					'name'    => __( 'Icon Style', 'astra-widgets' ),
 					'default' => isset( $instance['icon-style'] ) ? $instance['icon-style'] : '',
 					'options' => array(
-						'simple'         => __( 'Simple', 'astra-addon' ),
-						'circle'         => __( 'Circle', 'astra-addon' ),
-						'square'         => __( 'Square', 'astra-addon' ),
-						'circle-outline' => __( 'Circle Outline', 'astra-addon' ),
-						'square-outline' => __( 'Square Outline', 'astra-addon' ),
+						'simple'         => __( 'Simple', 'astra-widgets' ),
+						'circle'         => __( 'Circle', 'astra-widgets' ),
+						'square'         => __( 'Square', 'astra-widgets' ),
+						'circle-outline' => __( 'Circle Outline', 'astra-widgets' ),
+						'square-outline' => __( 'Square Outline', 'astra-widgets' ),
 					),
 				),
 				array(
 					'type'    => 'select',
 					'id'      => 'color-type',
-					'name'    => __( 'Alignment', 'astra-addon' ),
+					'name'    => __( 'Alignment', 'astra-widgets' ),
 					'default' => isset( $instance['color-type'] ) ? $instance['color-type'] : '',
 					'options' => array(
-						'official-color' => __( 'Official Color', 'astra-addon' ),
-						'custom-color'   => __( 'Custom', 'astra-addon' ),
+						'official-color' => __( 'Official Color', 'astra-widgets' ),
+						'custom-color'   => __( 'Custom', 'astra-widgets' ),
 					),
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'icon-color',
-					'name'    => __( 'Icon Color', 'astra-addon' ),
+					'name'    => __( 'Icon Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['icon-color'] ) && ! empty( $instance['icon-color'] ) ) ? $instance['icon-color'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'bg-color',
-					'name'    => __( 'Background Color', 'astra-addon' ),
+					'name'    => __( 'Background Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['bg-color'] ) && ! empty( $instance['bg-color'] ) ) ? $instance['bg-color'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'icon-hover-color',
-					'name'    => __( 'Hover Icon Color', 'astra-addon' ),
+					'name'    => __( 'Hover Icon Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['icon-hover-color'] ) && ! empty( $instance['icon-hover-color'] ) ) ? $instance['icon-hover-color'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'bg-hover-color',
-					'name'    => __( 'Hover Background Color', 'astra-addon' ),
+					'name'    => __( 'Hover Background Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['bg-hover-color'] ) && ! empty( $instance['bg-hover-color'] ) ) ? $instance['bg-hover-color'] : '',
 				),
 				array(
 					'type'    => 'number',
 					'id'      => 'width',
-					'name'    => __( 'Icon Width:', 'astra-addon' ),
+					'name'    => __( 'Icon Width:', 'astra-widgets' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
 				),
 			);
