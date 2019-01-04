@@ -26,6 +26,16 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		private static $instance;
 
 		/**
+		 * FontAwesome Object
+		 *
+		 * @since 1.0.0
+		 *
+		 * @access private
+		 * @var object Class object.
+		 */
+		private static $json;
+
+		/**
 		 * Initiator
 		 *
 		 * @since 1.0.0
@@ -45,6 +55,44 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @since 1.0.0
 		 */
 		public function __construct() {
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		}
+
+		/**
+		 * Regiter  widget script
+		 *
+		 * @param string $hook Page name.
+		 * @return void
+		 */
+		function enqueue_admin_scripts( $hook ) {
+
+			if ( 'widgets.php' !== $hook ) {
+				return;
+			}
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_enqueue_style( 'astra-widgets-backend', $css_uri . 'astra-widgets-admin' . $file_prefix . '.css' );
+			wp_enqueue_script( 'astra-widgets-backend', $js_uri . 'astra-widgets-backend' . $file_prefix . '.js', array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ), ASTRA_WIDGETS_VER, true );
+
+			$font_awesome_icons = self::backend_load_font_awesome_icons();
+
+				// Get icons array.
+			if ( isset( $font_awesome_icons ) && '' !== $font_awesome_icons ) {
+
+				$translation_array = array(
+					'font_awesome' => $font_awesome_icons,
+				);
+
+				wp_localize_script( 'astra-widgets-backend', 'fontAwesomeIcons', $translation_array );
+
+			}
+
 		}
 
 		/**
@@ -58,10 +106,16 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				return array();
 			}
 
-			$str  = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
-			$json = json_decode( $str, true ); // decode the JSON into an associative array.
+			// Function has already run.
+			if ( null !== self::$json ) {
+				return self::$json;
+			}
 
-			return $json;
+			// Used https://gist.github.com/Balachandark/048d40f8eb18a9a9c7623dc949ff8d1a to remove unwanted data from the JSON file.
+			$str        = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
+			self::$json = json_decode( $str, true ); // decode the JSON into an associative array.
+
+			return self::$json;
 		}
 
 		/**
@@ -79,6 +133,229 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				}
 			}
 			return false;
+		}
+
+		/**
+		 * Default icons color & bg color
+		 *
+		 * @return array $icons default icon color & bg color list
+		 */
+		public static function get_default_icons_colors() {
+			$icons = array(
+				'facebook'           => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
+				'facebook-f'         => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
+				'facebook-square'    => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#3b5998',
+				),
+				'facebook-messenger' => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#0084ff	',
+				),
+				'twitter'            => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#55acee',
+				),
+				'twitter-square'     => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#55acee',
+				),
+				'google-plus'        => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#dd4b39',
+				),
+				'google-plus-square' => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#dd4b39',
+				),
+				'google-plus-g'      => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#dd4b39',
+				),
+				'youtube'            => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff0000',
+				),
+				'youtube-square'     => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff0000',
+				),
+				'stumbleupon'        => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#eb4924',
+				),
+				'stumbleupon-circle' => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#eb4924',
+				),
+				'whatsapp'           => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#25D366',
+				),
+				'whatsapp-square'    => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#25D366',
+				),
+				'dribbble'           => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ea4c89',
+				),
+				'dribbble-square'    => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ea4c89',
+				),
+				'flickr'             => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff0084',
+				),
+				'foursquare'         => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#f94877',
+				),
+				'slack'              => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#3aaf85',
+				),
+				'slack-hash'         => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#3aaf85',
+				),
+				'blogger'            => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#f57d00',
+				),
+				'blogger-b'          => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#f57d00',
+				),
+				'quora'              => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#b92b27',
+				),
+				'linkedin'           => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#007bb5',
+				),
+				'linkedin-square'    => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#007bb5',
+				),
+				'linkedin-in'        => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#007bb5',
+				),
+				'skype'              => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#00AFF0',
+				),
+				'dropbox'            => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#007ee5',
+				),
+				'wordpress'          => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#21759b',
+				),
+				'wordpress-simple'   => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#21759b',
+				),
+				'vimeo'              => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#1ab7ea',
+				),
+				'vimeo-square'       => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#1ab7ea',
+				),
+				'vimeo-v'            => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#1ab7ea',
+				),
+				'slideshare'         => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#0077b5',
+				),
+				'tumblr-square'      => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#34465d',
+				),
+				'tumblr'             => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#34465d',
+				),
+				'yahoo'              => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#410093',
+				),
+				'yahoo'              => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#410093',
+				),
+				'instagram'          => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#e95950',
+				),
+				'whatsapp'           => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#4dc247',
+				),
+				'whatsapp-in'        => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#4dc247',
+				),
+				'pinterest'          => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'pinterest-p'        => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'pinterest-square'   => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'pinterest-square'   => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#cb2027',
+				),
+				'reddit'             => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff5700',
+				),
+				'reddit-alien'       => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff5700',
+				),
+				'reddit-square'      => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff5700',
+				),
+				'reddit-square'      => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#ff5700',
+				),
+				'yelp'               => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#af0606',
+				),
+				'behance'            => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#131418',
+				),
+				'behance-square'     => array(
+					'color'    => '#ffffff',
+					'bg-color' => '#131418',
+				),
+			);
+			return $icons;
 		}
 
 		/**
@@ -120,49 +397,25 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							}
 							?>
 									<div class="astra-widget-icon-selector">
+										<?php if ( isset( $value['name'] ) && '' !== $value['name'] ) { ?>
 										<label for="<?php echo esc_attr( $field_id ); ?>">
 											<?php echo esc_html( $value['name'] ); ?>
 										</label>
+										<?php } ?>
 
 										<div class="astra-widget-icon-selector-actions">
-											<div class="astra-select-icon button">
-												<div class="astra-selected-icon"> 
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
-												</div>
+											<div class="astra-select-icon button"> 
+												<?php if ( ! empty( $decoded_icon_data->viewbox ) && ! empty( $decoded_icon_data->path ) ) { ?>
+													<div class="astra-selected-icon">
+														<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
+													</div>
+												<?php } ?>
 												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
 											</div>
 										</div>
 
 
 										<div class="astra-icons-list-wrap">
-											<input type="search" placeholder="Search icon..." class="search-icon">
-											<ul class="astra-widget-icons-list">
-												<?php
-													// Get icons array.
-													// $icons = self::get_icons(); .
-												foreach ( $font_awesome_icons as $index => $field ) {
-
-													$viewbox_array = '';
-													$viewbox_array = ( isset( $field['svg']['brands']['viewBox'] ) ) ? $field['svg']['brands']['viewBox'] : $field['svg']['solid']['viewBox'];
-													$viewbox       = implode( ' ', $viewbox_array );
-													array_push( $field['search']['terms'], $index );
-													array_push( $field['search']['terms'], $field['styles']['0'] );
-
-													?>
-
-														<li class="astra-widget-icon <?php echo $index; ?>" data-search-terms="<?php echo implode( ' ', $field['search']['terms'] ); ?>" data-font="<?php echo $index; ?>" data-viewbox="<?php echo $viewbox; ?>" data-path="<?php echo ( isset( $field['svg']['brands']['path'] ) ) ? $field['svg']['brands']['path'] : $field['svg']['solid']['path']; ?>"> 
-															<?php
-															if ( isset( $field['svg']['brands']['raw'] ) ) {
-																echo $field['svg']['brands']['raw'];
-															} elseif ( isset( $field['svg']['solid']['raw'] ) ) {
-																echo $field['svg']['solid']['raw'];
-															}
-															?>
-														</li>
-													<?php
-												}
-												?>
-											</ul>
 										</div>
 
 										<input class="widefat selected-icon" type="hidden"
@@ -206,7 +459,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										</div>
 									</div>
 									<div class="add-new">
-										<a class="add-new-btn button"><?php _e( 'Add more', 'astra-addon' ); ?></a>
+										<button class="add-new-btn button"><?php _e( 'Add item', 'astra-addon' ); ?></button>
 									</div>
 
 									<?php
@@ -278,7 +531,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													type="hidden"
 													value="<?php echo $value['default']; ?>"
 													data-field-id="<?php echo esc_attr( $value['id'] ); ?>">
-												<div class="astra-select-image">Choose Media</div>
+												<div class="astra-select-image">Choose Image</div>
 											</div>
 										</div>
 									</p>
@@ -309,7 +562,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 								$field_name = $self->get_field_name( $value['id'] );
 							}
 							?>
-								<div class="astra-widget-field astra-widget-field-select">
+								<div class="astra-widget-field astra-widget-field-select astra-widget-field-<?php echo $value['id']; ?>">
 									<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 									<label for="<?php echo esc_attr( $field_id ); ?>"><?php echo $value['name']; ?></label>
 										<select class="widefat" id="<?php echo esc_attr( $field_id ); ?>" name="<?php echo esc_attr( $field_name ); ?>"
@@ -332,7 +585,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						case 'color':
 							?>
 
-									<div class="astra-widget-field astra-widget-field-color">
+									<div class="astra-widget-field astra-widget-field-color astra-widget-field-<?php echo $value['id']; ?>">
 										<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
 											<input class="<?php echo $class; ?> widefat" type="text" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
@@ -373,10 +626,10 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 						case 'number':
 							?>
-										<p class="<?php echo $class; ?>">
+										<div class="astra-widget-field astra-widget-field-number astra-widget-field-<?php echo $value['id']; ?> <?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?> <?php echo( isset( $value['unit'] ) ) ? ' astra-widget-unit-field' : ''; ?>"> 
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
-											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
-										</p>
+											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/><span class="astra-widgets-unit"> <?php echo ( isset( $value['unit'] ) ) ? $value['unit'] : ''; ?> </span>
+										</div>
 									<?php
 							break;
 
@@ -429,6 +682,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 								<span class="title"></span>
 								<span class="dashicons dashicons-admin-page clone"></span>
 								<span class="dashicons dashicons-trash remove"></span>
+								<span class="dashicons toggle-arrow"></span>
 							</div>
 							<div class="markukp">
 								<?php $this->generate( $self, $fields, $value['id'] ); ?>
@@ -468,3 +722,128 @@ if ( ! function_exists( 'astra_generate_widget_fields' ) ) :
 		Astra_Widgets_Helper::get_instance()->generate( $self, $fields, $repeater_id );
 	}
 endif;
+
+
+/**
+ * Parse CSS
+ */
+if ( ! function_exists( 'astra_widgets_parse_css' ) ) {
+
+	/**
+	 * Parse CSS
+	 *
+	 * @param  array  $css_output Array of CSS.
+	 * @param  string $min_media  Min Media breakpoint.
+	 * @param  string $max_media  Max Media breakpoint.
+	 * @return string             Generated CSS.
+	 */
+	function astra_widgets_parse_css( $css_output = array(), $min_media = '', $max_media = '' ) {
+
+		$parse_css = '';
+		if ( is_array( $css_output ) && count( $css_output ) > 0 ) {
+
+			foreach ( $css_output as $selector => $properties ) {
+
+				if ( ! count( $properties ) ) {
+					continue; }
+
+				$temp_parse_css   = $selector . '{';
+				$properties_added = 0;
+
+				foreach ( $properties as $property => $value ) {
+
+					if ( '' === $value ) {
+						continue; }
+
+					$properties_added++;
+					$temp_parse_css .= $property . ':' . $value . ';';
+				}
+
+				$temp_parse_css .= '}';
+
+				if ( $properties_added > 0 ) {
+					$parse_css .= $temp_parse_css;
+				}
+			}
+
+			if ( '' != $parse_css && ( '' !== $min_media || '' !== $max_media ) ) {
+
+				$media_css       = '@media ';
+				$min_media_css   = '';
+				$max_media_css   = '';
+				$media_separator = '';
+
+				if ( '' !== $min_media ) {
+					$min_media_css = '(min-width:' . $min_media . 'px)';
+				}
+				if ( '' !== $max_media ) {
+					$max_media_css = '(max-width:' . $max_media . 'px)';
+				}
+				if ( '' !== $min_media && '' !== $max_media ) {
+					$media_separator = ' and ';
+				}
+
+				$media_css .= $min_media_css . $media_separator . $max_media_css . '{' . $parse_css . '}';
+
+				return $media_css;
+			}
+		}
+
+		return $parse_css;
+	}
+}
+
+
+/**
+ * Get CSS value
+ */
+if ( ! function_exists( 'astra_widget_get_css_value' ) ) {
+
+	/**
+	 * Get CSS value
+	 *
+	 * Syntax:
+	 *
+	 *  astra_widget_get_css_value( VALUE, UNIT );
+	 *
+	 * E.g.
+	 *
+	 *  astra_widget_get_css_value( VALUE, 'url' );
+	 *  astra_widget_get_css_value( VALUE, 'px' );
+	 *  astra_widget_get_css_value( VALUE, 'em' );
+	 *
+	 * @param  string $value        CSS value.
+	 * @param  string $unit         CSS unit.
+	 * @param  string $default      CSS default font.
+	 * @return mixed               CSS value depends on $unit
+	 */
+	function astra_widget_get_css_value( $value = '', $unit = 'px', $default = '' ) {
+
+		if ( '' == $value && '' == $default ) {
+			return $value;
+		}
+
+		$css_val = '';
+
+		switch ( $unit ) {
+
+			case 'px':
+			case '%':
+						$value   = ( '' != $value ) ? $value : $default;
+						$css_val = esc_attr( $value ) . $unit;
+				break;
+
+			case 'url':
+						$css_val = $unit . '(' . esc_url( $value ) . ')';
+				break;
+
+			default:
+				$value = ( '' != $value ) ? $value : $default;
+				if ( '' != $value ) {
+					$css_val = esc_attr( $value ) . $unit;
+				}
+		}
+
+		return $css_val;
+	}
+}
