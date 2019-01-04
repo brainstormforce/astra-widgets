@@ -410,7 +410,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $decoded_icon_data->viewbox ) ) ? esc_attr( $decoded_icon_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $decoded_icon_data->path ) ) ? esc_attr( $decoded_icon_data->path ) : ''; ?>"></path></svg>
 													</div>
 												<?php } ?>
-												<?php esc_html_e( 'Choose icon..', 'astra-addon' ); ?>
+												<?php esc_html_e( 'Choose icon..', 'astra-widgets' ); ?>
 											</div>
 										</div>
 
@@ -459,7 +459,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										</div>
 									</div>
 									<div class="add-new">
-										<button class="add-new-btn button"><?php _e( 'Add item', 'astra-addon' ); ?></button>
+										<button class="add-new-btn button"><?php _e( 'Add item', 'astra-widgets' ); ?></button>
 									</div>
 
 									<?php

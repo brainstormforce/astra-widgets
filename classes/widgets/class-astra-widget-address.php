@@ -57,10 +57,10 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		function __construct() {
 			parent::__construct(
 				$this->id_base,
-				__( 'Astra: Address', 'astra' ),
+				__( 'Astra: Address', 'astra-widgets' ),
 				array(
 					'classname'   => $this->id_base,
-					'description' => __( 'Display Address.', 'astra' ),
+					'description' => __( 'Display Address.', 'astra-widgets' ),
 				),
 				array(
 					'id_base' => $this->id_base,
@@ -238,7 +238,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 				array(
 					'type'    => 'text',
 					'id'      => 'title',
-					'name'    => __( 'Title:', 'astra' ),
+					'name'    => __( 'Title:', 'astra-widgets' ),
 					'default' => ( isset( $instance['title'] ) && ! empty( $instance['title'] ) ) ? $instance['title'] : '',
 				),
 				array(
@@ -247,57 +247,57 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					'type'    => 'select',
 					'default' => ( isset( $instance['style'] ) && ! empty( $instance['style'] ) ) ? $instance['style'] : 'stack',
 					'options' => array(
-						'inline' => __( 'Inline', 'astra-addon' ),
-						'stack'  => __( 'Stack', 'astra-addon' ),
+						'inline' => __( 'Inline', 'astra-widgets' ),
+						'stack'  => __( 'Stack', 'astra-widgets' ),
 					),
 				),
 				array(
 					'type'    => 'checkbox',
 					'id'      => 'display-icons',
-					'name'    => __( 'Display Icons?', 'astra-addon' ),
+					'name'    => __( 'Display Icons?', 'astra-widgets' ),
 					'default' => ( isset( $instance['display-icons'] ) && ! empty( $instance['display-icons'] ) ) ? $instance['display-icons'] : false,
 				),
 				array(
 					'type'    => 'textarea',
 					'id'      => 'address',
-					'name'    => __( 'Address:', 'astra' ),
+					'name'    => __( 'Address:', 'astra-widgets' ),
 					'default' => ( isset( $instance['address'] ) && ! empty( $instance['address'] ) ) ? $instance['address'] : '',
 				),
 				array(
 					'type'    => 'text',
 					'id'      => 'phone',
-					'name'    => __( 'Phone:', 'astra' ),
+					'name'    => __( 'Phone:', 'astra-widgets' ),
 					'default' => ( isset( $instance['phone'] ) && ! empty( $instance['phone'] ) ) ? $instance['phone'] : '',
 				),
 				array(
 					'type'    => 'text',
 					'id'      => 'fax',
-					'name'    => __( 'FAX:', 'astra' ),
+					'name'    => __( 'FAX:', 'astra-widgets' ),
 					'default' => ( isset( $instance['fax'] ) && ! empty( $instance['fax'] ) ) ? $instance['fax'] : '',
 				),
 				array(
 					'type'    => 'text',
 					'id'      => 'email',
-					'name'    => __( 'Email:', 'astra' ),
+					'name'    => __( 'Email:', 'astra-widgets' ),
 					'default' => ( isset( $instance['email'] ) && ! empty( $instance['email'] ) ) ? $instance['email'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'icon_color',
-					'name'    => __( 'Icon Color', 'astra-addon' ),
+					'name'    => __( 'Icon Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['icon_color'] ) && ! empty( $instance['icon_color'] ) ) ? $instance['icon_color'] : '#fefefe',
 				),
 				array(
 					'type'    => 'number',
 					'id'      => 'space_btn_icon_text',
-					'name'    => __( 'Space Between Icon & Text:', 'astra-addon' ),
+					'name'    => __( 'Space Between Icon & Text:', 'astra-widgets' ),
 					'unit'    => 'Px',
 					'default' => ( isset( $instance['space_btn_icon_text'] ) && ! empty( $instance['space_btn_icon_text'] ) ) ? $instance['space_btn_icon_text'] : '',
 				),
 				array(
 					'type'    => 'number',
 					'id'      => 'space_btn_address_fields',
-					'name'    => __( '	Space Between Address Fields:', 'astra-addon' ),
+					'name'    => __( '	Space Between Address Fields:', 'astra-widgets' ),
 					'unit'    => 'Px',
 					'default' => ( isset( $instance['space_btn_address_fields'] ) && ! empty( $instance['space_btn_address_fields'] ) ) ? $instance['space_btn_address_fields'] : '',
 				),
