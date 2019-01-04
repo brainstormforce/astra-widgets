@@ -16,7 +16,7 @@
 		 */
 		_bind: function()
 		{
-			$( document ).on('widget-updated widget-added', AstraWidgets._init_toggle_settings );
+			$( document ).on('widget-updated widget-added', AstraWidgetSocialProfiles._init_toggle_settings );
 			$( document ).on('change', '.astra-widget-social-profiles-fields .astra-widget-field-icon-style', AstraWidgetSocialProfiles._toggle_settings );
 			$( document ).on('change', '.astra-widget-social-profiles-fields .astra-widget-field-color-type', AstraWidgetSocialProfiles._toggle_settings );
 		},

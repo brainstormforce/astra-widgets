@@ -9,6 +9,7 @@
 		{
 			this._init_colorpicker();
 			this._init_repeater();
+			this._getMarkup();
 			this._bind();
 		},
 		_init_colorpicker: function() {
@@ -68,16 +69,49 @@
 			$( document ).on('click', '.astra-repeater-field .astra-remove-image', AstraWidgets._repeater_remove_image_field );
 			$( document ).on('input', '.astra-repeater-field [data-field-id="title"]', AstraWidgets._repeater_set_title );
 			$( document ).on('keyup', '.astra-repeater-field .search-icon', AstraWidgets._searchFuntionality );
+			$( document ).on('click', '.astra-repeater-field .astra-select-icon', AstraWidgets._showIconsMarkup );
 		},
 
 		_reinit_controls: function() {
 			AstraWidgets._init_colorpicker();
 			AstraWidgets._init_repeater();
 		},
+		_getMarkup: function() {
+			var font_awesome = fontAwesomeIcons.font_awesome;
+			var font_awesome_markup  = '<input type="search" placeholder="Search icon..." class="search-icon">';
+			    font_awesome_markup += '<ul class="astra-widget-icons-list">';
+			for (var key in font_awesome) {
+				if (font_awesome.hasOwnProperty(key)) {
+					var fontAwesome = font_awesome[key];
+					var viewbox_array = ( fontAwesome['svg'].hasOwnProperty("brands") ) ? fontAwesome['svg']['brands']['viewBox'] : fontAwesome['svg']['solid']['viewBox'];
+					var path = ( fontAwesome['svg'].hasOwnProperty("brands") ) ? fontAwesome['svg']['brands']['path'] : fontAwesome['svg']['solid']['path'];
+					var viewBox = viewbox_array.join( ' ' );
+					var terms = fontAwesome['search']['terms'].join( ' ' );
+					fontAwesome['search']['terms'].push( key );
+					fontAwesome['search']['terms'].push( fontAwesome['styles']['0'] );
+					font_awesome_markup += '<li class="astra-widget-icon ' + key + '" data-search-terms="' + terms + '" data-font="'+key+'" data-viewbox="'+viewBox+'" data-path="'+path+'">';
+					font_awesome_markup += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+viewBox+'"><path d="'+path+'"></path></svg>';
+					font_awesome_markup += '</li>';
+				}
+			}
+			font_awesome_markup += '</ul>';
+			return font_awesome_markup;
+		},
+		_showIconsMarkup: function() {
 
+			font_awesome_markup = AstraWidgets._getMarkup();
+			if( $(this).hasClass( 'open' ) ) {
+				$(this).parents('.astra-widget-icon-selector').find('.astra-icons-list-wrap').append( font_awesome_markup );
+			} else {
+				$(this).parents('.astra-widget-icon-selector').find('.astra-widget-icons-list').remove(); 
+				$(this).parents('.astra-widget-icon-selector').find('.search-icon').remove(); 
+			}
+
+		},
 		_icon_selector: function(event) {
 			var parent = $(this).parents('.astra-widget-icon-selector');
 			parent.find('.astra-icons-list-wrap').slideToggle();
+			$(this).toggleClass( 'open' );
 		},
 
 		_set_icon: function(event) {
@@ -121,22 +155,23 @@
 		    var input, filter, ul, li, a, i;
 		    input = this;
 		    filter = input.value.toUpperCase();
-		    ul = $(this).parent('.astra-icons-list-wrap').find(".astra-widget-icons-list")[0];
-		    li = ul.getElementsByTagName('li');
-		    // Loop through all list items, and hide those who don't match the search query
-		    for (i = 0; i < li.length; i++) {
-		        // a = $(li[i]).data('search-terms');
+		    ul = $(this).parents('.astra-icons-list-wrap').find(".astra-widget-icons-list")[0];
+		    console.log( ul );
+		    setTimeout( function() {
+			    li = ul.getElementsByTagName('li');
 
-		        a = $(li[i]).data('search-terms');
-		        if( a ) {
-
-		            if ( a.toUpperCase().indexOf( filter ) > -1 ) {
-			            li[i].style.display = "";
-			        } else {
-			            li[i].style.display = "none";
+			    // Loop through all list items, and hide those who don't match the search query
+			    for (i = 0; i < li.length; i++) {
+			        search = $(li[i]).data('search-terms');
+			        if( search ) {
+				            if ( search.toUpperCase().indexOf( filter ) > -1 ) {
+					            li[i].style.display = "";
+					        } else {
+					            li[i].style.display = "none";
+					        }
 			        }
-		        }
-		    }
+			    }
+        	}, 300 );
 		},
 
 		/**
@@ -283,6 +318,7 @@
 				item += '	<span class="title">'+title+'</span>';
 				item += '		<span class="dashicons dashicons-admin-page clone"></span>';
 				item += '		<span class="dashicons dashicons-trash remove"></span>';
+				item += '		<span class="dashicons toggle-arrow"></span>';
 				item += '	</div>';
 				item += '	<div class="markukp">';
 				item += 		fields
@@ -328,6 +364,7 @@
 
 	    	// Toggle on click on move icon & title too.
 	    	if( ( e.target === this ) || $( e.target ).hasClass('title') || $( e.target ).hasClass('dashicons-move') ) {
+	    		$( this ).parents('.astra-repeater-field').toggleClass('field-open');
 		    	$( this ).parents('.astra-repeater-field').find('.markukp').slideToggle();
 	    	}
 	    },

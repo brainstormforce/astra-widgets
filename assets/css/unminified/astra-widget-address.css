@@ -1,16 +1,41 @@
-.address-icons svg {
-	width: 15px;
-}
 .widget-address-field .address-icons {
   vertical-align: middle;
-  margin-right: 5px;
+}
+.widget-address-field .address-icons {
+    vertical-align: middle;
+    max-width: 15px;
+    width: 100%;
 }
 
 .widget-address-inline .widget-address-field {
-  display: inline-block;
-  margin-right: 5px;
+  -js-display: inline-flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .astra-widget-address address {
 	margin: 0;
+}
+.widget-address-field {
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.widget-address-field .address-meta{
+  margin-left: 5px;
+}
+.widget-address.widget-address-inline .widget-address-field {
+  margin-right:5px;
 }

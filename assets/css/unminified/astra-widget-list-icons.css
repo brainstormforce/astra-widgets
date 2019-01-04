@@ -1,4 +1,4 @@
-#secondary .astra-widget-list-icons ul li {
+.astra-widget-list-icons ul li {
 	-js-display: flex;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -15,12 +15,28 @@
 
 .astra-widget-list-icons ul li .image {
 	max-width: 25px;
-	margin-right: 5px;
+}
+
+.astra-widget-list-icons ul li .link-text{
+	margin-left: 5px;
 }
 
 .astra-widget-list-icons ul li span {
-	margin-right: 5px;
 	vertical-align: middle;
+}
+
+.astra-widget-list-icons .icon svg {
+	-js-display: flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 .astra-widget-list-icons li {
@@ -33,5 +49,28 @@
 	margin-bottom: 1.3em;
 }
 .astra-widget-list-icons .icon {
-    display:  inline-block;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.astra-widget-list-icons .list-item-link {
+	-js-display: flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 }

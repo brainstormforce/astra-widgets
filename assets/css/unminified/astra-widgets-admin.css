@@ -54,9 +54,10 @@
 }
 .astra-repeater-field .actions {
     padding: 10px;
-    background: #F6F6F6;
+    background: #fafafa;
     text-align: right;
 }
+
 .astra-repeater-field .markukp {
     display: none;
 }
@@ -190,6 +191,7 @@
 }
 .astra-icons-list-wrap .search-icon {
     width: 100%;
+    margin-top: 1em;
     margin-bottom: 1em;
 }
 .astra-widget-icons-list .astra-widget-icon {
@@ -212,7 +214,7 @@
     float: left;
     cursor: pointer;
     padding: 1em;
-    width: 26px;
+    width: 30px;
     line-height: 1em;
     font-size: 1em;
     border: 1px solid #f1f1f1;
@@ -277,4 +279,43 @@
 
 .astra-widget-icon.selected svg {
     fill: #fff;    
+}
+
+.astra-widget-unit-field .widefat {
+    width: 90%;
+}
+
+.astra-widgets-unit {
+    margin-left: 5px;
+}
+
+.astra-repeater-field .markukp {
+    padding: 10px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.astra-repeater-sortable .astra-repeater-field {
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    margin-bottom: 5px;
+}
+
+.astra-repeater-field.field-open .actions .toggle-arrow:before {
+    content: "\f142";
+}
+
+.astra-repeater-field .actions .toggle-arrow:before {
+    content: "\f140";
+}
+
+.astra-repeater-field .actions .toggle-arrow {
+    display: inline-block;
+    margin-top: -3px;
+    font-size: 1.6rem;
+    width: 1.6rem;
+    color: #c0c0c0;
+}
+
+.astra-repeater-field title {
+    line-height: 1.4em;
 }
