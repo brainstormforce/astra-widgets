@@ -54,9 +54,10 @@
 }
 .astra-repeater-field .actions {
     padding: 10px;
-    background: #F6F6F6;
+    background: #fafafa;
     text-align: right;
 }
+
 .astra-repeater-field .markukp {
     display: none;
 }
@@ -190,15 +191,30 @@
 }
 .astra-icons-list-wrap .search-icon {
     width: 100%;
+    margin-top: 1em;
     margin-bottom: 1em;
 }
 .astra-widget-icons-list .astra-widget-icon {
-    display: inline-block;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     float: left;
     cursor: pointer;
-    height: 1em;
     padding: 1em;
-    width: 27px;
+    width: 30px;
     line-height: 1em;
     font-size: 1em;
     border: 1px solid #f1f1f1;
@@ -209,6 +225,8 @@
     display: inline-block;
     margin: 1em 0 0 0;
     padding: 0;
+    max-height: 250px;
+    overflow: auto;
 }
 .astra-widget-icon-selector {
     margin: 1em 0;
@@ -239,4 +257,65 @@
  */
 .astra-widget-field-color .wp-color-result {
     margin-bottom: 0 !important;
+}
+
+/* Fonts SVG */
+.astra-widget-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+.astra-selected-icon svg {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-top: -1px;
+}
+
+.astra-widget-icon.selected {
+    background: #5897fb;
+}
+
+.astra-widget-icon.selected svg {
+    fill: #fff;    
+}
+
+.astra-widget-unit-field .widefat {
+    width: 90%;
+}
+
+.astra-widgets-unit {
+    margin-left: 5px;
+}
+
+.astra-repeater-field .markukp {
+    padding: 10px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.astra-repeater-sortable .astra-repeater-field {
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    margin-bottom: 5px;
+}
+
+.astra-repeater-field.field-open .actions .toggle-arrow:before {
+    content: "\f142";
+}
+
+.astra-repeater-field .actions .toggle-arrow:before {
+    content: "\f140";
+}
+
+.astra-repeater-field .actions .toggle-arrow {
+    display: inline-block;
+    margin-top: -3px;
+    font-size: 1.6rem;
+    width: 1.6rem;
+    color: #c0c0c0;
+}
+
+.astra-repeater-field title {
+    line-height: 1.4em;
 }

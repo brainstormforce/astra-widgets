@@ -87,7 +87,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_admin_scripts() {
-			wp_register_script( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/js/unminified/astra-widget-list-icons.js' );
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-list-icons' . $file_prefix . '.js', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -96,7 +104,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return void
 		 */
 		function register_scripts() {
-			wp_register_style( 'astra-widgets-' . $this->id_base, ASTRA_WIDGETS_URI . 'assets/css/unminified/astra-widget-list-icons.css' );
+
+			/* Directory and Extension */
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+
+			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
+			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
+
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-list-icons' . $file_prefix . '.css' );
 		}
 
 		/**
@@ -156,10 +172,13 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			$this->_front_setup( $args, $instance );
 
-			$width = $instance['width'] ? $instance['width'] : '';
+			$width      = $instance['width'] ? $instance['width'] : '';
+			$icon_color = $instance['icon_color'] ? $instance['icon_color'] : '';
 
 			if ( ! empty( $width ) ) {
-				$width = 'style= max-width:' . esc_attr( $width ) . 'px';
+				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
+			} else {
+				$image_width = 'style= max-width: 15px';
 			}
 
 			$list  = $this->get_fields( 'list', array() );
@@ -171,24 +190,30 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				echo $args['before_title'] . $title . $args['after_title'];
 			} ?>
 
-			<div class="astra-widget-list-icons clearfix">
+			<div id="astra-widget-list-icons-wrapper" class="astra-widget-list-icons clearfix">
 				<?php if ( ! empty( $list ) ) { ?>
-					<ul>
+					<ul class="list-items-wrapper">
 						<?php
 						foreach ( $list as $index => $list ) {
+
+							$list_data = json_decode( $list['icon'] );
+
 							$target = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
 							$rel    = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
 							?>
 							<li>
 								<div class="link">
-									<a href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
+									<a href="<?php echo esc_url( $list['link'] ); ?>" class="list-item-link" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
-											<span class="<?php echo esc_html( $list['icon'] ); ?>"></span>
+											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
+												<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
+													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<?php } ?>
+											</span>
 										</div>
-									<?php } ?>
-									<?php if ( 'image' === $list['imageoricon'] ) { ?>		
-										<div class="image" <?php echo esc_attr( $width ); ?>>
+									<?php } else { ?>		
+										<div class="image" <?php echo ( isset( $image_width ) ) ? esc_attr( $image_width ) : ''; ?>>
 											<?php echo wp_get_attachment_image( $list['image'] ); ?>
 										</div>
 									<?php } ?>
@@ -246,7 +271,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						array(
 							'type'    => 'text',
 							'id'      => 'title',
-							'name'    => __( 'Title:', 'astra-widgets' ),
+							'name'    => __( 'List Item:', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
@@ -288,13 +313,11 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						array(
 							'type'    => 'image',
 							'id'      => 'image',
-							'name'    => __( 'Image:', 'astra-widgets' ),
 							'default' => '',
 						),
 						array(
 							'type'    => 'icon',
 							'id'      => 'icon',
-							'name'    => __( 'Icon', 'astra-widgets' ),
 							'default' => '',
 						),
 					),
@@ -303,10 +326,84 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'type' => 'separator',
 				),
 				array(
+					'type' => 'heading',
+					'name' => __( 'Spacing', 'astra-widgets' ),
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'space_btn_list',
+					'name'    => __( '	Space Between List Items:', 'astra-widgets' ),
+					'unit'    => 'Px',
+					'default' => ( isset( $instance['space_btn_list'] ) && ! empty( $instance['space_btn_list'] ) ) ? $instance['space_btn_list'] : '',
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'space_btn_icon_text',
+					'name'    => __( 'Space Between Icon & Text:', 'astra-widgets' ),
+					'unit'    => 'Px',
+					'default' => ( isset( $instance['space_btn_icon_text'] ) && ! empty( $instance['space_btn_icon_text'] ) ) ? $instance['space_btn_icon_text'] : '',
+				),
+				array(
+					'type' => 'heading',
+					'name' => __( 'Divider', 'astra-widgets' ),
+				),
+				array(
+					'type'    => 'select',
+					'id'      => 'divider',
+					'name'    => __( 'Divider', 'astra-widgets' ),
+					'default' => ( isset( $instance['divider'] ) && ! empty( $instance['divider'] ) ) ? $instance['divider'] : 'yes',
+					'options' => array(
+						'yes' => __( 'Yes', 'astra-widgets' ),
+						'no'  => __( 'No', 'astra-widgets' ),
+					),
+				),
+				array(
+					'type'    => 'select',
+					'id'      => 'divider_style',
+					'name'    => __( 'Divider Style', 'astra-widgets' ),
+					'default' => ( isset( $instance['divider_style'] ) && ! empty( $instance['divider_style'] ) ) ? $instance['divider_style'] : 'inherit',
+					'options' => array(
+						'solid'  => __( 'Solid', 'astra-widgets' ),
+						'dotted' => __( 'Dotted', 'astra-widgets' ),
+						'double' => __( 'Double', 'astra-widgets' ),
+						'dashed' => __( 'Dashed', 'astra-widgets' ),
+					),
+				),
+				array(
+					'type'    => 'number',
+					'id'      => 'divider_weight',
+					'name'    => __( ' Divider Weight:', 'astra-widgets' ),
+					'unit'    => 'Px',
+					'default' => ( isset( $instance['divider_weight'] ) && ! empty( $instance['divider_weight'] ) ) ? $instance['divider_weight'] : '',
+				),
+				array(
+					'type'    => 'color',
+					'id'      => 'divider_color',
+					'name'    => __( 'Divider Color:', 'astra-widgets' ),
+					'default' => ( isset( $instance['divider_color'] ) && ! empty( $instance['divider_color'] ) ) ? $instance['divider_color'] : '',
+				),
+				array(
+					'type' => 'heading',
+					'name' => __( 'Icon / Image Style', 'astra-widgets' ),
+				),
+				array(
+					'type'    => 'color',
+					'id'      => 'icon_color',
+					'name'    => __( 'Icon Color', 'astra-widgets' ),
+					'default' => ( isset( $instance['icon_color'] ) && ! empty( $instance['icon_color'] ) ) ? $instance['icon_color'] : '',
+				),
+				array(
+					'type'    => 'color',
+					'id'      => 'background_color',
+					'name'    => __( 'Background Color', 'astra-widgets' ),
+					'default' => ( isset( $instance['background_color'] ) && ! empty( $instance['background_color'] ) ) ? $instance['background_color'] : '',
+				),
+				array(
 					'type'    => 'number',
 					'id'      => 'width',
-					'name'    => __( 'Image / Icon Width:', 'astra-widgets' ),
+					'name'    => __( 'Image / Icon Size:', 'astra-widgets' ),
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
+					'unit'    => 'Px',
 				),
 			);
 			?>
@@ -332,27 +429,82 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			$instances = get_option( 'widget_' . $this->id_base );
 
+			$id_base = '#' . $this->id;
+
 			if ( array_key_exists( $this->number, $instances ) ) {
 				$instance = $instances[ $this->number ];
 
-				$width = isset( $instance['width'] ) ? $instance['width'] : '';
+				$width               = isset( $instance['width'] ) ? $instance['width'] : '';
+				$space_btn_list      = isset( $instance['space_btn_list'] ) ? $instance['space_btn_list'] : '';
+				$space_btn_icon_text = isset( $instance['space_btn_icon_text'] ) ? $instance['space_btn_icon_text'] : '';
+				$background_color    = isset( $instance['background_color'] ) ? $instance['background_color'] : '';
+				$divider_color       = isset( $instance['divider_color'] ) ? $instance['divider_color'] : '';
+				$divider_weight      = isset( $instance['divider_weight'] ) ? $instance['divider_weight'] : '';
+				$divider_style       = isset( $instance['divider_style'] ) ? $instance['divider_style'] : '';
+				$divider             = isset( $instance['divider'] ) ? $instance['divider'] : '';
 
 				$css_output = '';
 
+				$width          = ( '' !== $width ) ? $width : '15';
+				$space_btn_list = ( '' !== $space_btn_list ) ? $space_btn_list : '5';
+				$divider_weight = ( '' !== $divider_weight ) ? $divider_weight : '1';
+
 				if ( isset( $width ) && ! empty( $width ) ) {
 					$css_output = array(
-						'.astra-widget-list-icons .image img' => array(
-							'min-width' => esc_attr( $width ) . 'px',
+						$id_base . ' .astra-widget-list-icons .image img' => array(
+							'min-width' => astra_widget_get_css_value( $width, 'px' ),
 						),
-						'.astra-widget-list-icons .icon span' => array(
-							'font-size' => esc_attr( $width ) . 'px',
+						$id_base . ' .astra-widget-list-icons .icon svg' => array(
+							'width' => astra_widget_get_css_value( $width, 'px' ),
 						),
 					);
 
-					$css_output = astra_parse_css( $css_output );
+					$dynamic_css = astra_widgets_parse_css( $css_output );
 				}
 
-				return $dynamic_css . $css_output;
+				if ( isset( $divider ) && 'yes' === $divider ) {
+					$css_output_2 = array(
+						$id_base . '.astra-widget-list-icons .list-items-wrapper li' => array(
+							'border-bottom-color' => esc_attr( $divider_color ),
+							'border-bottom-width' => esc_attr( $divider_weight ) . 'px',
+							'border-bottom-style' => esc_attr( $divider_style ),
+						),
+						$id_base . '.astra-widget-list-icons .list-items-wrapper li:last-child' => array(
+							'border-bottom-style' => 'none',
+						),
+					);
+
+					$dynamic_css .= astra_widgets_parse_css( $css_output_2 );
+				}
+
+				$css_output_1 = array(
+					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li:first-child' => array(
+						'padding-top'    => '0',
+						'padding-bottom' => esc_attr( $space_btn_list / 2 ) . 'px',
+					),
+					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li' => array(
+						'padding-top'    => esc_attr( $space_btn_list / 2 ) . 'px',
+						'padding-bottom' => esc_attr( $space_btn_list / 2 ) . 'px',
+						'margin-bottom'  => '0',
+					),
+					$id_base . ' #astra-widget-list-icons-wrapper .list-items-wrapper li:last-child' => array(
+						'padding-top'    => esc_attr( $space_btn_list / 2 ) . 'px',
+						'padding-bottom' => '0',
+					),
+					$id_base . '.astra-widget-list-icons ul li .link-text' => array(
+						'margin-left' => esc_attr( $space_btn_icon_text ) . 'px',
+					),
+					$id_base . ' .list-item-link .icon' => array(
+						'background-color' => esc_attr( $background_color ),
+						'width'            => esc_attr( $width ) . 'px',
+						'height'           => esc_attr( $width ) . 'px',
+					),
+
+				);
+
+				$dynamic_css .= astra_widgets_parse_css( $css_output_1 );
+
+				return $dynamic_css;
 			}
 
 			return $dynamic_css;

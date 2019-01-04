@@ -4,7 +4,7 @@
 **Tags:** address widget, social widget, list icon widget  
 **Requires at least:** 4.7  
 **Tested up to:** 5.0  
-**Stable tag:** 1.0.0  
+**Stable tag:** 1.1.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -20,6 +20,10 @@ Astra Widget allows you to add a different widgets to your site like Address, So
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 ## Changelog ##
+
+### v1.1.0 ###
+- New: Add support for full FontAwesome library in widgets.
+- Fix: JS error in the WordPress admin panel causing errors in
 
 ### 1.0.0 ###
 - Initial release

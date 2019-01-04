@@ -9,6 +9,7 @@
 		{
 			this._init_colorpicker();
 			this._init_repeater();
+			this._getMarkup();
 			this._bind();
 		},
 		_init_colorpicker: function() {
@@ -67,36 +68,110 @@
 			$( document ).on('click', '.astra-repeater-field .astra-select-image', AstraWidgets._repeater_add_image_field );
 			$( document ).on('click', '.astra-repeater-field .astra-remove-image', AstraWidgets._repeater_remove_image_field );
 			$( document ).on('input', '.astra-repeater-field [data-field-id="title"]', AstraWidgets._repeater_set_title );
+			$( document ).on('keyup', '.astra-repeater-field .search-icon', AstraWidgets._searchFuntionality );
+			$( document ).on('click', '.astra-repeater-field .astra-select-icon', AstraWidgets._showIconsMarkup );
 		},
 
 		_reinit_controls: function() {
 			AstraWidgets._init_colorpicker();
 			AstraWidgets._init_repeater();
 		},
+		_getMarkup: function() {
+			var font_awesome = fontAwesomeIcons.font_awesome;
+			var font_awesome_markup  = '<input type="search" placeholder="Search icon..." class="search-icon">';
+			    font_awesome_markup += '<ul class="astra-widget-icons-list">';
+			for (var key in font_awesome) {
+				if (font_awesome.hasOwnProperty(key)) {
+					var fontAwesome = font_awesome[key];
+					var viewbox_array = ( fontAwesome['svg'].hasOwnProperty("brands") ) ? fontAwesome['svg']['brands']['viewBox'] : fontAwesome['svg']['solid']['viewBox'];
+					var path = ( fontAwesome['svg'].hasOwnProperty("brands") ) ? fontAwesome['svg']['brands']['path'] : fontAwesome['svg']['solid']['path'];
+					var viewBox = viewbox_array.join( ' ' );
+					var terms = fontAwesome['search']['terms'].join( ' ' );
+					fontAwesome['search']['terms'].push( key );
+					fontAwesome['search']['terms'].push( fontAwesome['styles']['0'] );
+					font_awesome_markup += '<li class="astra-widget-icon ' + key + '" data-search-terms="' + terms + '" data-font="'+key+'" data-viewbox="'+viewBox+'" data-path="'+path+'">';
+					font_awesome_markup += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+viewBox+'"><path d="'+path+'"></path></svg>';
+					font_awesome_markup += '</li>';
+				}
+			}
+			font_awesome_markup += '</ul>';
+			return font_awesome_markup;
+		},
+		_showIconsMarkup: function() {
 
+			font_awesome_markup = AstraWidgets._getMarkup();
+			if( $(this).hasClass( 'open' ) ) {
+				$(this).parents('.astra-widget-icon-selector').find('.astra-icons-list-wrap').append( font_awesome_markup );
+			} else {
+				$(this).parents('.astra-widget-icon-selector').find('.astra-widget-icons-list').remove(); 
+				$(this).parents('.astra-widget-icon-selector').find('.search-icon').remove(); 
+			}
+
+		},
 		_icon_selector: function(event) {
 			var parent = $(this).parents('.astra-widget-icon-selector');
 			parent.find('.astra-icons-list-wrap').slideToggle();
+			$(this).toggleClass( 'open' );
 		},
 
 		_set_icon: function(event) {
-			var parent               = $(this).parents('.astra-widget-icon-selector');
-			var selected_icon_font   = $(this).attr('data-font') || '';
-			var current_icon_preview = parent.find('.astra-selected-icon i');
-			var current_icon_input = parent.find('.selected-icon');
+			var parent               	= $(this).parents('.astra-widget-icon-selector');
+			var selected_icon_font   	= $(this).attr('data-font') || '';
+			var icon_selector  		 	= parent.find( '.astra-widget-icon.' + selected_icon_font  );
+			var current_icon_preview 	= parent.find('.astra-selected-icon');
+			var current_icon_input   	= parent.find('.selected-icon');
+			var icon_selector_path	 	= $(this).attr('data-path');
+			var icon_selector_viewbox	= $(this).attr('data-viewbox');
+			var icon_selector_svg	 	= icon_selector.html();
 
-			current_icon_preview.removeClass();
-			current_icon_preview.addClass( selected_icon_font );
+			// current_icon_preview.removeClass();
+
+			current_icon_preview.html( icon_selector_svg );
 			
+			parent.find('.astra-widget-icons-list .astra-widget-icon').removeClass( 'selected' );
+			icon_selector.addClass( 'selected' );
+
 			if( $(this).closest('.astra-repeater-field').find('.selected-icon').data('icon-visible') === 'yes' ) {
 				$(this).closest('.astra-repeater-field').find('.title').attr('class','title');
 				$(this).closest('.astra-repeater-field').find('.title').addClass( selected_icon_font );
 			}
 
-			current_icon_input.val( selected_icon_font );
+			iconObj = {
+			    'name':selected_icon_font,
+			    'path':icon_selector_path,
+			    'viewbox': icon_selector_viewbox
+			 };
+			var icon_data = JSON.stringify(iconObj);
+
+			current_icon_input.val( icon_data );
 
 			// Trigger the change event.
 	 		parent.find('.selected-icon').trigger( 'change' );
+		},
+
+		_searchFuntionality: function() {
+
+		    // Declare variables
+		    var input, filter, ul, li, a, i;
+		    input = this;
+		    filter = input.value.toUpperCase();
+		    ul = $(this).parents('.astra-icons-list-wrap').find(".astra-widget-icons-list")[0];
+		    console.log( ul );
+		    setTimeout( function() {
+			    li = ul.getElementsByTagName('li');
+
+			    // Loop through all list items, and hide those who don't match the search query
+			    for (i = 0; i < li.length; i++) {
+			        search = $(li[i]).data('search-terms');
+			        if( search ) {
+				            if ( search.toUpperCase().indexOf( filter ) > -1 ) {
+					            li[i].style.display = "";
+					        } else {
+					            li[i].style.display = "none";
+					        }
+			        }
+			    }
+        	}, 300 );
 		},
 
 		/**
@@ -243,6 +318,7 @@
 				item += '	<span class="title">'+title+'</span>';
 				item += '		<span class="dashicons dashicons-admin-page clone"></span>';
 				item += '		<span class="dashicons dashicons-trash remove"></span>';
+				item += '		<span class="dashicons toggle-arrow"></span>';
 				item += '	</div>';
 				item += '	<div class="markukp">';
 				item += 		fields
@@ -288,6 +364,7 @@
 
 	    	// Toggle on click on move icon & title too.
 	    	if( ( e.target === this ) || $( e.target ).hasClass('title') || $( e.target ).hasClass('dashicons-move') ) {
+	    		$( this ).parents('.astra-repeater-field').toggleClass('field-open');
 		    	$( this ).parents('.astra-repeater-field').find('.markukp').slideToggle();
 	    	}
 	    },
