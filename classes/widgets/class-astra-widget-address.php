@@ -134,10 +134,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			$widget_content_font_size = '15';
 			if ( function_exists( 'astra_get_option' ) ) {
 				$widget_content_font_size = astra_get_option( 'font-size-widget-content' );
-				$widget_content_font_size = $widget_content_font_size['desktop'];
-				if ( '' === $widget_content_font_size ) {
-					$widget_content_font_size = '15';
-				}
+				$widget_content_font_size = isset( $widget_content_font_size['desktop'] ) ? $widget_content_font_size['desktop'] : '15';
 			}
 			?>
 
