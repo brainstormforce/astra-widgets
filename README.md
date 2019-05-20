@@ -21,6 +21,9 @@ Astra Widget allows you to add a different widgets to your site like Address, So
 
 ## Changelog ##
 
+### v1.1.1 ###
+- Fix: PHP Notice for address fixed.
+
 ### v1.1.0 ###
 - New: Add support for full FontAwesome library in widgets.
 - Fix: JS error in the WordPress admin panel causing errors in
