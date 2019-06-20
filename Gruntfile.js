@@ -222,6 +222,11 @@ module.exports = function (grunt) {
                     '!README.md',
                     '!sass/**',
                     '!codesniffer.ruleset.xml',
+                    '!vendor/**',
+                    '!composer.json',
+                    '!composer.lock',
+                    '!package-lock.json',
+                    '!phpcs.xml.dist',
                 ],
                 dest: 'astra-widgets/'
             }
