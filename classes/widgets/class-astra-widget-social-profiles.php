@@ -216,7 +216,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color li .' . $name . '.ast-widget-icon svg' => array(
 									'fill' => esc_attr( $icon_color_official ),
 								),
-								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.circle li .' . $name . '.ast-widget-icon, ' . $id_base . '.astra-widget-social-profiles-inner.icon-official-color.square li .' . $name . '.ast-widget-icon' => array(
+								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.circle li .' . $name . '.ast-widget-icon, ' . $id_base . ' .astra-widget-social-profiles-inner.icon-official-color.square li .' . $name . '.ast-widget-icon' => array(
 									'background-color' => esc_attr( $icon_bg_color_official ),
 								),
 								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $name . '.ast-widget-icon svg,' . $id_base . ' .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $name . '.ast-widget-icon svg' => array(
