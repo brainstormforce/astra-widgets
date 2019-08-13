@@ -203,7 +203,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 							?>
 							<li>
 								<div class="link">
-									<a href="<?php echo esc_url( $list['link'] ); ?>" class="list-item-link" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
+									<a href="<?php echo esc_attr( $list['link'] ); ?>" class="list-item-link" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
 											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">

@@ -344,7 +344,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							$trimmed = str_replace( 'astra-icon-', '', $list['icon'] );
 							?>
 							<li>
-								<a target="_blank" href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
+								<a target="<?php echo esc_attr($target); ?>" href="<?php echo esc_attr( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
 										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 											<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>" width=<?php echo esc_attr( $icon_width ); ?> height=<?php echo esc_attr( $icon_width ); ?> ><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
