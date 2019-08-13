@@ -160,8 +160,16 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 									</svg>
 								</span>
 							<?php } ?>
+							<?php
+							if( apply_filters( 'astra_widgets_tel_prefix', true ) ) {
+								$prefix = '+';
+							} else {
+								$prefix = '';
+							}
+							add_filter( 'astra_widgets_tel_prefix', '__return_false' );
+							?>
 							<span class="address-meta">
-								<a href="tel:+<?php echo preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
+								<a href="tel:<?php echo $prefix.preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
 							</span>
 						</div>
 					<?php } ?>
