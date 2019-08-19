@@ -29,6 +29,24 @@ The Astra Widgets plugin can be installed like any other WordPress plugin. Once 
 
 You simply need to select the place you wish to add the widget in and then add the information in the specific fields. Save this and you are done!
 
+### WHY PEOPLE LOVE THE ASTRA THEME? ###
+
+Astra is currently powering over 300,000+ websites. The performance and ease of use it offers has made it the go-to theme for beginners as well as experts.
+
+### Here are a few reasons why they love Astra - ###
+
+**Faster Performance** - Astra follows the best coding standards and is built with speed and performance in mind. It is the best WordPress theme that lets you build faster lading and better performing websites.
+
+**Easy Customization** - With an aim to keep it simple and easy, Astra gives you lots of options to customize everything with just a few clicks. Everything can be managed through the customizer itself!
+
+**Compatibility with Page Builders** - Astra works seamlessly with all major page builders and therefore is opted as the best <a href="https://wpastra.com/theme-for-elementor/?utm_source=wp-repo&utm_medium=astra_desc&utm_campaign=ast_widgets">theme for Elementor</a>, Beaver Builder, Gutenberg, etc.
+
+**Pixel Perfect Design** - Astra offers pixel-perfect FREE ready-to-use website demos within a huge library of starter sites. These can simply be imported, tweaked and used to reduce your overall design time.
+
+**Deeper Integrations** - Astra lets you create and beautify eCommerce websites and those that offer online courses in minutes. This is possible due to its in-depth integrations with all WooCommerce plugins, LifterLMS, LearnDash, etc.
+
+**Ready-to-use complete website demos** - Astra offers ready-made starter sites built with Elementor, Beaver Builder, Brizy and Gutenberg. You can import them using the <a href="https://wordpress.org/plugins/astra-sites/">Astra Starter Sites</a> plugin, tweak and go live in minutes!
+
 ## Frequently Asked Questions ##
  
 ### How to install the Astra Widget plugin? ###
