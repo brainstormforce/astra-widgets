@@ -5,7 +5,7 @@ Tags: Address widget, Social profile widget, List icon widget, Social media, Add
 Requires at least: 4.7
 Tested up to: 5.2
 Requires PHP: 5.2
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,18 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 == Changelog ==
+
+= 1.2.0 = 
+- New: WCAG compatibility.
+- New: Added provision ( using astra_widgets_tel_prefix filter hook ) to remove + sign from telephone link in Address widget.
+- Improvement: Applied Padding right to widgets in case of inline alignment.
+- Fix: Console error for SVG icon in address widget. 
+- Fix: Save button is not working after selecting color from colorpicker.
+- Fix: The official color for the social icon is not working.
+- Fix: The icon is not selected in first attempt in select icon button.
+- Fix: Target option not working for social profiles. 
+- Fix: Skype URL won't work inside social profile widget. 
+- Fix: Color picker not working immediately after widget drop.
 
 = 1.1.1 =
 - Fix: PHP Notice while using address widget.

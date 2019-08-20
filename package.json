@@ -1,6 +1,6 @@
 {
   "name": "astra-widgets",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "[![pipeline status](http://git.brainstormforce.com/astra/astra-widgets/badges/master/pipeline.svg)](http://git.brainstormforce.com/astra/astra-widgets/commits/master)",
   "main": "Gruntfile.js",
   "scripts": {
