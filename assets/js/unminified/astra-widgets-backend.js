@@ -162,7 +162,7 @@
 				parent.find('.astra-image-alt').val( '' );
 				parent.find('.astra-image-title').val( '' );
 				parent.find('.astra-image-size-select, .astra-image-width').hide();
-				parent.find('.astra-select-image.button').show();
+				parent.find('.astra-select-image.button').css("display", "inline-block");
 			}
 		},
 
@@ -214,7 +214,7 @@
 				parent.find('.astra-image-title').val( attachments[0].title );
 
 				parent.find('.astra-field-image-preview-id').val( attachments[0].id );
-				parent.find('.astra-select-image.button').hide();
+				parent.find('.astra-select-image.button').css("display", "none");
 
 
 				parent.find('.astra-image-size-select, .astra-image-width').show();
