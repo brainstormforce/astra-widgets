@@ -85,7 +85,7 @@ module.exports = function( grunt ) {
                     processors: [
                         flexibility,
                         autoprefixer({
-                            overrideBrowserslist: [
+                            browsers: [
                                 '> 1%',
                                 'ie >= 11',
                                 'last 1 Android versions',
