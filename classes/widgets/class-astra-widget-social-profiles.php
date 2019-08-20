@@ -216,7 +216,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color li .' . $name . '.ast-widget-icon svg' => array(
 									'fill' => esc_attr( $icon_color_official ),
 								),
-								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.circle li .' . $name . '.ast-widget-icon, ' . $id_base . '.astra-widget-social-profiles-inner.icon-official-color.square li .' . $name . '.ast-widget-icon' => array(
+								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.circle li .' . $name . '.ast-widget-icon, ' . $id_base . ' .astra-widget-social-profiles-inner.icon-official-color.square li .' . $name . '.ast-widget-icon' => array(
 									'background-color' => esc_attr( $icon_bg_color_official ),
 								),
 								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.square-outline li .' . $name . '.ast-widget-icon svg,' . $id_base . ' .astra-widget-social-profiles-inner.icon-official-color.circle-outline li .' . $name . '.ast-widget-icon svg' => array(
@@ -286,8 +286,14 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					$id_base . ' .astra-widget-social-profiles-inner li > a .ast-widget-icon' => array(
 						'margin-right' => esc_attr( $space_btn_icon_text ) . 'px',
 					),
-					$id_base . ' .astra-widget-social-profiles-inner li > a ' => array(
+					$id_base . ' .astra-widget-social-profiles-inner.stack li > a ' => array(
 						'padding-bottom' => esc_attr( $space_btn_social_profiles ) . 'px',
+					),
+					$id_base . ' .astra-widget-social-profiles-inner.inline li > a ' => array(
+						'padding-right' => esc_attr( $space_btn_social_profiles ) . 'px',
+					),
+					$id_base . ' .astra-widget-social-profiles-inner.inline li:last-child a ' => array(
+						'padding-right' => '0',
 					),
 					$id_base . ' .astra-widget-social-profiles-inner li:last-child a' => array(
 						'margin-right'   => '0',
@@ -344,7 +350,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							$trimmed = str_replace( 'astra-icon-', '', $list['icon'] );
 							?>
 							<li>
-								<a target="_blank" href="<?php echo esc_url( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
+								<a target="<?php echo esc_attr($target); ?>" href="<?php echo esc_attr( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>">
 										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 											<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>" width=<?php echo esc_attr( $icon_width ); ?> height=<?php echo esc_attr( $icon_width ); ?> ><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>

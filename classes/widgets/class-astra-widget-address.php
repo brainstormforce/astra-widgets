@@ -134,7 +134,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			$widget_content_font_size = '15';
 			if ( function_exists( 'astra_get_option' ) ) {
 				$widget_content_font_size = astra_get_option( 'font-size-widget-content' );
-				$widget_content_font_size = isset( $widget_content_font_size['desktop'] ) ? $widget_content_font_size['desktop'] : '15';
+				$widget_content_font_size = ( isset( $widget_content_font_size['desktop'] ) && ! empty( $widget_content_font_size['desktop'] ) ) ? $widget_content_font_size['desktop'] : '15';
 			}
 			?>
 
@@ -160,8 +160,16 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 									</svg>
 								</span>
 							<?php } ?>
+							<?php
+							if( apply_filters( 'astra_widgets_tel_prefix', true ) ) {
+								$prefix = '+';
+							} else {
+								$prefix = '';
+							}
+							add_filter( 'astra_widgets_tel_prefix', '__return_false' );
+							?>
 							<span class="address-meta">
-								<a href="tel:+<?php echo preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
+								<a href="tel:<?php echo $prefix.preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
 							</span>
 						</div>
 					<?php } ?>
@@ -326,12 +334,18 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					$id_base . ' .widget-address .widget-address-field .address-meta' => array(
 						'margin-left' => esc_attr( $space_btn_icon_text ) . 'px',
 					),
-					$id_base . ' .widget-address .widget-address-field' => array(
+					$id_base . ' .widget-address.widget-address-stack .widget-address-field' => array(
 						'padding-top'    => '0',
 						'padding-bottom' => esc_attr( $space_btn_address_fields ) . 'px',
 					),
-					$id_base . ' .address .widget-address .widget-address-field:last-child' => array(
+					$id_base . ' .widget-address.widget-address-inline .widget-address-field' => array(
+						'padding-right' => esc_attr( $space_btn_address_fields ) . 'px',
+					),
+					$id_base . ' .address .widget-address.widget-address-stack .widget-address-field:last-child' => array(
 						'padding-bottom' => '0',
+					),
+					$id_base . ' .address .widget-address.widget-address-inline .widget-address-field:last-child' => array(
+						'padding-right' => '0',
 					),
 				);
 

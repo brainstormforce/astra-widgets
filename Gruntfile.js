@@ -255,38 +255,38 @@ module.exports = function( grunt ) {
 
         },
         bumpup: {
-			options: {
-				updateProps: {
-					pkg: "package.json"
-				}
-			},
-			file: "package.json"
+            options: {
+                updateProps: {
+                    pkg: "package.json"
+                }
+            },
+            file: "package.json"
         },
         replace: {
 
-			plugin_main: {
-				src: [ "astra-widgets.php" ],
-				overwrite: true,
-				replacements: [
-				{
-					from: /Version: \d{1,1}\.\d{1,2}\.\d{1,2}/g,
-					to: "Version: <%= pkg.version %>"
-				}
-				]
-			},
+            plugin_main: {
+                src: [ "astra-widgets.php" ],
+                overwrite: true,
+                replacements: [
+                {
+                    from: /Version: \d{1,1}\.\d{1,2}\.\d{1,2}/g,
+                    to: "Version: <%= pkg.version %>"
+                }
+                ]
+            },
 
-			plugin_const: {
-				src: [ "astra-widgets.php" ],
-				overwrite: true,
-				replacements: [
-				{
-					from: /ASTRA_WIDGETS_VER', '.*?'/g,
-					to: "ASTRA_WIDGETS_VER', '<%= pkg.version %>'"
-				}
-				]
-			},
-			plugin_function_comment_since: {
-				src: [
+            plugin_const: {
+                src: [ "astra-widgets.php" ],
+                overwrite: true,
+                replacements: [
+                {
+                    from: /ASTRA_WIDGETS_VER', '.*?'/g,
+                    to: "ASTRA_WIDGETS_VER', '<%= pkg.version %>'"
+                }
+                ]
+            },
+            plugin_function_comment_since: {
+                src: [
                         '*.php',
                         '**/*.php',
                         '!node_modules/**',
@@ -294,15 +294,15 @@ module.exports = function( grunt ) {
                         '!bin/**',
                         '!admin/bsf-core/**'
                     ],
-				overwrite: true,
-				replacements: [
-				{
-					from: 'x.x.x',
-					to: "<%= pkg.version %>"
-				}
-				]
-			},
-		},
+                overwrite: true,
+                replacements: [
+                {
+                    from: 'x.x.x',
+                    to: "<%= pkg.version %>"
+                }
+                ]
+            },
+        },
 
     } );
     
@@ -319,7 +319,7 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-contrib-clean' );
 
     grunt.loadNpmTasks( "grunt-bumpup" );
-	grunt.loadNpmTasks( "grunt-text-replace" );
+    grunt.loadNpmTasks( "grunt-text-replace" );
 
      // rtlcss, you will still need to install ruby and sass on your system manually to run this
     grunt.registerTask('rtl', ['rtlcss']);
@@ -343,14 +343,14 @@ module.exports = function( grunt ) {
     grunt.registerTask('release', ['clean:zip', 'copy', 'compress', 'clean:main']);
 
     // Version Bump `grunt bump-version --ver=<version-number>`
-	grunt.registerTask( 'bump-version', function() {
-		var newVersion = grunt.option("ver");
+    grunt.registerTask( 'bump-version', function() {
+        var newVersion = grunt.option("ver");
 
-		if ( newVersion ) {     
-			grunt.task.run( "bumpup:" + newVersion );
-			grunt.task.run( "replace" );
-		}
-	} );
+        if ( newVersion ) {     
+            grunt.task.run( "bumpup:" + newVersion );
+            grunt.task.run( "replace" );
+        }
+    } );
 
     grunt.util.linefeed = '\n';
 

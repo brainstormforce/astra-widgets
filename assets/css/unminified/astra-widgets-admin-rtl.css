@@ -125,16 +125,15 @@
     padding: 14px 5px;
     line-height: 8px;
     background: #f9f9f9;
-    background: -webkit-gradient(linear, right bottom, right top, color-stop(0, #f2f2f2), color-stop(1, #f9f9f9));
     background: -o-linear-gradient(#f9f9f9, #f2f2f2);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2', GradientType=0);
     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    -webkit-border-top-left-radius: 3px;
     -moz-border-top-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
     border-top-left-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
     -moz-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
     border-bottom-left-radius: 3px;
     border: 1px solid #bbbbbb;
 }
@@ -157,16 +156,15 @@
 
 .astra-field-image-preview {
     background: #f9f9f9;
-    background: -webkit-gradient(linear, right bottom, right top, color-stop(0, #f2f2f2), color-stop(1, #f9f9f9));
     background: -o-linear-gradient(#f9f9f9, #f2f2f2);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2', GradientType=0);
     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    -webkit-border-top-right-radius: 3px;
     -moz-border-top-right-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
     border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
     -moz-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
     border-bottom-right-radius: 3px;
     line-height: 10px;
 }
@@ -187,7 +185,6 @@
 }
 .astra-selected-icon {
     display: inline-block;
-    margin-left: .5em;
 }
 .astra-icons-list-wrap .search-icon {
     width: 100%;

@@ -21,28 +21,28 @@
     margin-left: 0;
 }
 .astra-widget-social-profiles-inner .ast-widget-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
     -js-display: flex;
+    display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
-    -ms-flex-item-align: center;
     -webkit-align-self: center;
+    -ms-flex-item-align: center;
     align-self: center;
     -webkit-box-pack: center;
-    -ms-flex-pack: center;
     -webkit-justify-content: center;
     -moz-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 1em;
     -webkit-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
 .astra-widget-social-profiles-inner .ast-widget-icon svg{
-    -ms-flex-item-align: center;
     -ms-grid-row-align: center;
     -webkit-align-self: center;
+    -ms-flex-item-align: center;
     align-self: center;
 }
 .astra-widget-social-profiles-inner .ast-widget-icon {
