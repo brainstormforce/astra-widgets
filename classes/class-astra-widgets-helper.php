@@ -525,7 +525,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													if ( ! empty( $img_url ) ) {
 														$button_enable = 'style="display:none;"';
 														?>
-														<img src="<?php echo $img_url; ?>" /><span class="astra-remove-image button">Remove</span>
+														<img src="<?php echo esc_url( $img_url ); ?>" /><span class="astra-remove-image button">Remove</span>
 													<?php } ?>
 												</div>
 												<input
