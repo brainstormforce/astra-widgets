@@ -85,14 +85,17 @@ module.exports = function( grunt ) {
                     processors: [
                         flexibility,
                         autoprefixer({
-                            browsers: [
-                                'Android >= 2.1',
-                                'Chrome >= 21',
-                                'Edge >= 12',
-                                'Explorer >= 7',
-                                'Firefox >= 17',
-                                'Opera >= 12.1',
-                                'Safari >= 6.0'
+                            overrideBrowserslist: [
+                                '> 1%',
+                                'ie >= 11',
+                                'last 1 Android versions',
+                                'last 1 ChromeAndroid versions',
+                                'last 2 Chrome versions',
+                                'last 2 Firefox versions',
+                                'last 2 Safari versions',
+                                'last 2 iOS versions',
+                                'last 2 Edge versions',
+                                'last 2 Opera versions'
                             ],
                             cascade: false
                         })
@@ -219,6 +222,11 @@ module.exports = function( grunt ) {
                         '!README.md',
                         '!sass/**',
                         '!codesniffer.ruleset.xml',
+                        '!vendor/**',
+                        '!composer.json',
+                        '!composer.lock',
+                        '!package-lock.json',
+                        '!phpcs.xml.dist',
                     ],
                     dest: 'astra-widgets/'
                 }
