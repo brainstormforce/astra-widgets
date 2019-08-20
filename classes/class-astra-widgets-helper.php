@@ -520,9 +520,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											</div>
 											<div class="astra-field-image">
 												<div class="astra-field-image-preview">
-													<?php 
-													$button_enable = "";
-													if ( ! empty( $img_url ) ) { 
+													<?php
+													$button_enable = '';
+													if ( ! empty( $img_url ) ) {
 														$button_enable = 'style="display:none;"';
 														?>
 														<img src="<?php echo $img_url; ?>" /><span class="astra-remove-image button">Remove</span>
