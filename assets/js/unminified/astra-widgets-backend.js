@@ -13,7 +13,7 @@
 			this._bind();
 		},
 		_init_colorpicker: function() {
-			$('.astra-widget-field-color input').wpColorPicker({
+			$('.astra-widget-field-color input').not('[id*="__i__"]').wpColorPicker({
 				change: function (event, ui) {
 					$( event.target ).val( ui.color.toString() );
       				$( event.target ).trigger('change');
