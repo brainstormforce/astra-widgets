@@ -85,11 +85,11 @@
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    color: #ca4a20;
     top: 0.6em;
-    left: 11em;
-    color: #AAA;
-    font-size: 11px;
+    left: 4em;
+    color: #a00;
+    font-size: 13px;
+    text-decoration: underline;
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
 }
@@ -98,7 +98,7 @@
     background: transparent;
     -webkit-box-shadow: none;
     box-shadow: none;
-    color: #ca4a20;
+    color: #dc3232;
 }
 .astra-field-image-preview {
     position: relative;
@@ -113,33 +113,6 @@
     display: flex;
 }
 
-/*.astra-field-image .astra-select-image {
-    display: block;
-    color: #666;
-    text-shadow: 0 1px 0 #FFF;
-    font-weight: 600;
-    font-size: 11px;
-    cursor: pointer;
-    border: 1px solid #bbbbbb;
-    height: 8px;
-    padding: 14px 5px;
-    line-height: 8px;
-    background: #f9f9f9;
-    background: -o-linear-gradient(#f9f9f9, #f2f2f2);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2', GradientType=0);
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    -moz-border-top-right-radius: 3px;
-    -webkit-border-top-right-radius: 3px;
-    border-top-right-radius: 3px;
-    -moz-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border: 1px solid #bbbbbb;
-}
-.astra-field-image .astra-select-image:hover {
-    background: rgba(255, 255, 255, 0.75);
-}*/
 .astra-field-image-preview img {
     border-width: 1px 0px 1px 1px;
     border-color: #bbbbbb;
@@ -147,8 +120,8 @@
     line-height: 0;
     -webkit-box-shadow: 0px 1px 1px #FFF;
     box-shadow: 0px 1px 1px #FFF;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     padding: 5.5px;
     -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);

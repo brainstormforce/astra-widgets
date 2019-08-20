@@ -521,7 +521,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											<div class="astra-field-image">
 												<div class="astra-field-image-preview">
 													<?php if ( ! empty( $img_url ) ) { ?>
-														<span class="astra-remove-image button">Remove</span><img src="<?php echo $img_url; ?>" />
+														<img src="<?php echo $img_url; ?>" /><span class="astra-remove-image button">Remove</span>
 													<?php } ?>
 												</div>
 												<input
@@ -531,7 +531,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													type="hidden"
 													value="<?php echo $value['default']; ?>"
 													data-field-id="<?php echo esc_attr( $value['id'] ); ?>">
+												<?php if ( empty( $img_url ) ) { ?>
 												<div class="astra-select-image button">Choose Image</div>
+												<?php } ?>
 											</div>
 										</div>
 									</p>
