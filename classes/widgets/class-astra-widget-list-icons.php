@@ -350,7 +350,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'select',
 					'id'      => 'divider',
-					'name'    => __( 'Divider:', 'astra-widgets' ),
+					'name'    => __( 'Show Divider:', 'astra-widgets' ),
 					'default' => ( isset( $instance['divider'] ) && ! empty( $instance['divider'] ) ) ? $instance['divider'] : 'yes',
 					'options' => array(
 						'yes' => __( 'Yes', 'astra-widgets' ),

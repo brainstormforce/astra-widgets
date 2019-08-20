@@ -1,14 +1,6 @@
 .astra-widget-social-profiles-inner li > a {
     -js-display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
 }
 .astra-widget-social-profiles-inner li > a .ast-widget-icon{
@@ -22,27 +14,14 @@
 }
 .astra-widget-social-profiles-inner .ast-widget-icon {
     -js-display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
     align-self: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     width: 1em;
-    -webkit-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
 .astra-widget-social-profiles-inner .ast-widget-icon svg{
     -ms-grid-row-align: center;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
     align-self: center;
 }
 .astra-widget-social-profiles-inner .ast-widget-icon {
@@ -53,10 +32,6 @@
  */
 .astra-widget-social-profiles-inner.inline li {
     -js-display: inline-flex;
-    display: -webkit-inline-box;
-    display: -webkit-inline-flex;
-    display: -moz-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
     text-align: center;
 }
@@ -68,7 +43,6 @@
 }
 .astra-widget-social-profiles-inner.circle-outline .ast-widget-icon,
 .astra-widget-social-profiles-inner.circle .ast-widget-icon {
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 }
 /*.astra-widget-social-profiles-inner.square-outline li .ast-widget-icon,
@@ -93,14 +67,11 @@
     line-height: 2;
 }
 .astra-widget-social-profiles .astra-widget-social-profiles-inner ul li a{
-    -webkit-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
 .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon svg, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon svg{
-    -webkit-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
 .astra-widget-social-profiles-inner.square-outline li .ast-widget-icon:hover svg, .astra-widget-social-profiles-inner.circle-outline li .ast-widget-icon:hover svg {
-    -webkit-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }

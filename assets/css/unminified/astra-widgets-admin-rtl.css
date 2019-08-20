@@ -83,22 +83,19 @@
     position: absolute;
     background: transparent;
     border: none;
-    -webkit-box-shadow: none;
     box-shadow: none;
-    color: #ca4a20;
     top: 0.6em;
-    right: 11em;
-    color: #AAA;
-    font-size: 11px;
-    -webkit-transition: all 0.25s ease;
+    right: 4em;
+    color: #a00;
+    font-size: 13px;
+    text-decoration: underline;
     transition: all 0.25s ease;
 }
 .astra-field-image .astra-remove-image:hover {
     outline: none;
     background: transparent;
-    -webkit-box-shadow: none;
     box-shadow: none;
-    color: #ca4a20;
+    color: #dc3232;
 }
 .astra-field-image-preview {
     position: relative;
@@ -106,51 +103,18 @@
 
 .astra-field-image {
     -js-display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
 }
 
-.astra-field-image .astra-select-image {
-    display: block;
-    color: #666;
-    text-shadow: 0 1px 0 #FFF;
-    font-weight: 600;
-    font-size: 11px;
-    cursor: pointer;
-    border: 1px solid #bbbbbb;
-    height: 8px;
-    padding: 14px 5px;
-    line-height: 8px;
-    background: #f9f9f9;
-    background: -o-linear-gradient(#f9f9f9, #f2f2f2);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2', GradientType=0);
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    -moz-border-top-left-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    border-top-left-radius: 3px;
-    -moz-border-bottom-left-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border: 1px solid #bbbbbb;
-}
-.astra-field-image .astra-select-image:hover {
-    background: rgba(255, 255, 255, 0.75);
-}
 .astra-field-image-preview img {
     border-width: 1px 1px 1px 0px;
     border-color: #bbbbbb;
     border-style: solid;
     line-height: 0;
-    -webkit-box-shadow: 0px 1px 1px #FFF;
     box-shadow: 0px 1px 1px #FFF;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     padding: 5.5px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -158,13 +122,10 @@
     background: #f9f9f9;
     background: -o-linear-gradient(#f9f9f9, #f2f2f2);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2', GradientType=0);
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     -moz-border-top-right-radius: 3px;
-    -webkit-border-top-right-radius: 3px;
     border-top-right-radius: 3px;
     -moz-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
     border-bottom-right-radius: 3px;
     line-height: 10px;
 }
@@ -193,20 +154,8 @@
 }
 .astra-widget-icons-list .astra-widget-icon {
     -js-display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     float: right;
     cursor: pointer;
@@ -238,7 +187,8 @@
 .astra-widget-field {
     margin: 1em 0;
 }
-.astra-widget-field label {
+.astra-widget-field label,
+.astra-widget-field + p label {
     margin-bottom: .5em;
     display: block;
 }
@@ -279,7 +229,7 @@
 }
 
 .astra-widget-unit-field .widefat {
-    width: 90%;
+    width: 91%;
 }
 
 .astra-widgets-unit {
