@@ -338,8 +338,14 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 						'padding-top'    => '0',
 						'padding-bottom' => esc_attr( $space_btn_address_fields ) . 'px',
 					),
+					$id_base . ' .widget-address.widget-address-inline .widget-address-field' => array(
+						'padding-right' => esc_attr( $space_btn_address_fields ) . 'px',
+					),
 					$id_base . ' .address .widget-address .widget-address-field:last-child' => array(
 						'padding-bottom' => '0',
+					),
+					$id_base . ' .address .widget-address.widget-address-inline .widget-address-field:last-child' => array(
+						'padding-right' => '0',
 					),
 				);
 
