@@ -286,8 +286,14 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					$id_base . ' .astra-widget-social-profiles-inner li > a .ast-widget-icon' => array(
 						'margin-right' => esc_attr( $space_btn_icon_text ) . 'px',
 					),
-					$id_base . ' .astra-widget-social-profiles-inner li > a ' => array(
+					$id_base . ' .astra-widget-social-profiles-inner.stack li > a ' => array(
 						'padding-bottom' => esc_attr( $space_btn_social_profiles ) . 'px',
+					),
+					$id_base . ' .astra-widget-social-profiles-inner.inline li > a ' => array(
+						'padding-right' => esc_attr( $space_btn_social_profiles ) . 'px',
+					),
+					$id_base . ' .astra-widget-social-profiles-inner.inline li:last-child a ' => array(
+						'padding-right' => '0',
 					),
 					$id_base . ' .astra-widget-social-profiles-inner li:last-child a' => array(
 						'margin-right'   => '0',
