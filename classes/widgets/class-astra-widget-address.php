@@ -334,14 +334,14 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 					$id_base . ' .widget-address .widget-address-field .address-meta' => array(
 						'margin-left' => esc_attr( $space_btn_icon_text ) . 'px',
 					),
-					$id_base . ' .widget-address .widget-address-field' => array(
+					$id_base . ' .widget-address.widget-address-stack .widget-address-field' => array(
 						'padding-top'    => '0',
 						'padding-bottom' => esc_attr( $space_btn_address_fields ) . 'px',
 					),
 					$id_base . ' .widget-address.widget-address-inline .widget-address-field' => array(
 						'padding-right' => esc_attr( $space_btn_address_fields ) . 'px',
 					),
-					$id_base . ' .address .widget-address .widget-address-field:last-child' => array(
+					$id_base . ' .address .widget-address.widget-address-stack .widget-address-field:last-child' => array(
 						'padding-bottom' => '0',
 					),
 					$id_base . ' .address .widget-address.widget-address-inline .widget-address-field:last-child' => array(
