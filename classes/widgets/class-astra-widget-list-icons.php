@@ -350,7 +350,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'select',
 					'id'      => 'divider',
-					'name'    => __( 'Divider', 'astra-widgets' ),
+					'name'    => __( 'Divider:', 'astra-widgets' ),
 					'default' => ( isset( $instance['divider'] ) && ! empty( $instance['divider'] ) ) ? $instance['divider'] : 'yes',
 					'options' => array(
 						'yes' => __( 'Yes', 'astra-widgets' ),
@@ -360,7 +360,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'select',
 					'id'      => 'divider_style',
-					'name'    => __( 'Divider Style', 'astra-widgets' ),
+					'name'    => __( 'Style:', 'astra-widgets' ),
 					'default' => ( isset( $instance['divider_style'] ) && ! empty( $instance['divider_style'] ) ) ? $instance['divider_style'] : 'inherit',
 					'options' => array(
 						'solid'  => __( 'Solid', 'astra-widgets' ),
@@ -372,14 +372,14 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				array(
 					'type'    => 'number',
 					'id'      => 'divider_weight',
-					'name'    => __( ' Divider Weight:', 'astra-widgets' ),
+					'name'    => __( ' Weight:', 'astra-widgets' ),
 					'unit'    => 'Px',
 					'default' => ( isset( $instance['divider_weight'] ) && ! empty( $instance['divider_weight'] ) ) ? $instance['divider_weight'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'divider_color',
-					'name'    => __( 'Divider Color:', 'astra-widgets' ),
+					'name'    => __( 'Color:', 'astra-widgets' ),
 					'default' => ( isset( $instance['divider_color'] ) && ! empty( $instance['divider_color'] ) ) ? $instance['divider_color'] : '',
 				),
 				array(

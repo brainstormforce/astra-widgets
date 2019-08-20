@@ -113,7 +113,7 @@
     display: flex;
 }
 
-.astra-field-image .astra-select-image {
+/*.astra-field-image .astra-select-image {
     display: block;
     color: #666;
     text-shadow: 0 1px 0 #FFF;
@@ -139,7 +139,7 @@
 }
 .astra-field-image .astra-select-image:hover {
     background: rgba(255, 255, 255, 0.75);
-}
+}*/
 .astra-field-image-preview img {
     border-width: 1px 0px 1px 1px;
     border-color: #bbbbbb;
@@ -280,7 +280,7 @@
 }
 
 .astra-widget-unit-field .widefat {
-    width: 90%;
+    width: 94%;
 }
 
 .astra-widgets-unit {
