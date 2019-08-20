@@ -527,13 +527,13 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				array(
 					'type'    => 'color',
 					'id'      => 'icon-hover-color',
-					'name'    => __( 'Hover Icon Color', 'astra-widgets' ),
+					'name'    => __( 'Icon Hover Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['icon-hover-color'] ) && ! empty( $instance['icon-hover-color'] ) ) ? $instance['icon-hover-color'] : '',
 				),
 				array(
 					'type'    => 'color',
 					'id'      => 'bg-hover-color',
-					'name'    => __( 'Hover Background Color', 'astra-widgets' ),
+					'name'    => __( 'Background Hover Color', 'astra-widgets' ),
 					'default' => ( isset( $instance['bg-hover-color'] ) && ! empty( $instance['bg-hover-color'] ) ) ? $instance['bg-hover-color'] : '',
 				),
 				array(

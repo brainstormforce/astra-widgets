@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Astra Widgets 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/astra-widgets\n"
-"POT-Creation-Date: 2019-08-20 09:53:34+00:00\n"
+"POT-Creation-Date: 2019-08-20 13:15:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,11 +25,11 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: classes/class-astra-widgets-helper.php:413
-msgid "Choose icon.."
+msgid "Choose Icon.."
 msgstr ""
 
 #: classes/class-astra-widgets-helper.php:462
-msgid "Add item"
+msgid "Add Item"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-address.php:60
@@ -159,8 +159,11 @@ msgid "\tSpace Between List Items:"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:348
-#: classes/widgets/class-astra-widget-list-icons.php:353
 msgid "Divider"
+msgstr ""
+
+#: classes/widgets/class-astra-widget-list-icons.php:353
+msgid "Show Divider:"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:356
@@ -172,7 +175,7 @@ msgid "No"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:363
-msgid "Divider Style"
+msgid "Style:"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:366
@@ -192,11 +195,11 @@ msgid "Dashed"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:375
-msgid " Divider Weight:"
+msgid " Weight:"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:382
-msgid "Divider Color:"
+msgid "Color:"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-list-icons.php:387
@@ -282,11 +285,11 @@ msgid "Custom"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-social-profiles.php:530
-msgid "Hover Icon Color"
+msgid "Icon Hover Color"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-social-profiles.php:536
-msgid "Hover Background Color"
+msgid "Background Hover Color"
 msgstr ""
 
 #: classes/widgets/class-astra-widget-social-profiles.php:542

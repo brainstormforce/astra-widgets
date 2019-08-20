@@ -162,6 +162,7 @@
 				parent.find('.astra-image-alt').val( '' );
 				parent.find('.astra-image-title').val( '' );
 				parent.find('.astra-image-size-select, .astra-image-width').hide();
+				parent.find('.astra-select-image.button').css("display", "inline-block");
 			}
 		},
 
@@ -206,13 +207,15 @@
 				if( parent.find('.astra-remove-image').length > 0 ) {
 					parent.find('.astra-field-image-preview img').attr('src', url );
 				} else {
-					parent.find('.astra-field-image-preview').append('<span class="astra-remove-image button">Remove</span><img src="'+url+'" />');
+					parent.find('.astra-field-image-preview').append('<img src="'+url+'" /><span class="astra-remove-image button">Remove</span>');
 				}
 				parent.find('.astra-image-url').val( attachments[0].url );
 				parent.find('.astra-image-alt').val( attachments[0].alt );
 				parent.find('.astra-image-title').val( attachments[0].title );
 
 				parent.find('.astra-field-image-preview-id').val( attachments[0].id );
+				parent.find('.astra-select-image.button').css("display", "none");
+
 
 				parent.find('.astra-image-size-select, .astra-image-width').show();
 
