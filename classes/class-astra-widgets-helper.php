@@ -545,7 +545,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 											<?php
 											$c = '';
-											if ( $option == $value['default'] ) {
+											if ( $option === $value['default'] ) {
 												$c = ' checked="checked" ';
 											}
 											?>
@@ -766,7 +766,7 @@ if ( ! function_exists( 'astra_widgets_parse_css' ) ) {
 				}
 			}
 
-			if ( '' != $parse_css && ( '' !== $min_media || '' !== $max_media ) ) {
+			if ( '' !== $parse_css && ( '' !== $min_media || '' !== $max_media ) ) {
 
 				$media_css       = '@media ';
 				$min_media_css   = '';
@@ -819,7 +819,7 @@ if ( ! function_exists( 'astra_widget_get_css_value' ) ) {
 	 */
 	function astra_widget_get_css_value( $value = '', $unit = 'px', $default = '' ) {
 
-		if ( '' == $value && '' == $default ) {
+		if ( '' === $value && '' === $default ) {
 			return $value;
 		}
 
@@ -829,7 +829,7 @@ if ( ! function_exists( 'astra_widget_get_css_value' ) ) {
 
 			case 'px':
 			case '%':
-						$value   = ( '' != $value ) ? $value : $default;
+						$value   = ( '' !== $value ) ? $value : $default;
 						$css_val = esc_attr( $value ) . $unit;
 				break;
 
@@ -838,8 +838,8 @@ if ( ! function_exists( 'astra_widget_get_css_value' ) ) {
 				break;
 
 			default:
-				$value = ( '' != $value ) ? $value : $default;
-				if ( '' != $value ) {
+				$value = ( '' !== $value ) ? $value : $default;
+				if ( '' !== $value ) {
 					$css_val = esc_attr( $value ) . $unit;
 				}
 		}
