@@ -238,7 +238,8 @@
 .astra-widget-field {
     margin: 1em 0;
 }
-.astra-widget-field label {
+.astra-widget-field label,
+.astra-widget-field + p label {
     margin-bottom: .5em;
     display: block;
 }
