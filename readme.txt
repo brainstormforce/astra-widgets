@@ -77,9 +77,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 == Changelog ==
 
 = 1.2.0 = 
-- New: WCAG compatibility.
-- New: Added provision ( using astra_widgets_tel_prefix filter hook ) to remove + sign from telephone link in Address widget.
-- Improvement: Applied Padding right to widgets in case of inline alignment.
+- New: Add provision ( using astra_widgets_tel_prefix filter hook ) to remove + sign from telephone link in Address widget.
+- Improvement: Add aria-label attribute to social widget links to improve accessibility.
+- Improvement: Apply Padding right to widgets in case of inline alignment.
 - Fix: Console error for SVG icon in address widget. 
 - Fix: Save button is not working after selecting color from colorpicker.
 - Fix: The official color for the social icon is not working.
