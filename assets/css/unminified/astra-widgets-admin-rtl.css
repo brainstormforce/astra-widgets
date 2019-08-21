@@ -192,6 +192,9 @@
     margin-bottom: .5em;
     display: block;
 }
+.astra-widget-field .wp-picker-input-wrap label {
+    display: inline-block;
+}
 .astra-widget-field-checkbox label {
     display: inline-block;
 }
