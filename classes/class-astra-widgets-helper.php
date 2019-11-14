@@ -44,7 +44,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -64,7 +64,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @param string $hook Page name.
 		 * @return void
 		 */
-		function enqueue_admin_scripts( $hook ) {
+		public function enqueue_admin_scripts( $hook ) {
 
 			if ( 'widgets.php' !== $hook ) {
 				return;
@@ -78,7 +78,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
 			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_style( 'astra-widgets-backend', $css_uri . 'astra-widgets-admin' . $file_prefix . '.css' );
+			wp_enqueue_style( 'astra-widgets-backend', $css_uri . 'astra-widgets-admin' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 			wp_enqueue_script( 'astra-widgets-backend', $js_uri . 'astra-widgets-backend' . $file_prefix . '.js', array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ), ASTRA_WIDGETS_VER, true );
 
 			$font_awesome_icons = self::backend_load_font_awesome_icons();
@@ -113,7 +113,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			}
 
 			// Used https://gist.github.com/Balachandark/048d40f8eb18a9a9c7623dc949ff8d1a to remove unwanted data from the JSON file.
-			$str        = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' );
+			$str        = file_get_contents( ASTRA_WIDGETS_DIR . 'assets/fonts/icons.json' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			self::$json = json_decode( $str, true ); // decode the JSON into an associative array.
 
 			return self::$json;
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @param  array $fields Fields array.
 		 * @return boolean        Repeater field exist.
 		 */
-		function have_repeator_field( $fields = array() ) {
+		public function have_repeator_field( $fields = array() ) {
 			foreach ( $fields as $key => $field ) {
 				if ( 'repeater' === $field['type'] ) {
 					return true;
@@ -367,7 +367,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @param  string $repeater_id Repeater ID.
 		 * @return void
 		 */
-		function generate( $self, $fields = array(), $repeater_id = '' ) {
+		public function generate( $self, $fields = array(), $repeater_id = '' ) {
 
 			$defaults = array(
 				'type'    => '',
@@ -426,7 +426,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											data-field-id="<?php echo esc_attr( $value['id'] ); ?>"
 											data-icon-visible="<?php echo esc_attr( ( isset( $value['show_icon'] ) ) ? $value['show_icon'] : 'no' ); ?>"
 										/>
-										<span><?php echo $value['desc']; ?></span>
+										<span><?php echo esc_attr( $value['desc'] ); ?></span>
 									</div>
 								<?php
 							break;
@@ -445,7 +445,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 											<?php checked( $value['default'] ); ?>
 											id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"
 											name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" />
-										<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
+										<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
 									</div>
 									<?php
 							break;
@@ -460,14 +460,14 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 										</div>
 									</div>
 									<div class="add-new">
-										<button class="add-new-btn button"><?php _e( 'Add Item', 'astra-widgets' ); ?></button>
+										<button class="add-new-btn button"><?php esc_attr_e( 'Add Item', 'astra-widgets' ); ?></button>
 									</div>
 
 									<?php
 									$repeater_id = 'widget-' . $self->id_base . '[' . $self->number . '][' . $value['id'] . ']';
 									?>
 
-									<div class="astra-repeater-fields" title="<?php echo $value['title']; ?>" data-id="<?php echo esc_attr( $repeater_id ); ?>" style="display: none;">
+									<div class="astra-repeater-fields" title="<?php echo esc_attr( $value['title'] ); ?>" data-id="<?php echo esc_attr( $repeater_id ); ?>" style="display: none;">
 										<?php $this->generate( $self, $value['options'], $value['id'] ); ?>
 									</div>
 								</div>
@@ -484,7 +484,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							?>
 										<div class="astra-widget-field astra-widget-field-text">
 											<label for="<?php echo esc_attr( $field_id ); ?>">
-												<?php echo $value['name']; ?>
+												<?php echo esc_attr( $value['name'] ); ?>
 											</label>
 											<input class="widefat" type="text"
 												id="<?php echo esc_attr( $field_id ); ?>"
@@ -492,7 +492,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 												value="<?php echo esc_attr( $value['default'] ); ?>"
 												data-field-id="<?php echo esc_attr( $value['id'] ); ?>"
 											/>
-											<span><?php echo $value['desc']; ?></span>
+											<span><?php echo esc_attr( $value['desc'] ); ?></span>
 										</div>
 									<?php
 							break;
@@ -517,7 +517,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 									<p>
 										<div class="astra-field-image-wrapper">
 											<div class="astra-field-image-title" for="<?php echo esc_attr( $field_id ); ?>">
-													<?php echo $value['name']; ?>
+													<?php echo esc_attr( $value['name'] ); ?>
 											</div>
 											<div class="astra-field-image">
 												<div class="astra-field-image-preview">
@@ -534,9 +534,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 													id="<?php echo esc_attr( $field_id ); ?>"
 													name="<?php echo esc_attr( $field_name ); ?>"
 													type="hidden"
-													value="<?php echo $value['default']; ?>"
+													value="<?php echo esc_attr( $value['default'] ); ?>"
 													data-field-id="<?php echo esc_attr( $value['id'] ); ?>">
-												<div class="astra-select-image button" <?php echo $button_enable; ?>>Choose Image</div>
+												<div class="astra-select-image button" <?php echo esc_attr( $button_enable ); ?>>Choose Image</div>
 											</div>
 										</div>
 									</p>
@@ -545,7 +545,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						case 'radio':
 							?>
 									<p>
-										<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
+										<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
 										<?php foreach ( $value['options'] as $option ) { ?>
 
 											<?php
@@ -554,7 +554,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 												$c = ' checked="checked" ';
 											}
 											?>
-											<input <?php echo $value['default']; ?> class="widefat" type="radio" <?php echo $c; ?> name="<?php echo $self->get_field_name( $value['id'] ); ?>" value="<?php echo esc_attr( $option ); ?>" />
+											<input <?php echo esc_attr( $value['default'] ); ?> class="widefat" type="radio" <?php echo esc_attr( $c ); ?> name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $option ); ?>" />
 										<?php } ?>
 									</p>
 									<?php
@@ -567,15 +567,15 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 								$field_name = $self->get_field_name( $value['id'] );
 							}
 							?>
-								<div class="astra-widget-field astra-widget-field-select astra-widget-field-<?php echo $value['id']; ?>">
+								<div class="astra-widget-field astra-widget-field-select astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 									<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
-									<label for="<?php echo esc_attr( $field_id ); ?>"><?php echo $value['name']; ?></label>
+									<label for="<?php echo esc_attr( $field_id ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
 										<select class="widefat" id="<?php echo esc_attr( $field_id ); ?>" name="<?php echo esc_attr( $field_name ); ?>"
 											data-field-id="<?php echo esc_attr( $value['id'] ); ?>">
 											<?php
 											foreach ( $value['options'] as $op_val => $op_name ) {
 												?>
-												<option value="<?php echo $op_val; ?>" <?php selected( $value['default'], $op_val ); ?>><?php echo $op_name; ?></option>
+												<option value="<?php echo esc_attr( $op_val ); ?>" <?php selected( $value['default'], $op_val ); ?>><?php echo esc_attr( $op_name ); ?></option>
 											<?php } ?>
 										</select>
 									</div>
@@ -584,16 +584,16 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							break;
 						case 'hidden':
 							?>
-										<input class="<?php echo $class; ?> widefat" type="hidden" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
+										<input class="<?php echo esc_attr( $class ); ?> widefat" type="hidden" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
 									<?php
 							break;
 						case 'color':
 							?>
 
-									<div class="astra-widget-field astra-widget-field-color astra-widget-field-<?php echo $value['id']; ?>">
+									<div class="astra-widget-field astra-widget-field-color astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 										<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
-											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
-											<input class="<?php echo $class; ?> widefat" type="text" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
+											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
+											<input class="<?php echo esc_attr( $class ); ?> widefat" type="text" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
 										</div>
 									</div>
 
@@ -614,7 +614,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						case 'email':
 							?>
 										<p>
-											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
+											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
 											<input class="widefat" type="email" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
 										</p>
 									<?php
@@ -623,7 +623,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						case 'textarea':
 							?>
 										<p>
-											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
+											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
 											<textarea class="widefat" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" rows="5"><?php echo esc_attr( $value['default'] ); ?></textarea>
 										</p>
 									<?php
@@ -631,9 +631,9 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 						case 'number':
 							?>
-										<div class="astra-widget-field astra-widget-field-number astra-widget-field-<?php echo $value['id']; ?> <?php echo $class; ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?> <?php echo( isset( $value['unit'] ) ) ? ' astra-widget-unit-field' : ''; ?>"> 
-											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo $value['name']; ?></label>
-											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/><span class="astra-widgets-unit"> <?php echo ( isset( $value['unit'] ) ) ? $value['unit'] : ''; ?> </span>
+										<div class="astra-widget-field astra-widget-field-number astra-widget-field-<?php echo esc_attr( $value['id'] ); ?> <?php echo esc_attr( $class ); ?> <?php echo isset( $value['unit'] ) ? 'astra-widgets-number-unit' : ''; ?> <?php echo( isset( $value['unit'] ) ) ? ' astra-widget-unit-field' : ''; ?>"> 
+											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_attr( $value['name'] ); ?></label>
+											<input class="widefat" type="number" id="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/><span class="astra-widgets-unit"> <?php echo ( isset( $value['unit'] ) ) ? esc_attr( $value['unit'] ) : ''; ?> </span>
 										</div>
 									<?php
 							break;
@@ -656,7 +656,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @param  array  $value   Default value.
 		 * @return void
 		 */
-		function generate_repeater_fields( $self, $fields, $value ) {
+		public function generate_repeater_fields( $self, $fields, $value ) {
 			$instances = $self->get_settings();
 
 			if ( array_key_exists( $self->number, $instances ) ) {
@@ -682,7 +682,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 						?>
 						<div class="astra-repeater-field">
 							<div class="actions">
-								<span class="index"><?php echo $index; ?></span>
+								<span class="index"><?php echo esc_attr( $index ); ?></span>
 								<span class="dashicons dashicons-move"></span>
 								<span class="title"></span>
 								<span class="dashicons dashicons-admin-page clone"></span>

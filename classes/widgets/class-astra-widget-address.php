@@ -44,7 +44,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -54,7 +54,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 *
 		 * @since 1.0.0
 		 */
-		function __construct() {
+		public function __construct() {
 			parent::__construct(
 				$this->id_base,
 				__( 'Astra: Address', 'astra-widgets' ),
@@ -74,7 +74,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 *
 		 * @return void
 		 */
-		function register_scripts() {
+		public function register_scripts() {
 
 			/* Directory and Extension */
 			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css' );
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css', false, array(), ASTRA_WIDGETS_VER );
 
 		}
 
@@ -94,7 +94,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function _front_setup( $args, $instance ) {
+		public function front_setup( $args, $instance ) {
 
 			// Set stored data.
 			$this->stored_data = $instance;
@@ -113,9 +113,9 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
-			$this->_front_setup( $args, $instance );
+			$this->front_setup( $args, $instance );
 
 			$title        = apply_filters( 'widget_title', $instance['title'] );
 			$style        = isset( $instance['style'] ) ? $instance['style'] : 'stack';
@@ -126,9 +126,9 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			$email        = isset( $instance['email'] ) ? $instance['email'] : '';
 
 			// Before Widget.
-			echo $args['before_widget'];
+			echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo $args['before_title'] . esc_attr( $title ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
 			<?php
 			$widget_content_font_size = '15';
@@ -145,18 +145,18 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
 									<?php // Font Awesome 5 SVG. ?>
-									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo $widget_content_font_size . 'px'; ?>" height="<?php echo $widget_content_font_size . 'px'; ?>" viewBox="0 0 496 512"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>
+									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" height="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" viewBox="0 0 496 512"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>
 									</svg>
 								</span>
 							<?php } ?>
-							<span class="address-meta"><?php echo nl2br( $address ); ?></span>
+							<span class="address-meta"><?php echo nl2br( esc_attr( $address ) ); ?></span>
 						</div>
 					<?php } ?>
 					<?php if ( ! empty( $phone ) ) { ?>
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
 									<?php // Font Awesome 5 SVG. ?>
-									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo $widget_content_font_size . 'px'; ?>" height="<?php echo $widget_content_font_size . 'px'; ?>" viewBox="0 0 512 512"><path d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"></path>
+									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" height="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" viewBox="0 0 512 512"><path d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"></path>
 									</svg>
 								</span>
 							<?php } ?>
@@ -169,7 +169,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 							add_filter( 'astra_widgets_tel_prefix', '__return_false' );
 							?>
 							<span class="address-meta">
-								<a href="tel:<?php echo $prefix . preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
+								<a href="tel:<?php echo esc_attr( $prefix ) . esc_attr( preg_replace( '/\D/', '', esc_attr( $phone ) ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
 							</span>
 						</div>
 					<?php } ?>
@@ -177,7 +177,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
 									<?php // Font Awesome 5 SVG. ?>
-									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo $widget_content_font_size . 'px'; ?>" height="<?php echo $widget_content_font_size . 'px'; ?>" viewBox="0 0 384 512"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" height="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" viewBox="0 0 384 512"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
 									</svg>
 								</span>
 							<?php } ?>
@@ -191,12 +191,12 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 						<div class="widget-address-field">
 							<?php if ( $social_icons ) { ?>
 									<?php // Font Awesome 5 SVG. ?>
-									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo $widget_content_font_size . 'px'; ?>" height="<?php echo $widget_content_font_size . 'px'; ?>" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+									<svg xmlns="http://www.w3.org/2000/svg" class="address-icons" width="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" height="<?php echo esc_attr( $widget_content_font_size ) . 'px'; ?>" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
 									</svg>
 								</span>
 							<?php } ?>
 							<span class="address-meta">
-								<a href="mailto:<?php echo antispambot( $email ); ?>" ><?php echo antispambot( $email ); ?></a>
+								<a href="mailto:<?php echo esc_attr( antispambot( $email ) ); ?>" ><?php echo esc_attr( antispambot( $email ) ); ?></a>
 							</span>
 						</div>
 					<?php } ?>
@@ -206,7 +206,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			<?php
 
 			// After Widget.
-			echo $args['after_widget'];
+			echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		/**
@@ -216,7 +216,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 * @param  array $old_instance Widget old instance.
 		 * @return array                Merged updated instance.
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			$instance = wp_parse_args( $new_instance, $old_instance );
 
@@ -237,7 +237,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			$fields = array(
 				array(
@@ -316,7 +316,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 		 *
 		 * @return string
 		 */
-		function get_dynamic_css() {
+		public function get_dynamic_css() {
 
 			$dynamic_css = '';
 			$instances   = get_option( 'widget_' . $this->id_base );
