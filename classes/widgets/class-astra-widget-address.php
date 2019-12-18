@@ -85,6 +85,8 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 
 			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css' );
 
+			add_filter( 'astra_widgets_tel_prefix', '__return_false' );
+
 		}
 
 		/**
@@ -166,7 +168,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 							} else {
 								$prefix = '';
 							}
-							add_filter( 'astra_widgets_tel_prefix', '__return_false' );
+
 							?>
 							<span class="address-meta">
 								<a href="tel:<?php echo $prefix . preg_replace( '/\D/', '', esc_attr( $phone ) ); ?>" ><?php echo esc_attr( $phone ); ?></a>
