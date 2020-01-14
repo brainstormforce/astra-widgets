@@ -85,8 +85,6 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 
 			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css' );
 
-			add_filter( 'astra_widgets_tel_prefix', '__return_false' );
-
 		}
 
 		/**
@@ -163,7 +161,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 								</span>
 							<?php } ?>
 							<?php
-							if ( apply_filters( 'astra_widgets_tel_prefix', true ) ) {
+							if ( apply_filters( 'astra_widgets_tel_prefix', false ) ) {
 								$prefix = '+';
 							} else {
 								$prefix = '';
