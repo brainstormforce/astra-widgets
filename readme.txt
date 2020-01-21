@@ -3,7 +3,7 @@ Contributors: brainstormforce
 Donate link: https://www.paypal.me/BrainstormForce
 Tags: Address widget, Social profile widget, List icon widget, Social media, Add widget
 Requires at least: 4.7
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 5.2
 Stable tag: 1.2.1
 License: GPLv2 or later
@@ -75,6 +75,11 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 == Changelog ==
+
+= 1.2.2 =
+- Fix: Plus prefix appearing when more than one tel number added.
+- Fix: Color picker's clear button position issue.
+- Fix: markup issue in address and social profiles widget.
 
 = 1.2.1 = 
 - Fix: Color picker style not working.

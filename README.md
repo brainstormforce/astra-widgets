@@ -76,6 +76,11 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 
 ## Changelog ##
 
+### 1.2.2 ###
+- Fix: Plus prefix appearing when more than one tel number added.
+- Fix: Color picker's clear button position issue.
+- Fix: markup issue in address and social profiles widget.
+
 ### 1.2.1 ###
 - Fix: Color picker style not working.
 
