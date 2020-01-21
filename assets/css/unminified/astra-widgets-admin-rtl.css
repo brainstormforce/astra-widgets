@@ -202,6 +202,11 @@
     font-weight: bold;
 }
 
+.astra-widget-field .wp-picker-input-wrap .wp-picker-clear {
+    min-height: 30px;
+    margin-right: 6px;
+}
+
 /**
  * Field - Color Picker
  */
