@@ -83,7 +83,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css', false, array(), ASTRA_WIDGETS_VER );
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-address' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 
 		}
 

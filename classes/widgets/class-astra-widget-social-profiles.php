@@ -96,7 +96,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
 			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-social-profiles' . $file_prefix . '.js', false, array(), ASTRA_WIDGETS_VER, false );
-			wp_register_style( 'astra-widget-social-profiles-admin', $css_uri . 'astra-widget-social-profiles-admin' . $file_prefix . '.css', false, array(), ASTRA_WIDGETS_VER );
+			wp_register_style( 'astra-widget-social-profiles-admin', $css_uri . 'astra-widget-social-profiles-admin' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -112,7 +112,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-social-profiles' . $file_prefix . '.css', false, array(), ASTRA_WIDGETS_VER );
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-social-profiles' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
