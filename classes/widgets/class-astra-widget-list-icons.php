@@ -218,7 +218,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 										</div>
 									<?php } ?>
 
-									<span class="link-text"><?php echo esc_html( $list['title'] ); ?></span>
+									<span class="link-text"><?php echo wp_kses_post( $list['title'] ); ?></span>
 
 									</a>
 								</div>

@@ -149,7 +149,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 									</svg>
 								</span>
 							<?php } ?>
-							<span class="address-meta"><?php echo nl2br( esc_attr( $address ) ); ?></span>
+							<span class="address-meta"><?php echo nl2br( wp_kses_post( $address ) ); ?></span>
 						</div>
 					<?php } ?>
 					<?php if ( ! empty( $phone ) ) { ?>
