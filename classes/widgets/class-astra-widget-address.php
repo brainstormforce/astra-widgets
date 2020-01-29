@@ -126,9 +126,9 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			$email        = isset( $instance['email'] ) ? $instance['email'] : '';
 
 			// Before Widget.
-			echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses_post( $args['before_widget'] );
 			if ( $title ) {
-				echo $args['before_title'] . esc_attr( $title ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wp_kses_post( $args['before_title'] . esc_attr( $title ) . $args['after_title'] );
 			} ?>
 			<?php
 			$widget_content_font_size = '15';
@@ -202,7 +202,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			<?php
 
 			// After Widget.
-			echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses_post( $args['after_widget'] );
 		}
 
 		/**

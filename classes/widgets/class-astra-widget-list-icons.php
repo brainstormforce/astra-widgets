@@ -185,9 +185,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$title = apply_filters( 'widget_title', $this->get_fields( 'title' ) );
 
 			// Before Widget.
-			echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses_post( $args['before_widget'] );
 			if ( $title ) {
-				echo $args['before_title'] . esc_attr( $title ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wp_kses_post( $args['before_title'] . esc_attr( $title ) . $args['after_title'] );
 			} ?>
 
 			<div id="astra-widget-list-icons-wrapper" class="astra-widget-list-icons clearfix">
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			<?php
 
 			// After Widget.
-			echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses_post( $args['after_widget'] );
 		}
 
 		/**
