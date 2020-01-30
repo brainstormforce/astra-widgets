@@ -331,7 +331,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			// Before Widget.
 			echo $args['before_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $args['before_title'] . $title . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
 
 			<div class="astra-widget-social-profiles-inner clearfix <?php echo esc_attr( $align ); ?> <?php echo esc_attr( $icon_style ); ?> <?php echo 'icon-' . esc_attr( $color_type ); ?>">

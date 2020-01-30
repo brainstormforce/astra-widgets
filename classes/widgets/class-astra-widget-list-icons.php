@@ -187,7 +187,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			// Before Widget.
 			echo $args['before_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $args['before_title'] . $title . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
 
 			<div id="astra-widget-list-icons-wrapper" class="astra-widget-list-icons clearfix">
