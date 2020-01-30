@@ -329,9 +329,9 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$title            = apply_filters( 'widget_title', $this->get_fields( 'title' ) );
 
 			// Before Widget.
-			echo wp_kses_post( $args['before_widget'] );
+			echo $args['before_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo wp_kses_post( $args['before_title'] . esc_attr( $title ) . $args['after_title'] );
+				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
 
 			<div class="astra-widget-social-profiles-inner clearfix <?php echo esc_attr( $align ); ?> <?php echo esc_attr( $icon_style ); ?> <?php echo 'icon-' . esc_attr( $color_type ); ?>">
@@ -366,7 +366,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			<?php
 
 			// After Widget.
-			echo wp_kses_post( $args['after_widget'] );
+			echo $args['after_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		/**

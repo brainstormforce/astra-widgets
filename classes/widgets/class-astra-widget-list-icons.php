@@ -185,9 +185,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$title = apply_filters( 'widget_title', $this->get_fields( 'title' ) );
 
 			// Before Widget.
-			echo wp_kses_post( $args['before_widget'] );
+			echo $args['before_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo wp_kses_post( $args['before_title'] . esc_attr( $title ) . $args['after_title'] );
+				echo $args['before_title'] . esc_html( $title ) . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
 
 			<div id="astra-widget-list-icons-wrapper" class="astra-widget-list-icons clearfix">
@@ -197,16 +197,15 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						foreach ( $list as $index => $list ) {
 
 							$list_data = json_decode( $list['icon'] );
-
-							$target = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
-							$rel    = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
+							$target    = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
+							$rel       = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
 							?>
 							<li>
 								<div class="link">
 									<a href="<?php echo esc_attr( $list['link'] ); ?>" class="list-item-link" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>" aria-label="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
-											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
+											<span class="<?php echo ( is_object( $list_data ) ) ? esc_attr( $list_data->name ) : ''; ?>">
 												<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
 													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15px'; ?>" height="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? esc_attr( $list_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? esc_attr( $list_data->path ) : ''; ?>"></path></svg>
 												<?php } ?>
@@ -218,7 +217,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 										</div>
 									<?php } ?>
 
-									<span class="link-text"><?php echo wp_kses_post( $list['title'] ); ?></span>
+									<span class="link-text"><?php echo esc_html( $list['title'] ); ?></span>
 
 									</a>
 								</div>
@@ -230,7 +229,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			<?php
 
 			// After Widget.
-			echo wp_kses_post( $args['after_widget'] );
+			echo $args['after_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		/**
