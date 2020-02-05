@@ -54,7 +54,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -64,7 +64,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 *
 		 * @since 1.0.0
 		 */
-		function __construct() {
+		public function __construct() {
 			parent::__construct(
 				$this->id_base,
 				__( 'Astra: List Icons', 'astra-widgets' ),
@@ -86,7 +86,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 *
 		 * @return void
 		 */
-		function register_admin_scripts() {
+		public function register_admin_scripts() {
 
 			/* Directory and Extension */
 			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
@@ -95,7 +95,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-list-icons' . $file_prefix . '.js', array(), ASTRA_WIDGETS_VER );
+			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-list-icons' . $file_prefix . '.js', false, array(), ASTRA_WIDGETS_VER, false );
 		}
 
 		/**
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 *
 		 * @return void
 		 */
-		function register_scripts() {
+		public function register_scripts() {
 
 			/* Directory and Extension */
 			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
@@ -112,7 +112,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-list-icons' . $file_prefix . '.css' );
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-list-icons' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -122,7 +122,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @param  mixed  $default Widget field default value.
 		 * @return mixed stored/default widget field value.
 		 */
-		function get_fields( $field = '', $default = '' ) {
+		public function get_fields( $field = '', $default = '' ) {
 
 			// Emtpy stored values.
 			if ( empty( $this->stored_data ) ) {
@@ -148,7 +148,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function _front_setup( $args, $instance ) {
+		public function front_setup( $args, $instance ) {
 
 			// Set stored data.
 			$this->stored_data = $instance;
@@ -168,9 +168,9 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
-			$this->_front_setup( $args, $instance );
+			$this->front_setup( $args, $instance );
 
 			$width      = $instance['width'] ? $instance['width'] : '';
 			$icon_color = $instance['icon_color'] ? $instance['icon_color'] : '';
@@ -185,11 +185,10 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			$title = apply_filters( 'widget_title', $this->get_fields( 'title' ) );
 
 			// Before Widget.
-			echo $args['before_widget'];
+			echo $args['before_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo $args['before_title'] . $title . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
-
 			<div id="astra-widget-list-icons-wrapper" class="astra-widget-list-icons clearfix">
 				<?php if ( ! empty( $list ) ) { ?>
 					<ul class="list-items-wrapper">
@@ -197,18 +196,17 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 						foreach ( $list as $index => $list ) {
 
 							$list_data = json_decode( $list['icon'] );
-
-							$target = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
-							$rel    = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
+							$target    = ( 'same-page' === $list['link-target'] ) ? '_self' : '_blank';
+							$rel       = ( 'enable' === $list['nofollow'] ) ? 'noopener nofollow' : '';
 							?>
 							<li>
 								<div class="link">
 									<a href="<?php echo esc_attr( $list['link'] ); ?>" class="list-item-link" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>" aria-label="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 									<?php if ( 'icon' === $list['imageoricon'] ) { ?>
 										<div class="icon">
-											<span class="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
+											<span class="<?php echo ( is_object( $list_data ) ) ? esc_attr( $list_data->name ) : ''; ?>">
 												<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
-													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15' . 'px'; ?>" height="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15' . 'px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+													<svg xmlns="http://www.w3.org/2000/svg" class="list-icon" fill="<?php echo esc_attr( $icon_color ); ?>" width="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15px'; ?>" height="<?php echo ( '' !== $width ) ? esc_attr( $width ) : '15px'; ?>" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? esc_attr( $list_data->viewbox ) : ''; ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? esc_attr( $list_data->path ) : ''; ?>"></path></svg>
 												<?php } ?>
 											</span>
 										</div>
@@ -230,7 +228,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			<?php
 
 			// After Widget.
-			echo $args['after_widget'];
+			echo $args['after_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		/**
@@ -240,7 +238,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @param  array $old_instance Widget old instance.
 		 * @return array                Merged updated instance.
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 			return wp_parse_args( $new_instance, $old_instance );
 		}
 
@@ -250,7 +248,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			$custom_css = " .body{ background: '#000'; }";
 			wp_enqueue_script( 'astra-widgets-' . $this->id_base );
@@ -423,7 +421,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 *
 		 * @return string
 		 */
-		function get_dynamic_css() {
+		public function get_dynamic_css() {
 
 			$dynamic_css = '';
 

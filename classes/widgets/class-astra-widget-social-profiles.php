@@ -54,7 +54,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -64,7 +64,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 *
 		 * @since 1.6.0
 		 */
-		function __construct() {
+		public function __construct() {
 			parent::__construct(
 				$this->id_base,
 				__( 'Astra: Social Profiles', 'astra-widgets' ),
@@ -87,7 +87,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 *
 		 * @return void
 		 */
-		function register_admin_scripts() {
+		public function register_admin_scripts() {
 			/* Directory and Extension */
 			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
 			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
@@ -95,8 +95,8 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-social-profiles' . $file_prefix . '.js', array(), ASTRA_WIDGETS_VER );
-			wp_register_style( 'astra-widget-social-profiles-admin', $css_uri . 'astra-widget-social-profiles-admin' . $file_prefix . '.css' );
+			wp_enqueue_script( 'astra-widgets-' . $this->id_base, $js_uri . 'astra-widget-social-profiles' . $file_prefix . '.js', false, array(), ASTRA_WIDGETS_VER, false );
+			wp_register_style( 'astra-widget-social-profiles-admin', $css_uri . 'astra-widget-social-profiles-admin' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -104,7 +104,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 *
 		 * @return void
 		 */
-		function register_scripts() {
+		public function register_scripts() {
 			/* Directory and Extension */
 			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
 			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
@@ -112,7 +112,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$js_uri  = ASTRA_WIDGETS_URI . 'assets/js/' . $dir_name . '/';
 			$css_uri = ASTRA_WIDGETS_URI . 'assets/css/' . $dir_name . '/';
 
-			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-social-profiles' . $file_prefix . '.css' );
+			wp_register_style( 'astra-widgets-' . $this->id_base, $css_uri . 'astra-widget-social-profiles' . $file_prefix . '.css', array(), ASTRA_WIDGETS_VER );
 		}
 
 		/**
@@ -122,7 +122,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 * @param  mixed  $default Widget field default value.
 		 * @return mixed stored/default widget field value.
 		 */
-		function get_fields( $field = '', $default = '' ) {
+		public function get_fields( $field = '', $default = '' ) {
 
 			// Emtpy stored values.
 			if ( empty( $this->stored_data ) ) {
@@ -148,7 +148,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function _front_setup( $args, $instance ) {
+		public function front_setup( $args, $instance ) {
 
 			// Set stored data.
 			$this->stored_data = $instance;
@@ -165,7 +165,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 *
 		 * @return string              Dynamic CSS.
 		 */
-		function get_dynamic_css() {
+		public function get_dynamic_css() {
 
 			$dynamic_css = '';
 
@@ -210,9 +210,6 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color.simple li .' . $name . '.ast-widget-icon svg' => array(
 									'fill' => esc_attr( $icon_bg_color_official ),
 								),
-								// $id_base . ' .astra-widget-social-profiles-inner.icon-official-color.simple li .' . $name . '.ast-widget-icon' => array(
-								// 'background-color' => esc_attr( $icon_bg_color_official ),
-								// ),
 								$id_base . ' .astra-widget-social-profiles-inner.icon-official-color li .' . $name . '.ast-widget-icon svg' => array(
 									'fill' => esc_attr( $icon_color_official ),
 								),
@@ -313,9 +310,9 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
-			$this->_front_setup( $args, $instance );
+			$this->front_setup( $args, $instance );
 			wp_enqueue_style( 'astra-widgets-font-style' );
 
 			$list             = $this->get_fields( 'list', array() );
@@ -332,9 +329,9 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			$title            = apply_filters( 'widget_title', $this->get_fields( 'title' ) );
 
 			// Before Widget.
-			echo $args['before_widget'];
+			echo $args['before_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( $title ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo $args['before_title'] . $title . $args['after_title'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} ?>
 
 			<div class="astra-widget-social-profiles-inner clearfix <?php echo esc_attr( $align ); ?> <?php echo esc_attr( $icon_style ); ?> <?php echo 'icon-' . esc_attr( $color_type ); ?>">
@@ -353,7 +350,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 								<a href="<?php echo esc_attr( $list['link'] ); ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>" aria-label="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 											<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
-												<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? $list_data->viewbox : ''; ?>" width=<?php echo esc_attr( $icon_width ); ?> height=<?php echo esc_attr( $icon_width ); ?> ><path d="<?php echo ( isset( $list_data->path ) ) ? $list_data->path : ''; ?>"></path></svg>
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? esc_attr( $list_data->viewbox ) : ''; ?>" width=<?php echo esc_attr( $icon_width ); ?> height=<?php echo esc_attr( $icon_width ); ?> ><path d="<?php echo ( isset( $list_data->path ) ) ? esc_attr( $list_data->path ) : ''; ?>"></path></svg>
 											<?php } ?>
 										</span>
 									<?php if ( $display_title ) { ?>
@@ -369,7 +366,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			<?php
 
 			// After Widget.
-			echo $args['after_widget'];
+			echo $args['after_widget'];// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		/**
@@ -379,7 +376,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 * @param  array $old_instance Widget old instance.
 		 * @return array                Merged updated instance.
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			$instance = wp_parse_args( $new_instance, $old_instance );
 
@@ -400,7 +397,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 		 * @param  array $instance Widget instance.
 		 * @return void
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			wp_enqueue_script( 'astra-widgets-' . $this->id_base );
 			wp_enqueue_style( 'astra-widget-social-profiles-admin' );

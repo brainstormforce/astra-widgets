@@ -27,7 +27,7 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 		 *
 		 * @return void
 		 */
-		function register_list_icons_widgets() {
+		public function register_list_icons_widgets() {
 			register_widget( 'Astra_Widget_Address' );
 			register_widget( 'Astra_Widget_List_Icons' );
 			register_widget( 'Astra_Widget_Social_Profiles' );
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Astra_Widgets_Loader' ) ) {
 		 *
 		 * @return void
 		 */
-		function enqueue_scripts_backend_and_frontend() {
+		public function enqueue_scripts_backend_and_frontend() {
 		}
 	}
 }
