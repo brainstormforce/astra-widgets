@@ -3,7 +3,7 @@ Contributors: brainstormforce
 Donate link: https://www.paypal.me/BrainstormForce
 Tags: Address widget, Social profile widget, List icon widget, Social media, Add widget
 Requires at least: 4.7
-Tested up to: 5.3.2
+Tested up to: 5.4
 Requires PHP: 5.2
 Stable tag: 1.2.3
 License: GPLv2 or later
