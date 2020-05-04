@@ -209,7 +209,7 @@ module.exports = function( grunt ) {
                         '!css/sourcemap/**',
                         '!.git/**',
                         '!bin/**',
-                        '!.gitlab-ci.yml',
+                        '!.travis.yml',
                         '!bin/**',
                         '!tests/**',
                         '!phpunit.xml.dist',

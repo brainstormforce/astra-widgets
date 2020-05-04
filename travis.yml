@@ -1,0 +1,27 @@
+sudo: false
+
+services:
+  - docker
+
+language: php
+dist: precise
+
+cache:
+  - $HOME/.composer/cache
+
+matrix:
+  include:
+    - php: 7.4snapshot
+      env: WP_TRAVISCI=phpcs
+
+before_script:
+  - |
+    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+      composer install
+    fi
+script:
+  - |
+    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+      vendor/bin/phpcs
+    fi
+  
