@@ -378,9 +378,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 
 			if ( ! empty( $fields ) && is_array( $fields ) ) {
 				foreach ( $fields as $key => $value ) {
-					$value              = wp_parse_args( $value, $defaults );
-					$font_awesome_icons = self::backend_load_font_awesome_icons();
-
+					$value = wp_parse_args( $value, $defaults );
 					$class = isset( $value['class'] ) ? $value['class'] : '';
 
 					switch ( $value['type'] ) {

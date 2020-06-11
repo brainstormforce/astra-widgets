@@ -352,6 +352,29 @@ module.exports = function( grunt ) {
         }
     } );
 
+    // Update google Fonts
+    grunt.registerTask('font-awesome', function () {
+        var done = this.async();
+        var request = require('request');
+        var fs = require('fs');
+
+        request('https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json', function (error, response, body) {
+
+            if (response && response.statusCode == 200) {
+
+                console.log('Fonts successfully fetched!');
+
+                var fonts = JSON.parse(body);
+
+                fs.writeFile('assets/fonts/icons.json', JSON.stringify(fonts, undefined, 4), function (err) {
+                    if (!err) {
+                        console.log("Font-Awesome library updated!");
+                    }
+                });
+            }
+        });
+    });
+
     grunt.util.linefeed = '\n';
 
 };
