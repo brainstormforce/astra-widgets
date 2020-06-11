@@ -352,9 +352,8 @@ module.exports = function( grunt ) {
         }
     } );
 
-    // Update google Fonts
+    // Update Font Awesome library.
     grunt.registerTask('font-awesome', function () {
-        var done = this.async();
         var request = require('request');
         var fs = require('fs');
 
