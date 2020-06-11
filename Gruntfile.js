@@ -366,7 +366,7 @@ module.exports = function( grunt ) {
 
                 var fonts = JSON.parse(body);
 
-                fs.writeFile('assets/fonts/icons.json', JSON.stringify(fonts, undefined, 4), function (err) {
+                fs.writeFile('assets/fonts/icons.json', JSON.stringify(fonts, null, 4), function (err) {
                     if (!err) {
                         console.log("Font-Awesome library updated!");
                     }
