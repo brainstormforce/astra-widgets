@@ -33,7 +33,7 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 		public function __construct() {
 
 			define( 'BSF_ANALYTICS_FILE', __FILE__ );
-			define( 'BSF_ANALYTICS_VERSION', '1.0.1' );
+			define( 'BSF_ANALYTICS_VERSION', '1.0.2' );
 			define( 'BSF_ANALYTICS_PATH', dirname( __FILE__ ) );
 			define( 'BSF_ANALYTICS_URI', $this->bsf_analytics_url() );
 
