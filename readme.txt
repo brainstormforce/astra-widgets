@@ -77,7 +77,7 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 == Changelog ==
 
 = 1.2.5 =
-- Improvement: BSF Analytics notice compatibility.
+- Improvement: Non-personal usage multiple admin notice compatibility.
 
 = 1.2.4 =
 - New: Users can now share non-personal usage data to help us test and develop better products. ( https://store.brainstormforce.com/usage-tracking/?utm_source=wp_dashboard&utm_medium=general_settings&utm_campaign=usage_tracking )
