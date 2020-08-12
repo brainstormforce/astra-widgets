@@ -25,7 +25,7 @@ define( 'ASTRA_WIDGETS_FILE', __FILE__ );
 define( 'ASTRA_WIDGETS_BASE', plugin_basename( ASTRA_WIDGETS_FILE ) );
 define( 'ASTRA_WIDGETS_DIR', plugin_dir_path( ASTRA_WIDGETS_FILE ) );
 define( 'ASTRA_WIDGETS_URI', plugins_url( '/', ASTRA_WIDGETS_FILE ) );
-define( 'ASTRA_WIDGETS_VER', '1.2.4' );
+define( 'ASTRA_WIDGETS_VER', '1.2.5' );
 define( 'ASTRA_WIDGETS_TEMPLATE_DEBUG_MODE', false );
 
 require_once ASTRA_WIDGETS_DIR . 'classes/class-astra-widgets.php';
