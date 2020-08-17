@@ -86,9 +86,9 @@ if ( ! class_exists( 'BSF_Analytics' ) ) {
 		 */
 		public function get_analytics_url( $analytics_path ) {
 
-			$content_dir_path = str_replace( '\\', '/', WP_CONTENT_DIR );
+			$content_dir_path = wp_normalize_path( WP_CONTENT_DIR );
 
-			$analytics_path = str_replace( '\\', '/', $analytics_path );
+			$analytics_path = wp_normalize_path( $analytics_path );
 
 			return str_replace( $content_dir_path, content_url(), $analytics_path );
 		}
