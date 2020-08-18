@@ -3,9 +3,9 @@ Contributors: brainstormforce
 Donate link: https://www.paypal.me/BrainstormForce
 Tags: Address widget, Social profile widget, List icon widget, Social media, Add widget
 Requires at least: 4.7
-Tested up to: 5.4.2
+Tested up to: 5.5
 Requires PHP: 5.2
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 == Changelog ==
+
+= 1.2.5 =
+- Fix: Fixed compatibility with other plugins with respect to the admin notice.
 
 = 1.2.4 =
 - New: Users can now share non-personal usage data to help us test and develop better products. ( https://store.brainstormforce.com/usage-tracking/?utm_source=wp_dashboard&utm_medium=general_settings&utm_campaign=usage_tracking )
