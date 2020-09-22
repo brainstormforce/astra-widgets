@@ -3,9 +3,9 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** Address widget, Social profile widget, List icon widget, Social media, Add widget  
 **Requires at least:** 4.7  
-**Tested up to:** 5.5  
+**Tested up to:** 5.5.1  
 **Requires PHP:** 5.2  
-**Stable tag:** 1.2.5  
+**Stable tag:** 1.2.6  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -31,7 +31,7 @@ You simply need to select the place you wish to add the widget in and then add t
 
 ### WHY PEOPLE LOVE THE ASTRA THEME? ###
 
-Astra is currently powering over 300,000+ websites. The performance and ease of use it offers has made it the go-to theme for beginners as well as experts.
+Astra is currently powering over 1+ million websites. The performance and ease of use it offers has made it the go-to theme for beginners as well as experts.
 
 ### Here are a few reasons why they love Astra - ###
 
@@ -45,7 +45,7 @@ Astra is currently powering over 300,000+ websites. The performance and ease of 
 
 **Deeper Integrations** - Astra lets you create and beautify eCommerce websites and those that offer online courses in minutes. This is possible due to its in-depth integrations with all WooCommerce plugins, LifterLMS, LearnDash, etc.
 
-**Ready-to-use complete website demos** - Astra offers ready-made starter sites built with Elementor, Beaver Builder, Brizy and Gutenberg. You can import them using the <a href="https://wordpress.org/plugins/astra-sites/">Astra Starter Sites</a> plugin, tweak and go live in minutes!
+**Ready-to-use complete website demos** - Astra offers ready-made starter templates built with Elementor, Beaver Builder, Brizy and Gutenberg. You can import them using the <a href="https://wordpress.org/plugins/astra-sites/">Starter Templates</a> plugin, tweak and go live in minutes!
 
 ## Frequently Asked Questions ##
  
@@ -75,6 +75,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 ## Changelog ##
+
+### 1.2.6 ###
+- Improvement: Hardened the security of plugin.
 
 ### 1.2.5 ###
 - Fix: Fixed compatibility with other plugins with respect to the admin notice.
