@@ -239,7 +239,12 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return array                Merged updated instance.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			return wp_parse_args( $new_instance, $old_instance );
+
+			$instance = wp_parse_args( $new_instance, $old_instance );
+
+			$instance = array_map( 'sanitize_text_field', $instance );
+
+			return $instance;
 		}
 
 		/**
