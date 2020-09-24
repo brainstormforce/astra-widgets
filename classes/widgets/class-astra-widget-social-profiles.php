@@ -388,8 +388,6 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			 */
 			$instance['display-title'] = isset( $new_instance['display-title'] ) ? (bool) $new_instance['display-title'] : false;
 
-			$instance = array_map( 'sanitize_text_field', $instance );
-
 			return $instance;
 		}
 
