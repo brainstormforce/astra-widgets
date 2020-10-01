@@ -127,7 +127,6 @@
 		    input = this;
 		    filter = input.value.toUpperCase();
 		    ul = $(this).parents('.astra-icons-list-wrap').find(".astra-widget-icons-list")[0];
-		    console.log( ul );
 		    setTimeout( function() {
 			    li = ul.getElementsByTagName('li');
 
