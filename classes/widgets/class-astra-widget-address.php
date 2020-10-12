@@ -224,6 +224,8 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			 */
 			$instance['display-icons'] = isset( $new_instance['display-icons'] ) ? (bool) $new_instance['display-icons'] : false;
 
+			$instance = array_map( 'sanitize_text_field', $instance );
+
 			return $instance;
 		}
 

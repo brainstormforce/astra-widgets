@@ -239,7 +239,20 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 		 * @return array                Merged updated instance.
 		 */
 		public function update( $new_instance, $old_instance ) {
-			return wp_parse_args( $new_instance, $old_instance );
+
+			$instance = wp_parse_args( $new_instance, $old_instance );
+
+			foreach ( $instance as $icon_key => $icon_value ) {
+
+				if ( 'list' !== $icon_key ) {
+					$instance[ $icon_key ] = sanitize_text_field( $icon_value );
+				} else {
+					foreach ( $instance['list'] as $key => $value ) {
+						$instance['list'][ $key ] = array_map( 'sanitize_text_field', $value );
+					}
+				}
+			}
+			return $instance;
 		}
 
 		/**
