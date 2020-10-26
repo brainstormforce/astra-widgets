@@ -172,8 +172,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 
 			$this->front_setup( $args, $instance );
 
-			$width      = $instance['width'] ? $instance['width'] : '';
-			$icon_color = $instance['icon_color'] ? $instance['icon_color'] : '';
+			$width      = isset( $instance['width'] ) ? $instance['width'] : '';
+			$icon_color = isset( $instance['icon_color'] ) ? $instance['icon_color'] : '';
 
 			if ( ! empty( $width ) ) {
 				$image_width = 'style= max-width:' . esc_attr( $width ) . 'px';
