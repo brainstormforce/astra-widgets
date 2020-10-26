@@ -76,6 +76,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 
 == Changelog ==
 
+= 1.2.7 =
+- Fix: Undefined error when $instance variable is empty.
+
 = 1.2.6 =
 - Improvement: Hardened the security of plugin
 
