@@ -117,7 +117,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 
 			$this->front_setup( $args, $instance );
 
-			$title        = apply_filters( 'widget_title', $instance['title'] );
+			$title        = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
 			$style        = isset( $instance['style'] ) ? $instance['style'] : 'stack';
 			$social_icons = isset( $instance['display-icons'] ) ? $instance['display-icons'] : false;
 			$address      = isset( $instance['address'] ) ? $instance['address'] : '';
