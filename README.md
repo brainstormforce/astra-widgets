@@ -3,9 +3,9 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** Address widget, Social profile widget, List icon widget, Social media, Add widget  
 **Requires at least:** 4.7  
-**Tested up to:** 5.6  
+**Tested up to:** 5.7  
 **Requires PHP:** 5.2  
-**Stable tag:** 1.2.7  
+**Stable tag:** 1.2.8  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -48,10 +48,10 @@ Astra is currently powering over 1+ million websites. The performance and ease o
 **Ready-to-use complete website demos** - Astra offers ready-made starter templates built with Elementor, Beaver Builder, Brizy and Gutenberg. You can import them using the <a href="https://wordpress.org/plugins/astra-sites/">Starter Templates</a> plugin, tweak and go live in minutes!
 
 ## Frequently Asked Questions ##
- 
+
 ### How to install the Astra Widget plugin? ###
- 
-The Astra Widget plugin can be installed and activated like any other plugin. 
+
+The Astra Widget plugin can be installed and activated like any other plugin.
 
 * Open the plugins page in your WordPress dashboard and click on the Add New button.
 * Search for the Astra Widget plugin.
@@ -75,6 +75,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 ## Changelog ##
+
+### 1.2.8 ###
+- Fix: Handled PHP notice in customizer with Astra Address Widget.
 
 ### 1.2.7 ###
 - Fix: Handled PHP Notice in Customizer When We Add Astra List Icons Widget.
@@ -104,12 +107,12 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 - New: Add provision ( using astra_widgets_tel_prefix filter hook ) to remove + sign from telephone link in Address widget.
 - Improvement: Add aria-label attribute to social widget links to improve accessibility.
 - Improvement: Apply Padding right to widgets in case of inline alignment.
-- Fix: Console error for SVG icon in address widget. 
+- Fix: Console error for SVG icon in address widget.
 - Fix: Save button is not working after selecting color from colorpicker.
 - Fix: The official color for the social icon is not working.
 - Fix: The icon is not selected in first attempt in select icon button.
-- Fix: Target option not working for social profiles. 
-- Fix: Skype URL won't work inside social profile widget. 
+- Fix: Target option not working for social profiles.
+- Fix: Skype URL won't work inside social profile widget.
 - Fix: Color picker not working immediately after widget drop.
 
 ### 1.1.1 ###
