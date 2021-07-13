@@ -196,7 +196,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					if ( ! empty( $list ) ) {
 						foreach ( $list as $index => $list ) {
 							$list_data       = json_decode( $list['icon'] );
-							$uniqueue_icon[] = $list_data->name;
+							$uniqueue_icon[] = isset( $list_data->name ) ? $list_data->name : '';
 						}
 					}
 					if ( ! empty( $uniqueue_icon ) ) {

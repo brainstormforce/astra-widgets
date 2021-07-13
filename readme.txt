@@ -3,9 +3,9 @@ Contributors: brainstormforce
 Donate link: https://www.paypal.me/BrainstormForce
 Tags: Address widget, Social profile widget, List icon widget, Social media, Add widget
 Requires at least: 4.7
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 5.2
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,10 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 == Changelog ==
+
+= 1.2.9 =
+- Improvement: WordPress 5.8 compatibility.
+- Fix: Handled PHP notice in customizer with Astra Social Profiles Widget.
 
 = 1.2.8 =
 - Fix: Handled PHP notice in customizer with Astra Address Widget.
