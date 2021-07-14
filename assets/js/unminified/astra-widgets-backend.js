@@ -20,7 +20,7 @@
 				}
 			});
 		},
-		
+
 		/**
 		 * Binds events
 		 */
@@ -74,8 +74,8 @@
 			if( $(this).hasClass( 'open' ) ) {
 				$(this).parents('.astra-widget-icon-selector').find('.astra-icons-list-wrap').append( font_awesome_markup );
 			} else {
-				$(this).parents('.astra-widget-icon-selector').find('.astra-widget-icons-list').remove(); 
-				$(this).parents('.astra-widget-icon-selector').find('.search-icon').remove(); 
+				$(this).parents('.astra-widget-icon-selector').find('.astra-widget-icons-list').remove();
+				$(this).parents('.astra-widget-icon-selector').find('.search-icon').remove();
 			}
 
 		},
@@ -98,7 +98,7 @@
 			// current_icon_preview.removeClass();
 
 			current_icon_preview.html( icon_selector_svg );
-			
+
 			parent.find('.astra-widget-icons-list .astra-widget-icon').removeClass( 'selected' );
 			icon_selector.addClass( 'selected' );
 
@@ -146,7 +146,7 @@
 
 		/**
 		 * Repeater remove image field.
-		 * 
+		 *
 		 * @param  {[type]} event [description]
 		 * @return {[type]}       [description]
 		 */
@@ -167,7 +167,7 @@
 
 		/**
 		 * Repeater add image field
-		 * 
+		 *
 		 * @param  {[type]} event [description]
 		 * @return {[type]}       [description]
 		 */
@@ -228,7 +228,7 @@
 
 		/**
 		 * Return substring.
-		 * 
+		 *
 		 * @param  {[type]} e [description]
 		 * @return {[type]}   [description]
 		 */
@@ -246,7 +246,7 @@
 
 		/**
 		 * Repeater set title.
-		 * 
+		 *
 		 * @param  {[type]} e [description]
 		 * @return {[type]}   [description]
 		 */
@@ -259,7 +259,7 @@
 
 		/**
 		 * Repeater reinit
-		 * 
+		 *
 		 * @param  {[type]} e [description]
 		 * @return {[type]}   [description]
 		 */
@@ -269,7 +269,7 @@
 
 		/**
 		 * Repeater add new
-		 * 
+		 *
 		 * @param {[type]} e [description]
 		 */
 		_add_new: function( e ) {
@@ -318,7 +318,7 @@
 
 						// Show index.
 						$(repeaterFieldEl).find('.index').text( repeaterFieldIndex );
-		        		
+
 		        		// Set new name.
 		        		$(currentEl).attr('name', field_name);
 					});
@@ -328,7 +328,7 @@
 
 	 	/**
 	 	 * Repeater Toggle Open
-	 	 * 
+	 	 *
 	 	 * @param  {[type]} e [description]
 	 	 * @return {[type]}   [description]
 	 	 */
@@ -344,7 +344,7 @@
 
 	    /**
 	     * Repeater clone
-	     * 
+	     *
 	     * @param  {[type]} e [description]
 	     * @return {[type]}   [description]
 	     */
@@ -369,13 +369,13 @@
 
 		/**
 		 * Repeater remove
-		 * 
+		 *
 		 * @param  {[type]} e [description]
 		 * @return {[type]}   [description]
 		 */
 		_repeater_remove: function( e ) {
 	    	e.preventDefault();
-	    	
+
 	    	var $item 	= $( this );
 	    	var parent 	= $item.closest('.astra-repeater');
 			var title 	= $item.parent().find('.title').html();
@@ -386,11 +386,11 @@
 			} else {
 				str = 'this field';
 			}
-	    	
+
 	    	if( confirm( 'Are you sure you want to delete ' + str + '?' ) ) {
 	    		$item.closest('.astra-repeater-field').remove();
 	    	}
-	    	
+
 	    	// Set repeater fields names.
 	 		AstraWidgets._set_repeater_names();
 
@@ -400,7 +400,7 @@
 
 	    /**
 	     * Repeater init
-	     * 
+	     *
 	     * @return {[type]} [description]
 	     */
 		_init_repeater: function()
@@ -423,11 +423,11 @@
 				$('.astra-repeater-field').each(function(index, el) {
 					var title = $( el ).find('[data-field-id="title"]' ).val() || '';
 					var icon = $( el ).find('[data-field-id="icon"]' ).val() || '';
-					
+
 					title = AstraWidgets._get_sub_string( title );
-			    	
+
 			    	$(el).find('.title').text( title );
-					
+
 					if( $(el).find('.selected-icon').data('icon-visible') === 'yes' ) {
 						$(el).find('.title').addClass( icon );
 					}
