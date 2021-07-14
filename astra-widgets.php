@@ -35,7 +35,7 @@ if ( is_admin() ) {
 	/**
 	 * Admin Notice Library Settings
 	 */
-	require_once ASTRA_WIDGETS_DIR . 'lib/notices/class-astra-notices.php';
+	require_once ASTRA_WIDGETS_DIR . 'lib/astra-notices/class-astra-notices.php';
 }
 
 // BSF Analytics library.
