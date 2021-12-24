@@ -388,6 +388,14 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			 */
 			$instance['display-title'] = isset( $new_instance['display-title'] ) ? (bool) $new_instance['display-title'] : false;
 
+			/**
+			 * Created new widget meta option to resolve repeater fields not appearing in block editor widgets.
+			 *
+			 * Case: In WordPress 5.8 block editor for widget areas are released due to that Legacy widget's repeater fields are not appearing when user triggers widget to edit.
+			 * Usecase: So that's this new meta option added here & it funrther use for that widget instance number.
+			 */
+			$instance[ 'widget_unique_id' ] = isset( $_POST[ 'widget-' . $this->id_base ] ) ? absint( array_key_first( $_POST[ 'widget-' . $this->id_base ] ) ) : 1;
+
 			return $instance;
 		}
 
@@ -554,6 +562,11 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					'unit'    => 'Px',
 					'default' => ( isset( $instance['space_btn_social_profiles'] ) && ! empty( $instance['space_btn_social_profiles'] ) ) ? $instance['space_btn_social_profiles'] : '',
 				),
+				array(
+					'type'    => 'hidden',
+					'id'      => 'widget_unique_id',
+					'default' => ( isset( $instance['widget_unique_id'] ) && ! empty( $instance['widget_unique_id'] ) ) ? $instance['widget_unique_id'] : '',
+				),
 			);
 
 			?>
@@ -561,7 +574,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			<div class="<?php echo esc_attr( $this->id_base ); ?>-fields">
 				<?php
 				// Generate fields.
-				astra_generate_widget_fields( $this, $fields );
+				astra_generate_widget_fields( $this, $fields, $instance );
 				?>
 				</div>
 				<?php

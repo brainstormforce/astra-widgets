@@ -210,7 +210,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 												<?php } ?>
 											</span>
 										</div>
-									<?php } else { ?>		
+									<?php } else { ?>
 										<div class="image" <?php echo ( isset( $image_width ) ) ? esc_attr( $image_width ) : ''; ?>>
 											<?php echo wp_get_attachment_image( $list['image'] ); ?>
 										</div>
@@ -252,6 +252,14 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					}
 				}
 			}
+
+			/**
+			 * Created new widget meta option to resolve repeater fields not appearing in block editor widgets.
+			 *
+			 * Case: In WordPress 5.8 block editor for widget areas are released due to that Legacy widget's repeater fields are not appearing when user triggers widget to edit.
+			 * Usecase: So that's this new meta option added here & it funrther use for that widget instance number.
+			 */
+			$instance[ 'widget_unique_id' ] = isset( $_POST[ 'widget-' . $this->id_base ] ) ? absint( array_key_first( $_POST[ 'widget-' . $this->id_base ] ) ) : 1;
 			return $instance;
 		}
 
@@ -416,13 +424,18 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					'default' => ( isset( $instance['width'] ) && ! empty( $instance['width'] ) ) ? $instance['width'] : '',
 					'unit'    => 'Px',
 				),
+				array(
+					'type'    => 'hidden',
+					'id'      => 'widget_unique_id',
+					'default' => ( isset( $instance['widget_unique_id'] ) && ! empty( $instance['widget_unique_id'] ) ) ? $instance['widget_unique_id'] : '',
+				),
 			);
 			?>
 
 			<div class="<?php echo esc_attr( $this->id_base ); ?>-fields">
 				<?php
 					// Generate fields.
-					astra_generate_widget_fields( $this, $fields );
+					astra_generate_widget_fields( $this, $fields, $instance );
 				?>
 			</div>
 			<?php

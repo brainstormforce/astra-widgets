@@ -364,9 +364,10 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @param  object $self        Widget object.
 		 * @param  array  $fields      Fields array.
 		 * @param  string $repeater_id Repeater ID.
+		 * @param  array  $instance_data Widget saved data.
 		 * @return void
 		 */
-		public function generate( $self, $fields = array(), $repeater_id = '' ) {
+		public function generate( $self, $fields = array(), $repeater_id = '', $instance_data = array() ) {
 
 			$defaults = array(
 				'type'    => '',
@@ -450,7 +451,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 									<div class="astra-repeater-container">
 										<div class="astra-repeater-sortable">
 											<?php
-											$this->generate_repeater_fields( $self, $fields, $value );
+											$this->generate_repeater_fields( $self, $fields, $value, $instance_data );
 											?>
 										</div>
 									</div>
@@ -577,8 +578,8 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							break;
 						case 'hidden':
 							?>
-										<input class="<?php echo esc_attr( $class ); ?> widefat" type="hidden"  name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
-									<?php
+								<input class="widefat" type="hidden" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
+							<?php
 							break;
 						case 'color':
 							?>
@@ -642,19 +643,38 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		}
 
 		/**
+		 * Check if block editor is active or not.
+		 *
+		 * @return boolean true|false
+		 * @since x.x.x
+		 */
+		public function is_widget_block_editor() {
+			if( current_theme_supports( 'widgets-block-editor' ) ) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
 		 * Generate repeatable fields.
 		 *
 		 * @param  object $self   Widget object.
 		 * @param  array  $fields  Fields array.
 		 * @param  array  $value   Default value.
+		 * @param  array  $instance_data   Widget data.
 		 * @return void
 		 */
-		public function generate_repeater_fields( $self, $fields, $value ) {
+		public function generate_repeater_fields( $self, $fields, $value, $instance_data ) {
 			$instances = $self->get_settings();
+			$widget_id = $self->number;
 
-			if ( array_key_exists( $self->number, $instances ) ) {
-				$instance = $instances[ $self->number ];
+			// Getting widget ID from their saved meta option and assigned it for further rendering.
+			if( $this->is_widget_block_editor() && ( isset( $instance_data[ 'widget_unique_id' ] ) && 1 !== $instance_data[ 'widget_unique_id' ] ) ) {
+				$widget_id = $instance_data[ 'widget_unique_id' ];
+			}
 
+			if ( array_key_exists( $widget_id, $instances ) ) {
+				$instance = $instances[ $widget_id ];
 				if ( array_key_exists( $value['id'], $instance ) ) {
 					$stored           = $instance[ $value['id'] ];
 					$repeater_options = $value['options'];
@@ -691,7 +711,6 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -713,11 +732,12 @@ if ( ! function_exists( 'astra_generate_widget_fields' ) ) :
 	 *
 	 * @param  object $self        Widget object.
 	 * @param  array  $fields      Fields array.
+	 * @param  array  $instance_data Widget saved data array.
 	 * @param  string $repeater_id Repeater ID.
 	 * @return void
 	 */
-	function astra_generate_widget_fields( $self, $fields = array(), $repeater_id = '' ) {
-		Astra_Widgets_Helper::get_instance()->generate( $self, $fields, $repeater_id );
+	function astra_generate_widget_fields( $self, $fields = array(), $instance_data = array(), $repeater_id = '' ) {
+		Astra_Widgets_Helper::get_instance()->generate( $self, $fields, $repeater_id, $instance_data );
 	}
 endif;
 
