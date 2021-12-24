@@ -649,7 +649,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @since x.x.x
 		 */
 		public function is_widget_block_editor() {
-			if( current_theme_supports( 'widgets-block-editor' ) ) {
+			if ( current_theme_supports( 'widgets-block-editor' ) ) {
 				return true;
 			}
 			return false;
@@ -669,8 +669,8 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 			$widget_id = $self->number;
 
 			// Getting widget ID from their saved meta option and assigned it for further rendering.
-			if( $this->is_widget_block_editor() && ( isset( $instance_data[ 'widget_unique_id' ] ) && 1 !== $instance_data[ 'widget_unique_id' ] ) ) {
-				$widget_id = $instance_data[ 'widget_unique_id' ];
+			if ( $this->is_widget_block_editor() && ( isset( $instance_data['widget_unique_id'] ) && 1 !== $instance_data['widget_unique_id'] ) ) {
+				$widget_id = $instance_data['widget_unique_id'];
 			}
 
 			if ( array_key_exists( $widget_id, $instances ) ) {

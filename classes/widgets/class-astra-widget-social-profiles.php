@@ -394,7 +394,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			 * Case: In WordPress 5.8 block editor for widget areas are released due to that Legacy widget's repeater fields are not appearing when user triggers widget to edit.
 			 * Usecase: So that's this new meta option added here & it funrther use for that widget instance number.
 			 */
-			$instance[ 'widget_unique_id' ] = isset( $_POST[ 'widget-' . $this->id_base ] ) ? absint( array_key_first( $_POST[ 'widget-' . $this->id_base ] ) ) : 1;
+			$instance['widget_unique_id'] = ! empty( $_POST[ 'widget-' . $this->id_base ] ) ? absint( array_keys( $_POST[ 'widget-' . $this->id_base ] )[0] ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Missing, PHPCompatibility.Syntax.NewFunctionArrayDereferencing.Found
 
 			return $instance;
 		}
