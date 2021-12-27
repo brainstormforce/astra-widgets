@@ -342,6 +342,11 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 					),
 				),
 				array(
+					'type'    => 'notice',
+					'desc'    => __( 'Saved repeater fileds are not showing? Save/Update the widgets and refresh it once.', 'astra-widgets' ),
+					'show_if' => ( ! isset( $instance['widget_unique_id'] ) && Astra_Widgets_Helper::get_instance()->is_widget_block_editor() ),
+				),
+				array(
 					'type' => 'separator',
 				),
 				array(
