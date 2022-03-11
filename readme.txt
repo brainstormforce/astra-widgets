@@ -76,6 +76,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 
 == Changelog ==
 
+= 1.2.10 =
+- Fix: Displaying double Color options when more than one widgets added.
+
 = 1.2.9 =
 - Improvement: WordPress 5.8 compatibility.
 - Fix: Handled PHP notice in customizer with Astra Social Profiles Widget.
