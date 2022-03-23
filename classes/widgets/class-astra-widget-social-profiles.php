@@ -473,7 +473,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				),
 				array(
 					'type'    => 'notice',
-					'desc'    => __( 'Saved repeater fileds are not showing? Save/Update the widgets and refresh it once.', 'astra-widgets' ),
+					'desc'    => __( 'If repeater fields are not appearing then click on the Update button of the widgets page. For more information, click here.', 'astra-widgets' ),
 					'show_if' => ( ! empty( $instance ) && ! isset( $instance['widget_unique_id'] ) && Astra_Widgets_Helper::get_instance()->is_widget_block_editor() ),
 				),
 				array(

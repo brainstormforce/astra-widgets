@@ -77,7 +77,7 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 ## Changelog ##
 
 ### 1.2.10 ###
-- Fix: Astra Social Profile: Repeater field not showing in widget block editor.
+- Fix: Astra Social Profile: Repeater field not showing in widget block editor. ( https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/ )
 - Fix: Astra List Icons: Repeater field not showing in widget block editor.
 - Fix: Displaying double Color options when more than one widgets added.
 
