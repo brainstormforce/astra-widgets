@@ -275,6 +275,8 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 			wp_enqueue_script( 'astra-widgets-' . $this->id_base );
 			wp_add_inline_style( 'astra-font-style-style', $custom_css );
 
+			$notice_link = 'If repeater fields are not appearing then click on the Update button of the widgets page. For more information, <a rel="noopener" target="_blank" href="' . esc_url_raw( 'https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/' ) . '">click here.</a>';
+
 			$fields = array(
 				array(
 					'type'    => 'text',
@@ -343,7 +345,7 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				),
 				array(
 					'type'    => 'notice',
-					'desc'    => __( 'If repeater fields are not appearing then click on the Update button of the widgets page. For more information, click here.', 'astra-widgets' ),
+					'desc'    => sprintf( __( '%s ', 'astra-widgets' ), $notice_link ),
 					'show_if' => ( ! empty( $instance ) && ! isset( $instance['widget_unique_id'] ) && Astra_Widgets_Helper::get_instance()->is_widget_block_editor() ),
 				),
 				array(

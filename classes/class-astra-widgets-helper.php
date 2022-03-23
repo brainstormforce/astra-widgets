@@ -641,7 +641,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							if ( true === $value['show_if'] ) {
 								?>
 									<p class="astra-widget-field astra-widget-field-notice notice inline notice-warning notice-alt">
-										<?php echo esc_html( $value['desc'] ); ?>
+										<?php echo wp_kses_post( $value['desc'] ); ?>
 									</p>
 								<?php
 							}
