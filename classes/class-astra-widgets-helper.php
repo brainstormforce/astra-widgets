@@ -585,7 +585,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 							?>
 
 									<div class="astra-widget-field astra-widget-field-color astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
-										<div class="astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
+										<div class="astra-widget-color astra-widget-field-<?php echo esc_attr( $value['id'] ); ?>">
 											<label for="<?php echo esc_attr( $self->get_field_id( $value['id'] ) ); ?>"><?php echo esc_html( $value['name'] ); ?></label>
 											<input class="<?php echo esc_attr( $class ); ?> widefat" type="text" name="<?php echo esc_attr( $self->get_field_name( $value['id'] ) ); ?>" value="<?php echo esc_attr( $value['default'] ); ?>"/>
 										</div>
