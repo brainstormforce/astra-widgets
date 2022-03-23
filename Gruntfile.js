@@ -305,7 +305,7 @@ module.exports = function( grunt ) {
         },
 
     } );
-    
+
     grunt.loadNpmTasks('grunt-rtlcss');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-postcss');
@@ -346,7 +346,7 @@ module.exports = function( grunt ) {
     grunt.registerTask( 'bump-version', function() {
         var newVersion = grunt.option("ver");
 
-        if ( newVersion ) {     
+        if ( newVersion ) {
             grunt.task.run( "bumpup:" + newVersion );
             grunt.task.run( "replace" );
         }

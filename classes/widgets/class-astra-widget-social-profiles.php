@@ -388,6 +388,14 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			 */
 			$instance['display-title'] = isset( $new_instance['display-title'] ) ? (bool) $new_instance['display-title'] : false;
 
+			/**
+			 * Created new widget meta option to resolve repeater fields not appearing in block editor widgets.
+			 *
+			 * Case: In WordPress 5.8 block editor for widget areas are released due to that Legacy widget's repeater fields are not appearing when user triggers widget to edit.
+			 * Usecase: So that's this new meta option added here & it funrther use for that widget instance number.
+			 */
+			$instance['widget_unique_id'] = ! empty( $_POST[ 'widget-' . $this->id_base ] ) ? absint( array_keys( $_POST[ 'widget-' . $this->id_base ] )[0] ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Missing, PHPCompatibility.Syntax.NewFunctionArrayDereferencing.Found
+
 			return $instance;
 		}
 
@@ -462,6 +470,11 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							'show_icon' => 'yes',
 						),
 					),
+				),
+				array(
+					'type'    => 'notice',
+					'desc'    => __( 'Saved repeater fileds are not showing? Save/Update the widgets and refresh it once.', 'astra-widgets' ),
+					'show_if' => ( ! empty( $instance ) && ! isset( $instance['widget_unique_id'] ) && Astra_Widgets_Helper::get_instance()->is_widget_block_editor() ),
 				),
 				array(
 					'type' => 'separator',
@@ -554,6 +567,11 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 					'unit'    => 'Px',
 					'default' => ( isset( $instance['space_btn_social_profiles'] ) && ! empty( $instance['space_btn_social_profiles'] ) ) ? $instance['space_btn_social_profiles'] : '',
 				),
+				array(
+					'type'    => 'hidden',
+					'id'      => 'widget_unique_id',
+					'default' => ( isset( $instance['widget_unique_id'] ) && ! empty( $instance['widget_unique_id'] ) ) ? $instance['widget_unique_id'] : '',
+				),
 			);
 
 			?>
@@ -561,7 +579,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			<div class="<?php echo esc_attr( $this->id_base ); ?>-fields">
 				<?php
 				// Generate fields.
-				astra_generate_widget_fields( $this, $fields );
+				astra_generate_widget_fields( $this, $fields, $instance );
 				?>
 				</div>
 				<?php
