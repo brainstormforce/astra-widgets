@@ -1,13 +1,13 @@
 # Astra Widgets #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
-**Donate link:** https://www.paypal.me/BrainstormForce  
-**Tags:** Address widget, Social profile widget, List icon widget, Social media, Add widget  
-**Requires at least:** 4.7  
-**Tested up to:** 5.9.2  
-**Requires PHP:** 5.2  
-**Stable tag:** 1.2.10  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)
+**Donate link:** https://www.paypal.me/BrainstormForce
+**Tags:** Address widget, Social profile widget, List icon widget, Social media, Add widget
+**Requires at least:** 4.7
+**Tested up to:** 5.9.2
+**Requires PHP:** 5.2
+**Stable tag:** 1.2.10
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 Quickest solution to add widgets like Address, Social Profiles and List icons on a website built with Astra.
 
@@ -77,11 +77,8 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 ## Changelog ##
 
 ### 1.2.10 ###
-<<<<<<< HEAD
-=======
 - Fix: Astra Social Profile: Repeater field not showing in widget block editor.
 - Fix: Astra List Icons: Repeater field not showing in widget block editor.
->>>>>>> 7cd03abe971555f1d7ede1a1e3da36f220d0e7c7
 - Fix: Displaying double Color options when more than one widgets added.
 
 ### 1.2.9 ###
