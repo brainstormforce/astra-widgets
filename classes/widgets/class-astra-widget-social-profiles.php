@@ -411,7 +411,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			wp_enqueue_style( 'astra-widget-social-profiles-admin' );
 			wp_enqueue_style( 'astra-widgets-font-style' );
 
-			$notice_link = 'If repeater fields are not appearing then click on the Update button of the widgets page. For more information, <a rel="noopener" target="_blank" href="' . esc_url_raw( 'https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/' ) . '">click here.</a>';
+			$notice_link = __( 'If repeater fields are not appearing then click on the Update button of the widgets page. For more information,', 'astra-widgets' );
 
 			$fields = array(
 				array(
@@ -475,7 +475,8 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 				),
 				array(
 					'type'    => 'notice',
-					'desc'    => sprintf( __( '%s ', 'astra-widgets' ), $notice_link ),
+					'desc'    => /* translators:%s module name .*/
+					sprintf( '%1$s %2$s', $notice_link, '<a rel="noopener" target="_blank" href="' . esc_url_raw( 'https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/' ) . '">' . __( 'click here.', 'astra-widgets' ) . '</a>' ),
 					'show_if' => ( ! empty( $instance ) && ! isset( $instance['widget_unique_id'] ) && Astra_Widgets_Helper::get_instance()->is_widget_block_editor() ),
 				),
 				array(
