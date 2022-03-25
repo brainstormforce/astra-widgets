@@ -81,6 +81,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 		}
 
+
 		/**
 		 * Register admin scripts
 		 *
