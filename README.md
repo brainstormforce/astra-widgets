@@ -77,7 +77,7 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 ## Changelog ##
 
 ### 1.2.11 ###
-- Fix: Keep the format of Address widget's textarea field as it is in the frontend. (Props - https://github.com/caveman99)
+- Fix: Keep the format of Address widget's textarea text as it is. (Props - https://github.com/caveman99)
 
 ### 1.2.10 ###
 - Fix: Astra Social Profile: Repeater field not showing in widget block editor. ( https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/ )
