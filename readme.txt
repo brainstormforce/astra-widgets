@@ -5,7 +5,7 @@ Tags: Address widget, Social profile widget, List icon widget, Social media, Add
 Requires at least: 4.7
 Tested up to: 5.9.2
 Requires PHP: 5.2
-Stable tag: 1.2.10
+Stable tag: 1.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 == Changelog ==
+
+= 1.2.11 =
+- Fix: Astra Address textarea field formated. (Props - https://github.com/caveman99)
 
 = 1.2.10 =
 - Fix: Astra Social Profile: Repeater field not showing in widget block editor. ( https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/ )
