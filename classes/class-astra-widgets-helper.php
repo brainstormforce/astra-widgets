@@ -655,7 +655,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * Check if block editor is active or not.
 		 *
 		 * @return boolean true|false
-		 * @since x.x.x
+		 * @since 1.2.10
 		 */
 		public function is_widget_block_editor() {
 			if ( current_theme_supports( 'widgets-block-editor' ) ) {
