@@ -226,6 +226,11 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 
 			$instance = array_map( 'sanitize_text_field', $instance );
 
+			// Address is a textarea field and needs to preserve linebreaks and whitespace.
+			if ( ! empty( $new_instance['address'] ) ) {
+				$instance['address'] = sanitize_textarea_field( $new_instance['address'] );
+			}
+
 			return $instance;
 		}
 

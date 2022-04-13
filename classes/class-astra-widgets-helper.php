@@ -65,7 +65,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * @param array                $response Additional information passed back to the 'saved' event on `wp.customize`.
 		 * @param WP_Customize_Manager $instance WP_Customize_Manager instance.
 		 *
-		 * @since x.x.x
+		 * @since 1.2.12
 		 * @return array
 		 */
 		public function update_customize_save_response( $response, $instance ) {
@@ -100,7 +100,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 *
 		 * @param array $astra_widgets_data Astra widgets saved customizer data.
 		 *
-		 * @since x.x.x
+		 * @since 1.2.12
 		 * @return void
 		 */
 		public function update_widget_id_data( $astra_widgets_data ) {
@@ -724,7 +724,7 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 * Check if block editor is active or not.
 		 *
 		 * @return boolean true|false
-		 * @since x.x.x
+		 * @since 1.2.10
 		 */
 		public function is_widget_block_editor() {
 			if ( current_theme_supports( 'widgets-block-editor' ) ) {
