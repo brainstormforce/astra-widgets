@@ -55,6 +55,75 @@ if ( ! class_exists( 'Astra_Widgets_Helper' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+			add_filter( 'customize_save_response', array( $this, 'update_customize_save_response' ), 10, 2 );
+		}
+
+		/**
+		 * Called by the customize_save_after action to refresh
+		 * the cached CSS when Customizer settings are saved.
+		 *
+		 * @param array                $response Additional information passed back to the 'saved' event on `wp.customize`.
+		 * @param WP_Customize_Manager $instance WP_Customize_Manager instance.
+		 *
+		 * @since 1.2.12
+		 * @return array
+		 */
+		public function update_customize_save_response( $response, $instance ) {
+			if ( $this->is_widget_block_editor() && ! empty( $response['setting_validities'] ) ) {
+
+				$astra_widgets_data_keys = array_keys( $response['setting_validities'] );
+				$astra_widgets_data      = array(
+					'widget_astra-widget-social-profiles' => array(),
+					'widget_astra-widget-list-icons'      => array(),
+				);
+				foreach ( $astra_widgets_data_keys as $value ) {
+					if ( strpos( $value, 'widget_astra-widget-' ) !== false ) {
+						$key            = substr_replace( $value, '', -1 );
+						$separated_data = explode( '[', $key );
+
+						if ( 'widget_astra-widget-list-icons' === $separated_data[0] ) {
+							$astra_widgets_data['widget_astra-widget-list-icons'][] = absint( $separated_data[1] );
+						} elseif ( 'widget_astra-widget-social-profiles' === $separated_data[0] ) {
+							$astra_widgets_data['widget_astra-widget-social-profiles'][] = absint( $separated_data[1] );
+						}
+					}
+				}
+
+				$this->update_widget_id_data( $astra_widgets_data );
+			}
+
+			return $response;
+		}
+
+		/**
+		 * Fragment out customizer saved Astra widgets.
+		 *
+		 * @param array $astra_widgets_data Astra widgets saved customizer data.
+		 *
+		 * @since 1.2.12
+		 * @return void
+		 */
+		public function update_widget_id_data( $astra_widgets_data ) {
+
+			if ( ! empty( $astra_widgets_data['widget_astra-widget-social-profiles'] ) ) {
+				$social_profiles_db_data = get_option( 'widget_astra-widget-social-profiles' );
+
+				foreach ( $astra_widgets_data['widget_astra-widget-social-profiles'] as $key ) {
+					if ( $social_profiles_db_data[ $key ]['widget_unique_id'] !== $key ) {
+						$social_profiles_db_data[ $key ]['widget_unique_id'] = $key;
+						update_option( 'widget_astra-widget-social-profiles', $social_profiles_db_data );
+					}
+				}
+			}
+			if ( ! empty( $astra_widgets_data['widget_astra-widget-list-icons'] ) ) {
+				$list_icon_db_data = get_option( 'widget_astra-widget-list-icons' );
+				foreach ( $astra_widgets_data['widget_astra-widget-list-icons'] as $key ) {
+					if ( $list_icon_db_data[ $key ]['widget_unique_id'] !== $key ) {
+						$list_icon_db_data[ $key ]['widget_unique_id'] = $key;
+						update_option( 'widget_astra-widget-list-icons', $list_icon_db_data );
+					}
+				}
+			}
 		}
 
 		/**
