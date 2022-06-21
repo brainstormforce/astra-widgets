@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "browser-sync": "^2.26.13",
-    "node-sass": "^4.12.0"
+    "node-sass": "^7.0.0"
   }
 }
