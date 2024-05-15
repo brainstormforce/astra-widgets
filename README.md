@@ -5,7 +5,7 @@
 **Requires at least:** 4.7
 **Tested up to:** 6.5
 **Requires PHP:** 5.2
-**Stable tag:** 1.2.12
+**Stable tag:** 1.2.13
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 ## Changelog ##
+
+### 1.2.13 ###
+- New: Added Threads, Tiktok, Twitter X and Nextdoor social icons.
 
 ### 1.2.12 ###
 - Fix: Astra Social Profile and List Icons: Repeater field not showing in Customizer widget block editor. ( https://wpastra.com/docs/resolving-repeater-fields-not-working-in-widget-block-editor/ )
