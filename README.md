@@ -5,7 +5,7 @@
 **Requires at least:** 4.7
 **Tested up to:** 6.6
 **Requires PHP:** 5.2
-**Stable tag:** 1.2.13
+**Stable tag:** 1.2.14
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,9 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 ## Changelog ##
+
+### 1.2.14 ###
+- Fix: Astra Widgets - Address widget Font turns to Italic style.
 
 ### 1.2.13 ###
 - New: Added Threads, Tiktok, Twitter X and Nextdoor social icons.

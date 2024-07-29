@@ -27,3 +27,7 @@
 .widget-address.widget-address-inline .widget-address-field {
   margin-left:5px;
 }
+
+.astra-widget-address address, .astra-widget-address cite {
+    font-style: inherit;
+}
