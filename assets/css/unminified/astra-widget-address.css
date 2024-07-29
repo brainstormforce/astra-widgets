@@ -28,6 +28,6 @@
   margin-right:5px;
 }
 
-.astra-widget-address address, cite {
-	font-style: inherit;
+.astra-widget-address address, .astra-widget-address cite {
+    font-style: inherit;
 }
