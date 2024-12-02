@@ -208,7 +208,6 @@ module.exports = function( grunt ) {
                         '!build/**',
                         '!css/sourcemap/**',
                         '!.git/**',
-                        '!bin/**',
                         '!.gitlab-ci.yml',
                         '!bin/**',
                         '!tests/**',
