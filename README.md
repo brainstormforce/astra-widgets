@@ -5,7 +5,7 @@
 **Requires at least:** 4.7
 **Tested up to:** 6.7
 **Requires PHP:** 5.2
-**Stable tag:** 1.2.15
+**Stable tag:** 1.2.16
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,11 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 3. Navigate to Appearance -> Widgets to access the widgets available from the plugin.
 
 ## Changelog ##
+### 1.2.16 ###
+- Improved codebase for improved security. (Props to Patchstack)
+
+### 1.2.15 ###
+- Improved codebase for improved security. (Props to Patchstack)
 
 ### 1.2.14 ###
 - Fix: Astra Widgets - Address widget Font turns to Italic style.
