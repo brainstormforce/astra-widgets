@@ -347,7 +347,7 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 							$trimmed = str_replace( 'astra-icon-', '', $list['icon'] );
 							?>
 							<li>
-								<a href="<?php echo isset( $list['link'] ) ? esc_attr( $list['link'] ) : '#'; ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>" aria-label="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
+								<a href="<?php echo isset( $list['link'] ) ? esc_url( $list['link'] ) : '#'; ?>" target="<?php echo esc_attr( $target ); ?>" rel="<?php echo esc_attr( $rel ); ?>" aria-label="<?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 										<span class="ast-widget-icon <?php echo ( is_object( $list_data ) ) ? esc_html( $list_data->name ) : ''; ?>">
 											<?php if ( ! empty( $list_data->viewbox ) && ! empty( $list_data->path ) ) { ?>
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="<?php echo ( isset( $list_data->viewbox ) ) ? esc_attr( $list_data->viewbox ) : ''; ?>" width="<?php echo esc_attr( $icon_width ); ?>" height="<?php echo esc_attr( $icon_width ); ?>"><path d="<?php echo ( isset( $list_data->path ) ) ? esc_attr( $list_data->path ) : ''; ?>"></path></svg>
@@ -387,6 +387,17 @@ if ( ! class_exists( 'Astra_Widget_Social_Profiles' ) ) :
 			 *       For now we have not able to detect the `checkbox` field in `generate` of class `Astra_Widgets_Helper`.
 			 */
 			$instance['display-title'] = isset( $new_instance['display-title'] ) ? (bool) $new_instance['display-title'] : false;
+
+			/**
+			 * Sanitize social profile links to prevent XSS attacks.
+			 */
+			if ( isset( $instance['list'] ) && is_array( $instance['list'] ) ) {
+				foreach ( $instance['list'] as $key => $profile ) {
+					if ( isset( $profile['link'] ) ) {
+						$instance['list'][ $key ]['link'] = esc_url_raw( $profile['link'] );
+					}
+				}
+			}
 
 			/**
 			 * Created new widget meta option to resolve repeater fields not appearing in block editor widgets.
