@@ -3,7 +3,7 @@
  * Plugin Name: Astra Widgets
  * Plugin URI: https://wpastra.com/
  * Description: The Fastest Way to Add More Widgets into Your WordPress Website.
- * Version: 1.2.16
+ * Version: 1.2.17
  * Author: Brainstorm Force
  * Author URI: https://www.brainstormforce.com
  * Text Domain: astra-widgets

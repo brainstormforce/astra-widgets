@@ -249,6 +249,10 @@ if ( ! class_exists( 'Astra_Widget_List_Icons' ) ) :
 				} else {
 					foreach ( $instance['list'] as $key => $value ) {
 						$instance['list'][ $key ] = array_map( 'sanitize_text_field', $value );
+						// Sanitize link field specifically to prevent XSS attacks.
+						if ( isset( $value['link'] ) ) {
+							$instance['list'][ $key ]['link'] = esc_url_raw( $value['link'] );
+						}
 					}
 				}
 			}
