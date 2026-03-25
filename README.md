@@ -69,12 +69,6 @@ In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : 
 
 In your WordPress admin dashboard go to Appearance -> Widgets, drag the Astra : Social Profiles into the sidebar / header / footer and start filling the details.
 
-### How can I report a security bug? ###
-
-We take plugin security extremely seriously. If you discover a security vulnerability, please report it in a safe and responsible manner.
-
-You can report the issue through our [Bug Bounty Program](https://brainstormforce.com/bug-bounty-program/).
-
 ## Installation ##
 1. Upload the plugin files to the `/wp-content/plugins/astra-widgets` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
